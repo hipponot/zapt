@@ -1,7 +1,13 @@
+require_relative '../task'
+require_relative '../version'
+
 module Zapt
-  class Tasks
-    def version
+
+  class Version < Task
+    def run
       Zapt::VERSION
     end
   end
+
 end
+

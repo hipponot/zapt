@@ -17,7 +17,7 @@ module Zapt
         define_method(task_name) do |*args, &block|
           # instantiate class from string (there has to be a better way!)
           task = "Zapt::#{task_name.camel_case}".split('::').inject(Object) {|o,c| o.const_get c}.new
-          task.instance_eval &block
+          task.instance_eval &block unless block.nil?
           # for now we just execute immediately
           task.run
         end
