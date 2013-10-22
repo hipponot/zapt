@@ -1,0 +1,11 @@
+---
+:project:
+ :name: zapt
+ :type: gem
+:publications:
+- :name: zapt
+  :version: 0.0.1
+  :group: in-house
+  :type: gem
+:dependencies:  [] 
+...
