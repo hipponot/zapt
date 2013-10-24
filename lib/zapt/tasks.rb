@@ -16,7 +16,7 @@ module Zapt
       def define_task task_name
         define_method(task_name) do |*args, &block|
           # instantiate class from string (there has to be a better way!)
-          task = "Zapt::#{task_name.camel_case}".split('::').inject(Object) {|o,c| o.const_get c}.new
+          task = "Zapt::#{task_name.camel_case}Task".split('::').inject(Object) {|o,c| o.const_get c}.new
           task.instance_eval &block unless block.nil?
           # for now we just execute immediately
           task.run
@@ -26,9 +26,9 @@ module Zapt
 
     # require all tasks
     root = File.dirname(File.absolute_path(__FILE__))
-    Dir.glob(root + '/tasks/*') do |task|
+    Dir.glob(root + '/tasks/*.rb') do |task|
       require task
-      Tasks.define_task File.basename(task, '.rb')
+      Tasks.define_task File.basename(task, '_task.rb')
     end
 
   end

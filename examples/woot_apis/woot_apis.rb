@@ -1,28 +1,36 @@
-require_relative '../lib/zapt'
+require_relative '../../lib/zapt'
 
 package do
-  names %w{emacs23 git}
+  names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev}
 end
 
 file do
-  copy 'ida_rsa',     '~/.ssh/.', mode=>0600
-  copy 'ida_rsa.pub', '~/.ssh/.', mode=>0655
+  copy 'id_rsa',     '~/.ssh/.', :mode=>0600
+  copy 'id_rsa.pub', '~/.ssh/.', :mode=>0655
 end
 
 git do
-  repos ['https://github.com/hipponot/kudu.git', 'https://github.com/hipponot/nimbee.git']
+  repos ['https://github.com/hipponot/kudu.git', 'git@github.com:hipponot/nimbee.git']
   dir ENV['HOME']
 end
 
-system do
+ruby do
+  # put kudu and nimbee/build_tools on the PATH
+  ENV['PATH'] = "#{ENV['PATH']}:#{ENV['HOME']}/kudu/bin:#{ENV['HOME']}/nimbee/build_tools"
+  # make this sticky
+  profile = "#{ENV['HOME']}/.bash_profile"
+  unless File.read(profile) =~ /kudu/
+    File.open(profile,'a').puts("export PATH=$PATH:$HOME/kudu/bin:$HOME/nimbee/build_tools")
+  end
+end
+
+system :kudu_build do
+  dir '~/nimbee'
   commands [
-            'kudu/bin/kudu bootstrap',
-            'cd ~/nimbee ~/kudu/bin/kudu build -d woot_cms',
-            'cd ~/nimbee ~/kudu/bin/kudu build -d woot_db',
-            'cd ~/nimbee ~/kudu/bin/kudu build -d woot_storage'
+            'kudu bootstrap',
+            'kudu build -d -n woot_cms',
+            'kudu build -d -n woot_db',
+            'kudu build -d -n woot_storage'
            ]
 end
-# gem do
-#   names %w{popen4 json}
-# end
 
