@@ -30,7 +30,7 @@ module Zapt
       @repos.each do |r|
         target = File.join(@dir, File.basename(r,'.git'))
         if File.exist?(target)
-          Zapt.system("cd #{@target}; git pull")
+          Zapt.system("cd #{target}; git pull")
         else
           Zapt.system("cd #{@dir}; git clone #{r}")
         end
