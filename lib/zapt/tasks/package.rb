@@ -9,16 +9,16 @@ module Zapt
     attr_accessor :action
 
     def initialize
-      self.packages ||= []
-      self.action ||= 'install'
+      @packages ||= []
+      @action ||= 'install'
     end
 
     def names value
-      self.packages.concat(value)
+      @packages.concat(value)
     end
 
     def name value
-      self.packages << value
+      @packages << value
     end
 
     def run
@@ -34,11 +34,11 @@ module Zapt
     private
     
     def apt_install pkg
-      Zapt.system("sudo apt-get #{self.action} #{pkg}")
+      Zapt.system("sudo apt-get #{@action} #{pkg}")
     end
 
     def brew_install pkg
-      Zapt.system("brew #{self.action} #{pkg}")
+      Zapt.system("brew #{@action} #{pkg}")
     end
 
   end

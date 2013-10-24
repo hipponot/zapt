@@ -10,21 +10,21 @@ module Zapt
     attr_accessor :action
 
     def initialize
-      self.gems ||= []
-      self.action ||= 'install'
+      @gems ||= []
+      @action ||= 'install'
     end
 
     def names value
-      self.gems.concat(value)
+      @gems.concat(value)
     end
 
     def name value
-      self.gems << value
+      @gems << value
     end
 
     def run
       gems.each do |gem|
-        Zapt.system("gem #{self.action} #{gem}") unless is_installed? gem
+        Zapt.system("gem #{@action} #{gem}") unless is_installed? gem
       end
     end
 
