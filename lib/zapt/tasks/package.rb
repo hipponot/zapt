@@ -34,7 +34,7 @@ module Zapt
     private
     
     def apt_install pkg
-      Zapt.system("sudo apt-get #{@action} #{pkg}")
+      Zapt.system("sudo apt-get #{@action} -qq #{pkg}")
     end
 
     def brew_install pkg
