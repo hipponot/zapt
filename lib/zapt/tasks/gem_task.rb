@@ -6,29 +6,25 @@ require_relative '../system'
 module Zapt
   class GemTask < Task
 
-    attr_accessor :gems
-    attr_accessor :action
-
-    def initialize
-      @gems ||= []
-      @action ||= 'install'
+    def initialize args
     end
 
-    def names value
-      @gems.concat(value)
+    def names names, action:install
+      names.each{ |name| gem_op(name, action)}
     end
 
-    def name value
-      @gems << value
-    end
-
-    def run
-      gems.each do |gem|
-        Zapt.system("gem #{@action} #{gem}") unless is_installed? gem
-      end
+    def name name, action:install
+      gem_op(name, action)
     end
 
     private
+
+    def gem_op name, action
+      case action
+      when :install
+        Zapt.system("gem #{@action} #{name}") unless is_installed? name
+      end
+    end
     
     def is_installed? name, version=nil
       begin
@@ -42,7 +38,6 @@ module Zapt
         false
       end
     end
-
 
   end
 end

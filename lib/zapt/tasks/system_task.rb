@@ -10,7 +10,7 @@ module Zapt
     include Zapt::Common::Dir
 
     attr_accessor :cmds
-    def initialize
+    def initialize args
       @cmds ||= []
     end
 

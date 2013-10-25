@@ -1,5 +1,32 @@
 require_relative '../lib/zapt'
 
+filesystem do
+  mkdir [
+         '/tmp/foobar'
+        ], mode:0755, owner:Zapt.user, group:Zapt.group
+end
+
+exit(0)
+
+git do
+  repos ['https://github.com/hipponot/kudu.git', 'git@github.com:hipponot/nimbee.git'], dir:ENV['HOME']
+end
+
+
+
+git do
+  repos ['https://github.com/hipponot/kudu.git', 'git@github.com:hipponot/nimbee.git'], dir:"#{ENV['HOME']}/tmp"
+end
+
+exit(0)
+
+filesystem do
+  mkdir ['~/tmp/foo', '~/tmp/blah'], :mode=>777
+  copy '~/.ssh/id_rsa',     '~/tmp', :mode=>0600
+  copy '~/.ssh/id_rsa.pub', '~/tmp', :mode=>0655
+end
+
+
 # put kudu and nimbee/build_tools on the PATH
 ruby do
   profile = "#{ENV['HOME']}/.bash_profile"
@@ -8,16 +35,6 @@ ruby do
   end
 end
 
-exit(0)
-file do
-  copy '~/.ssh/id_rsa',     '~/tmp', :mode=>0600
-  copy '~/.ssh/id_rsa.pub', '~/tmp', :mode=>0655
-end
-
-git do
-  repo 'https://github.com/hipponot/kudu.git'
-  dir "#{ENV['HOME']}/tmp"
-end
 
 system do
   commands ['ls -ltr', 'echo yoda']

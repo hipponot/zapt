@@ -7,9 +7,9 @@ module Zapt
     def is_osx
       self.os =~ /darwin/
     end
+
     def is_linux
       self.os =~ /linux/
     end
   end
-  
 end

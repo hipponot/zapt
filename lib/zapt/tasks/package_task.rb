@@ -8,7 +8,7 @@ module Zapt
     attr_accessor :packages
     attr_accessor :action
 
-    def initialize
+    def initialize args
       @packages ||= []
       @action ||= 'install'
     end
