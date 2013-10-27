@@ -1,6 +1,12 @@
 require_relative '../lib/zapt'
 
 filesystem do
+  @value = "hello world"
+  erb 'example.txt.erb', 'example.txt'
+end
+exit(0)
+
+filesystem do
   mkdir [
          '/tmp/foobar'
         ], mode:0755, owner:Zapt.user, group:Zapt.group

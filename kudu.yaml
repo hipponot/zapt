@@ -13,5 +13,7 @@
   :type: third-party
 - :name: colored
   :type: third-party
+- :name: erubis
+  :type: third-party
 
   

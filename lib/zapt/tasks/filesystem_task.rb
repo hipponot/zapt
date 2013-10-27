@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'erubis'
 
 require_relative '../task'
 require_relative '../os'
@@ -12,6 +13,11 @@ module Zapt
 
     def initialize args
       @operations ||= []
+    end
+
+    def erb source, target
+      eruby = Erubis::Eruby.new(IO.read(source))
+      IO.write(target, eruby.result(binding()))
     end
 
     def copy source, target, owner:nil, group:nil, mode:nil
