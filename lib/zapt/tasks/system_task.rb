@@ -14,20 +14,20 @@ module Zapt
       @cmds ||= []
     end
 
-    def commands cmds, working_dir:ENV['HOME'], user:nil
+    def commands cmds, working_dir:nil, user:nil
       cmds.each do |cmd| 
         run_cmd cmd, working_dir, user
       end
     end
 
-    def command cmd, working_dir:ENV['HOME'], user:nil
+    def command cmd, working_dir:nil, user:nil
       run_cmd cmd, working_dir, user
     end
 
     private 
     
     def run_cmd cmd, working_dir, user
-      cmd.insert(0,"cd #{working_dir};")
+      cmd.insert(0,"cd #{working_dir};") if working_dir
       Zapt.system(cmd, user) 
     end
 
