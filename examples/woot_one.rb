@@ -1,5 +1,8 @@
 require_relative '../lib/zapt'
-
+system do
+  commands ['ls -ltr', 'echo yoda']
+end
+exit(0)
 filesystem do
   @value = "hello world"
   erb 'example.txt.erb', 'example.txt'
