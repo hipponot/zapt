@@ -3,7 +3,7 @@ module Zapt
   class << self
 
     def system cmd, user=nil
-      cmd = "sudo su #{user} -l -c \"#{cmd}\"") if user
+      cmd = "sudo su #{user} -l -c \"#{cmd}\"" if user
       $logger.info "Running: #{cmd}"
       status = POpen4::popen4( cmd ) do |stdout, stderr, stdin|
         stdout.each do |line|
