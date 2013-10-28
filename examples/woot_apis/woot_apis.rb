@@ -1,12 +1,5 @@
 require_relative '../../lib/zapt'
 
-git do
-  repos [
-         'https://github.com/hipponot/kudu.git', 
-         'git@github.com:hipponot/nimbee.git'
-        ], working_dir:ENV['HOME']
-end
-exit
 package do
   # default action: :install
   names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev}
