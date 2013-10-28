@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-ssh -i $HOME/.ssh/id_rsa $1 $2
+ssh -o "StrictHostKeyChecking no" -i $HOME/.ssh/id_rsa $1 $2

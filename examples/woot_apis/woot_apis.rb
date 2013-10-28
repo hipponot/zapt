@@ -1,12 +1,20 @@
 require_relative '../../lib/zapt'
 
+git do
+  repos [
+         'https://github.com/hipponot/kudu.git', 
+         'git@github.com:hipponot/nimbee.git'
+        ], working_dir:ENV['HOME']
+end
+exit
 package do
+  # default action: :install
   names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev}
 end
 
 filesystem do
-  copy 'id_rsa',     '~/.ssh/.', :mode=>0600
-  copy 'id_rsa.pub', '~/.ssh/.', :mode=>0655
+  copy 'id_rsa',     '~/.ssh/.', mode:0600, owner:Zapt.user, group:Zapt.group
+  copy 'id_rsa.pub', '~/.ssh/.', mode:0655, owner:Zapt.user, group:Zapt.group
 end
 
 git do
@@ -31,7 +39,10 @@ system :kudu_build do
             'kudu bootstrap',
             'kudu build -d -n woot_cms',
             'kudu build -d -n woot_db',
-            'kudu build -d -n woot_storage'
+            'kudu build -d -n woot_storage',
+            'kudu deploy -p 3000 -n woot_cms',
+            'kudu deploy -p 3001 -n woot_db',
+            'kudu deploy -p 3002 -n woot_storage',
            ], working_dir:'~/nimbee'
 end
 
