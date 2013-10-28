@@ -1,6 +1,6 @@
 ._*
 .#*
-.idea/*
+.idea*
 bin-debug
 build
 .FlexUnit*
