@@ -27,9 +27,9 @@ module Zapt
       if File.exist?(target)
         # before pull
         switch_to_branch[]
-        Zapt.system("cd #{target}; GIT_SSH=#{@gitssh} git pull")
+        Zapt.system("cd #{target}; GIT_SSH=#{@gitssh} git pull", user)
       else
-        Zapt.system("cd #{working_dir}; GIT_SSH=#{@gitssh} git clone #{repo}")
+        Zapt.system("cd #{working_dir}; GIT_SSH=#{@gitssh} git clone #{repo}", user)
         # after clone
         switch_to_branch[]
       end
