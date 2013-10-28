@@ -27,9 +27,12 @@ module Zapt
     private 
     
     def run_cmd cmd, working_dir, user
-      cmd.insert(0,"sudo su #{user} -l -c ") unless user.nil?
       cmd.insert(0,"cd #{working_dir};")
-      Zapt.system(cmd) 
+      if user
+        Zapt.system("sudo su #{user} -l -c \"#{cmd}\"") 
+      else
+        Zapt.system(cmd) 
+      end
     end
 
   end
