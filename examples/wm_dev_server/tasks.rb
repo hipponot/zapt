@@ -5,22 +5,16 @@ require_relative '../../lib/zapt'
 #branch = "master"
 branch = "sk_10_25"
 
-# latest version of ffmpeg
-system do
-  commands [
-            'apt-get install python-software-properties',
-            'add-apt-repository -y ppa:jon-severinsson/ffmpeg',
-            'apt-get update'
-           ]
-end
-
 # apt/brew packages
 #
 package do
-  # default action: :install
   names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev nginx sox}
 end
 
+# packages for audio encoding
+package do
+  names %w{libmp3lame0 libmpcdec6 libmpeg2-4 libavcodec-extra-53 libavutil-extra-51 libav-tools}
+end
 
 # setup keys for github access
 #
