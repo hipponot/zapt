@@ -1,7 +1,18 @@
-require_relative '../lib/zapt'
+require_relative '../../lib/zapt'
+
+
+system do
+  commands [
+      'apt-get install -qq python-software-properties',
+      'add-apt-repository -y ppa:jon-severinsson/ffmpeg',
+      'apt-get update'
+  ]
+end
+
 system do
   commands ['ls -ltr', 'echo yoda']
 end
+
 exit(0)
 filesystem do
   @value = "hello world"
