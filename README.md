@@ -2,14 +2,13 @@ zapt
 ====
 
 ## Introduction
-Love ruby ?, hate CHEF ? need to configure some servers ? Zapt is a
-task based provisioning made easy.
+Ruby fan?, hate CHEF?, need to configure some servers? or run some
+complex workflow.  Zapt is task based workflows made easy.
 
 ## Getting Started
-
 Basic idea is require 'zapt' and writes some tasks.  It will have task
 dependencies, remoting, parallelization and idempotence but for now
-its just runs stuff :immediately in the order expressed.
+it just runs stuff :immediately in the order expressed.
 
 ```ruby
 
