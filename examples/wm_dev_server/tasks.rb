@@ -5,13 +5,6 @@ require_relative '../../lib/zapt'
 #branch = "master"
 branch = "sk_10_25"
 
-# apt/brew packages
-#
-package do
-  # default action: :install
-  names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev nginx sox}
-end
-
 # latest version of ffmpeg
 system do
   commands = [
@@ -21,6 +14,15 @@ system do
              ]
 end
 package { name 'ffmpeg' }
+exit(0)
+
+# apt/brew packages
+#
+package do
+  # default action: :install
+  names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev nginx sox}
+end
+
 
 # setup keys for github access
 #
