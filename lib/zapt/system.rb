@@ -3,7 +3,7 @@ module Zapt
   class << self
 
     def system cmd, user=nil
-      cmd = "rvmsudo -u #{user} #{cmd}" if user
+      cmd = "sudo su #{user} -l -c \"#{cmd}\"" if user
       $logger.info "Running: #{cmd}"
       status = Open3::popen3(cmd) do |stdin, stdout, stderr|
         stdout.each do |line|

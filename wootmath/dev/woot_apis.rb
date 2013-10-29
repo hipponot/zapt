@@ -35,6 +35,14 @@ ruby do
   end
 end
 
+# build kudu
+#
+system do
+  kudu = "#{ENV['HOME']}/kudu/bin/kudu"
+  command "#{kudu} bootstrap", working_dir:'~/kudu', user:Zapt.user
+  command "#{kudu} build -d -n kudu", working_dir:'~/kudu', user:Zapt.user
+end
+
 # setup credentials
 #
 system do
