@@ -12,6 +12,7 @@ dependencies, remoting, parallelization and idempotence but for now
 its just runs stuff :immediately in the order expressed.
 
 ```ruby
+
 require_relative 'zapt'
 # install some packages
 package do
@@ -20,17 +21,31 @@ end
 
 # do some filesystem stuff
 filesystem do
-  copy 'id_rsa',     '~/.ssh/.', mode:0600, owner:Zapt.user, group:Zapt.group
-  copy 'id_rsa.pub', '~/.ssh/.', mode:0655, owner:Zapt.user, group:Zapt.group
+  mkdir [
+         '/var/log/unicorn',
+         '/tmp/unicorn/pids',
+         '/tmp/unicorn/sockets',
+         '/etc/nginx/conf.d/upstream',
+         '/etc/nginx/conf.d/location'
+        ], mode:0755, owner:Zapt.user, group:Zapt.group
+  copy 'nginx.conf', '/etc/nginx/nginx.conf', mode:0655
 end
+
 
 # clone a repo
 git do
   repo 'https://github.com/hipponot/kudu.git', working_dir:ENV['HOME']
 end
 
-```
+# task in plain old ruby
+ruby do
+  puts 'yoda'
+end
 
+# plain old ruby (no task)
+puts 'luke'
+
+```
 You don't need a CLI or a server or databags or cookbooks or..., just a directory
 with your stuff and a bit of ruby that looks like the above.
 ```

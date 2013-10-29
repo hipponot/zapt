@@ -10,6 +10,8 @@ Gemfile.lock
 assets_src
 cache
 logs
+id_rsa
+id_rsa.pub
 .sass-cache
 # do not remove - unencrypted public/private key pair should not be
 # checked in.  run gpg --symmetric --output [pem file] and check in 
