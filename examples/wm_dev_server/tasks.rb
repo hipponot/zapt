@@ -2,6 +2,8 @@
 
 require_relative '../../lib/zapt'
 
+password = Zapt.ask("Enter wootmath credentials password to get started")
+
 # apt/brew packages
 package do
   names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev nginx sox}
@@ -47,7 +49,7 @@ system do
   commands [
             'kudu build -d -n wootcloud',
             'wootcloud bootstrap',
-            'wootcloud setup --password=wootmathisawesome', 
+            'wootcloud setup --password=\"#{password}\"', 
            ], working_dir:'~/nimbee', user:Zapt.user
 end
 

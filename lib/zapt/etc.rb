@@ -10,6 +10,12 @@ module Zapt
     def bin
       File.join(Zapt.home, 'bin')
     end
+
+    def ask(statement)
+      puts statement.yellow
+      gets.tap{|text| text.strip! if text}
+    end
+
   end  
   
 

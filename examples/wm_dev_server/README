@@ -4,4 +4,8 @@ vagrant up
 vagrant ssh
 // Now you are on the vagrant box
 cd zapt/examples/wm_dev_server
+// Unencrypt the keys
+gpg id_rsa
+gpg id_rsa.pub
+// zapt away
 rvmsudo ./tasks.rb

@@ -2,8 +2,9 @@ zapt
 ====
 
 ## Introduction
-Ruby fan?, hate CHEF?, need to configure some servers? or run some
-complex workflow.  Zapt is task based workflows made easy.
+A you a ruby fan that can't stand CHEF ?, need to configure some servers? or run some
+complex workflow.  Zapt is a task based workflow DSL designed to keep
+it simple and stay out of your way.
 
 ## Getting Started
 Basic idea is require 'zapt' and writes some tasks.  It will have task
@@ -11,7 +12,6 @@ dependencies, remoting, parallelization and idempotence but for now
 it just runs stuff :immediately in the order expressed.
 
 ```ruby
-
 require_relative 'zapt'
 # install some packages
 package do
@@ -30,7 +30,6 @@ filesystem do
   copy 'nginx.conf', '/etc/nginx/nginx.conf', mode:0655
 end
 
-
 # clone a repo
 git do
   repo 'https://github.com/hipponot/kudu.git', working_dir:ENV['HOME']
@@ -45,8 +44,9 @@ end
 puts 'luke'
 
 ```
-You don't need a CLI or a server or databags or cookbooks or..., just a directory
-with your stuff and a bit of ruby that looks like the above.
+You don't need a CLI or a server or databags or cookbooks or..., just
+a directory with your stuff and a bit of ruby that looks like the
+above. To exectue just run the ruby.
 ```
 > rvmsudo task.rb
 ```
