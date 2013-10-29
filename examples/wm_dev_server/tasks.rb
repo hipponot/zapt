@@ -20,7 +20,7 @@ system do
               'sudo apt-get install ffmpeg',
              ]
 end
-package { name ffmpeg }
+package { name 'ffmpeg' }
 
 # setup keys for github access
 #
