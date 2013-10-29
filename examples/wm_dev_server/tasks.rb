@@ -13,8 +13,6 @@ system do
             'apt-get update'
            ]
 end
-package { name 'ffmpeg' }
-exit(0)
 
 # apt/brew packages
 #
