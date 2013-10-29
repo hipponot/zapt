@@ -48,5 +48,5 @@ You don't need a CLI or a server or databags or cookbooks or..., just
 a directory with your stuff and a bit of ruby that looks like the
 above. To exectue just run the ruby.
 ```
-> rvmsudo task.rb
+> rvmsudo ./tasks.rb
 ```
