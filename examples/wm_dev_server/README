@@ -1,0 +1,7 @@
+// To stand and configure a wootmath dev server
+cd vagrant/barebones
+vagrant up
+vagrant ssh
+// Now you are on the vagrant box
+cd zapt/examples/wm_dev_server
+rvmsudo ./tasks.rb
