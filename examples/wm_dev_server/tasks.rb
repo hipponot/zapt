@@ -2,11 +2,7 @@
 
 require_relative '../../lib/zapt'
 
-branch = "master"
-#branch = "sk_10_25"
-
 # apt/brew packages
-#
 package do
   names %w{emacs23 git libxml2-dev mysql-client libmysqlclient-dev ruby-dev libxslt1-dev  libsasl2-dev nginx sox}
 end
@@ -17,21 +13,19 @@ package do
 end
 
 # setup keys for github access
-#
+branch = "master"
 filesystem do
   copy 'id_rsa',     '~/.ssh/.', mode:0600, owner:Zapt.user, group:Zapt.group
   copy 'id_rsa.pub', '~/.ssh/.', mode:0655, owner:Zapt.user, group:Zapt.group
 end
 
 # clone repos
-#
 git do
   repo 'https://github.com/hipponot/kudu.git', working_dir:ENV['HOME']
   repo 'git@github.com:hipponot/nimbee.git', working_dir:ENV['HOME'], branch:branch
 end
 
 # put kudu and nimbee/build_tools on the PATH
-#
 ruby do
   ENV['PATH'] = "#{ENV['PATH']}:#{ENV['HOME']}/kudu/bin:#{ENV['HOME']}/nimbee/build_tools"
   # make this sticky
@@ -42,7 +36,6 @@ ruby do
 end
 
 # build kudu
-#
 system do
   kudu = "#{ENV['HOME']}/kudu/bin/kudu"
   command "#{kudu} bootstrap", working_dir:'~/kudu', user:Zapt.user
@@ -50,7 +43,6 @@ system do
 end
 
 # setup credentials
-#
 system do
   commands [
             'kudu build -d -n wootcloud',
@@ -60,7 +52,6 @@ system do
 end
 
 # unicorn/nginx configuration
-#
 filesystem do
   mkdir [
          '/var/log/unicorn',
@@ -87,7 +78,6 @@ system do
 end
 
 # Start apis/nginx
-#
 system do
   # As user
   commands [
