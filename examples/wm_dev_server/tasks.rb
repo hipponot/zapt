@@ -16,7 +16,7 @@ end
 system do
   commands = [
               'sudo apt-get install python-software-properties',
-              'sudo add-apt-repository ppa:jon-severinsson/ffmpeg',
+              'sudo add-apt-repository -y ppa:jon-severinsson/ffmpeg',
               'sudo apt-get update'
              ]
 end
