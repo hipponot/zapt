@@ -8,9 +8,9 @@ branch = "sk_10_25"
 # latest version of ffmpeg
 system do
   commands [
-            'sudo apt-get install python-software-properties',
-            'sudo add-apt-repository -y ppa:jon-severinsson/ffmpeg',
-            'sudo apt-get update'
+            'apt-get install python-software-properties',
+            'add-apt-repository -y ppa:jon-severinsson/ffmpeg',
+            'apt-get update'
            ]
 end
 package { name 'ffmpeg' }
