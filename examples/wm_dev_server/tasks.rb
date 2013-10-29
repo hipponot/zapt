@@ -2,8 +2,8 @@
 
 require_relative '../../lib/zapt'
 
-#branch = "master"
-branch = "sk_10_25"
+branch = "master"
+#branch = "sk_10_25"
 
 # apt/brew packages
 #
