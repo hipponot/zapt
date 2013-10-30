@@ -2,7 +2,7 @@ zapt
 ====
 
 ## Introduction
-Are you a ruby fan that can't stand CHEF?. Do you need to configure some servers? or run some
+Are you a ruby fan that can't stand CHEF? Do you need to configure some servers? or run some
 complex workflow? Zapt is a task based workflow DSL designed to keep
 it simple and stay out of your way.
 
