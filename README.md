@@ -2,8 +2,8 @@ zapt
 ====
 
 ## Introduction
-A you a ruby fan that can't stand CHEF ?, need to configure some servers? or run some
-complex workflow.  Zapt is a task based workflow DSL designed to keep
+Are you a ruby fan that can't stand CHEF?. Do you need to configure some servers? or run some
+complex workflow? Zapt is a task based workflow DSL designed to keep
 it simple and stay out of your way.
 
 ## Getting Started
@@ -12,7 +12,7 @@ dependencies, remoting, parallelization and idempotence but for now
 it just runs stuff :immediately in the order expressed.
 
 ```ruby
-require_relative 'zapt'
+require 'zapt'
 # install some packages
 package do
   names %w{emacs23 git libxml2-dev mysql-client}
