@@ -21,7 +21,7 @@ module Zapt
 
     private
 
-    def update_or_clone repo, user, working_dir, branch
+    def update_or_clone repo, user, working_dir, branch, host
       target = File.join(working_dir, File.basename(repo,'.git'))
       switch_to_branch = lambda { Zapt.system("cd #{target}; git checkout #{branch}") unless branch.nil?} 
       if File.exist?(target)

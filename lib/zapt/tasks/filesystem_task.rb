@@ -15,9 +15,10 @@ module Zapt
       @operations ||= []
     end
 
-    def erb source, target
+    def erb source, target, owner:nil, group:nil, mode:nil
       eruby = Erubis::Eruby.new(IO.read(source))
       IO.write(target, eruby.result(binding()))
+      file_operation(nil, target, nil, owner, group, mode)
     end
 
     def copy source, target, owner:nil, group:nil, mode:nil
