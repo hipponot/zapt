@@ -7,8 +7,6 @@
   :group: in-house
   :type: gem
 :dependencies: 
-- :name: popen4
-  :type: third-party
 - :name: logger
   :type: third-party
 - :name: colored
