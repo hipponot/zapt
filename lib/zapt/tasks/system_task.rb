@@ -14,21 +14,21 @@ module Zapt
       @cmds ||= []
     end
 
-    def commands cmds, working_dir:nil, user:nil
+    def commands cmds, working_dir:nil, user:nil, host:nil
       cmds.each do |cmd| 
-        run_cmd cmd, working_dir, user
+        run_cmd cmd, working_dir, user, host
       end
     end
 
-    def command cmd, working_dir:nil, user:nil
-      run_cmd cmd, working_dir, user
+    def command cmd, working_dir:nil, user:nil, host:nil
+      run_cmd cmd, working_dir, user, host
     end
 
     private 
     
-    def run_cmd cmd, working_dir, user
+    def run_cmd cmd, working_dir, user, host
       cmd.insert(0,"cd #{working_dir};") if working_dir
-      Zapt.system(cmd, user) 
+      Zapt.system(cmd, user, host) 
     end
 
   end
