@@ -4,7 +4,7 @@ require 'rubygems/config_file'
 
 # require all commands
 root = File.dirname(File.absolute_path(__FILE__))
-Dir.glob(root + '/wootbank/commands/*', &method(:require))
+Dir.glob(root + '/commands/*', &method(:require))
 
 module Zapt
   class CLI < Thor
