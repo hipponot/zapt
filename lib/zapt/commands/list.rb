@@ -2,8 +2,7 @@ require_relative '../../zapt'
 module Zapt
 
   class CLI < Thor
-
-    desc "list", "list tasks in provided task file"
+    desc "list", "list tasks specified provided task file"
     method_option :tasks, :aliases => "-t", :type=>:string, :required=>true, :desc => "Task file"
     def list
       # quiet zapt for this command
@@ -15,7 +14,8 @@ module Zapt
       Zapt::Tasks.registry.each do |k,v|
         printf("%-20s%-60s\n", k, v.task_desc)
       end
+      printf("%-80s\n", "-" * 80)
     end
-
   end
+
 end
