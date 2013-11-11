@@ -16,5 +16,8 @@
 - :name: erubis
   :type: gem
   :group: third-party
+- :name: thor
+  :type: gem
+  :group: third-party
 
   
