@@ -6,6 +6,7 @@ module Zapt
   class VersionTask < Task
 
     def initialize args
+      super
     end
 
     def run

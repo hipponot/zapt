@@ -1,7 +1,8 @@
 require 'zapt'
 
 
-shell name:'hello_world', desc:'task that echo\'s hello world to the console' do
+#shell name:'hello_world', desc:'task that echo\'s hello world to the console' do
+shell do
   commands [
             'echo hello world'
            ], user:Zapt.user

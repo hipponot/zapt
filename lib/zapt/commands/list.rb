@@ -13,7 +13,7 @@ module Zapt
       printf("%-20s%-60s\n", "Task Name", "Description")
       printf("%-80s\n", "-" * 80)
       Zapt::Tasks.registry.each do |k,v|
-        printf("%-20s%-60s\n", k, v.desc)
+        printf("%-20s%-60s\n", k, v.task_desc)
       end
     end
 

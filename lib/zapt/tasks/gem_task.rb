@@ -7,6 +7,7 @@ module Zapt
   class GemTask < Task
 
     def initialize args
+      super
     end
 
     def names names, action:install

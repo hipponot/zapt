@@ -1,12 +1,12 @@
 module Zapt
   class Task
 
-    attr_reader :name
-    attr_reader :desc
+    attr_reader :task_name
+    attr_reader :task_desc
 
     def initialize name:'anon', desc:'a zapt task'
-      @name = name
-      @desc = desc
+      @task_name = name
+      @task_desc = desc
     end
 
   end

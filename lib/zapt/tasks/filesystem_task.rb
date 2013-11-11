@@ -9,10 +9,8 @@ require_relative '../path'
 module Zapt
   class FilesystemTask < Task
 
-    attr_accessor :operations
-
     def initialize args
-      @operations ||= []
+      super
     end
 
     def erb source, target, owner:nil, group:nil, mode:nil

@@ -34,7 +34,8 @@ module Zapt
     end
 
     def register task
-      task_name = task.name == 'anon' ? task.name + task.object_id : task.name
+      @ntask ||= 0
+      task_name = task.task_name == 'anon' ? task.task_name + "_" + Tasks.registry.count.to_s : task.task_name
       Tasks.registry[task_name] = task
     end
 

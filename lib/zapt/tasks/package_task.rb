@@ -9,6 +9,7 @@ module Zapt
     attr_accessor :action
 
     def initialize args
+      super
     end
 
     def names values, action:'install'

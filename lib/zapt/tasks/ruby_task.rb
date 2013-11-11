@@ -4,6 +4,7 @@ module Zapt
   class RubyTask < Task
 
     def initialize args
+      super
     end
 
     # doesn't get much more trival than this

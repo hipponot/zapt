@@ -8,6 +8,7 @@ module Zapt
   class GitTask < Task
 
     def initialize args
+      super
       @gitssh = "#{Zapt.bin}/gitssh.sh"
     end
 
