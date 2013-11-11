@@ -1,11 +1,15 @@
-require_relative '../../lib/zapt'
+require 'zapt'
 
-password = Zapt.ask("Enter wootmath credentials password to get started")
 
-# setup credentials
-system do
+shell name:'hello_world', desc:'task that echo\'s hello world to the console' do
   commands [
-            "wootcloud setup --password=\"#{password}\"", 
+            'echo hello world'
+           ], user:Zapt.user
+end
+
+shell name:'hello_hello', desc:'task that echo\'s hello hello to the console' do
+  commands [
+            'echo hello hello'
            ], user:Zapt.user
 end
 

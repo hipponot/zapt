@@ -8,10 +8,13 @@
   :type: gem
 :dependencies: 
 - :name: logger
-  :type: third-party
+  :type: gem
+  :group: third-party
 - :name: colored
-  :type: third-party
+  :type: gem
+  :group: third-party
 - :name: erubis
-  :type: third-party
+  :type: gem
+  :group: third-party
 
   
