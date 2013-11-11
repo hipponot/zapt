@@ -20,7 +20,7 @@ module Zapt
     end
 
     def home
-      File.expand_path(File.join(File.dirname(__FILE__), '..','..'))
+      File.expand_path(File.join(File.dirname(__FILE__),'..'))
     end
 
     def bin
