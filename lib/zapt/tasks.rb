@@ -24,7 +24,9 @@ module Zapt
           task = "Zapt::#{task_name.camel_case}Task".split('::').inject(Object) {|o,c| o.const_get c}.new(args)
           if Tasks.zapt_cli
             # shorthand for open eigenclass and define method
-            task.define_singleton_method('run') { block.call unless block.nil? }
+            task.define_singleton_method('run') {
+              self.instance_eval &block unless block.nil?
+            }
             register(task)
           else
             task.instance_eval &block unless block.nil?

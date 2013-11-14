@@ -14,7 +14,7 @@ module Zapt
   # class instance methods
   class << self
 
-    def load_and_eval filename, arguments
+    def load_and_eval filename, *args
       proc = Proc.new {}
       eval(File.read(filename), proc.binding, filename)
     end
