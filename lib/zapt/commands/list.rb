@@ -3,7 +3,7 @@ module Zapt
 
   class CLI < Thor
     desc "list", "list tasks specified provided task file"
-    method_option :tasks, :aliases => "-t", :type=>:string, :required=>true, :desc => "Task file"
+    method_option :tasks, :aliases => "-t", :type=>:string, :default=>'tasks.rb', :required=>false, :desc => "Task file"
     def list
       # quiet zapt for this command
       $logger.level = Logger::ERROR

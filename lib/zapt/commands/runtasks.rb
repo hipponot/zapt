@@ -3,7 +3,7 @@ module Zapt
 
   class CLI < Thor
     desc "runtask", "run the tasks specified in runlist"
-    method_option :tasks, :aliases => "-t", :type=>:string, :required=>true, :desc => "Task file"
+    method_option :tasks, :aliases => "-t", :type=>:string, :default=>'tasks.rb', :required=>false, :desc => "Task file"
     method_option :runlist, :aliases => "-r", :type=>:array, :required=>true, :desc => "Run list"
     def runtask
       # quiet zapt for this command
