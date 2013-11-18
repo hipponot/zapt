@@ -15,20 +15,21 @@ module Zapt
     end
 
     def commands cmds, working_dir:nil, user:nil, host:nil
+      rval = []
       cmds.each do |cmd| 
-        run_cmd cmd, working_dir, user, host
+        rval << run_cmd(cmd, working_dir, user, host)
       end
     end
 
     def command cmd, working_dir:nil, user:nil, host:nil
-      run_cmd cmd, working_dir, user, host
+      return run_cmd cmd, working_dir, user, host
     end
 
     private 
     
     def run_cmd cmd, working_dir, user, host
       cmd.insert(0,"cd #{working_dir};") if working_dir
-      Zapt.system(cmd, user, host) 
+      return Zapt.system(cmd, user, host) 
     end
 
   end

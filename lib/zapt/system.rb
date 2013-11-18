@@ -5,15 +5,18 @@ module Zapt
     def system cmd, user=nil, host=nil
       cmd = "sudo su #{user} -l -c \"#{cmd}\"" if user and !host
       cmd = "ssh -o \"StrictHostKeyChecking no\" -i ~/credentials/wootmath_ec2_hosts.pem #{user}@#{host} \'#{cmd}\'" if host
+      rval = ""
       $logger.info "Running: #{cmd}"
       status = Open3::popen3(cmd) do |stdin, stdout, stderr|
         stdout.each do |line|
           $logger.info line.chomp
+          rval += line.chomp
         end
         stderr.each do |line|
           $logger.warn line.chomp
         end
       end
+      return rval
     end
 
   end
