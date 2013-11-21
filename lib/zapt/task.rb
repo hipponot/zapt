@@ -9,5 +9,9 @@ module Zapt
       @task_desc = desc
     end
 
+    def message msg
+      $logger.info(msg)
+    end
+
   end
 end
