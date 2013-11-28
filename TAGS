@@ -9,72 +9,39 @@
 
 .idea/vcs.xml,0
 
-.idea/workspace.xml,5910
-      <pane id="ProjectPane">pane ProjectPane198,10358
-      <pane id="Scope" />pane Scope264,13462
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension283,14468
-      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension284,14552
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension285,14608
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension290,14893
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension305,15746
-      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension306,15830
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension307,15886
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension312,16171
-      <changelist id="45ba45ba-b3d8-406f-9798-d95a4671d04f" name="Default" comment="" />changelist 45ba45ba-b3d8-406f-9798-d95a4671d04f329,16842
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Changes339,17205
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />window_info TODO340,17419
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Database341,17630
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Structure342,17844
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14849354" sideWeight="0.571223" order="0" side_tool="false" content_ui="combo" />window_info Project343,18058
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42877698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Debug344,18281
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />window_info Favorites345,18498
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />window_info Event Log346,18711
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />window_info Run347,18926
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Version Control348,19136
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />window_info Cvs349,19358
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Message350,19568
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Ant Build351,19782
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Find352,19997
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23884892" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Messages353,20208
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Commander354,20429
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />window_info Hierarchy355,20645
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />window_info Inspection356,20861
+.idea/workspace.xml,5658
+      <pane id="ProjectPane">pane ProjectPane175,7994
+      <pane id="Scope" />pane Scope285,13353
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension307,14630
+      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension308,14714
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension309,14770
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension314,15055
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension329,15926
+      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension330,16010
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension331,16066
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension336,16351
+      <changelist id="1c6a4bdc-95f4-4460-89c1-b90cd48b9d94" name="Default" comment="" />changelist 1c6a4bdc-95f4-4460-89c1-b90cd48b9d94353,17024
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Changes363,17389
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />window_info TODO364,17603
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Database365,17814
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Structure366,18028
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10143198" sideWeight="0.7630943" order="0" side_tool="false" content_ui="combo" />window_info Project367,18242
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23690572" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Debug368,18466
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />window_info Favorites369,18683
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />window_info Event Log370,18896
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />window_info Run371,19111
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Version Control372,19321
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />window_info Cvs373,19543
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Message374,19753
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Ant Build375,19967
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Find376,20182
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Commander377,20393
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />window_info Hierarchy378,20609
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />window_info Inspection379,20825
 
 .sql,0
 
 bin/zapt,0
-
-examples/.idea/encodings.xml,0
-
-examples/.idea/misc.xml,0
-
-examples/.idea/modules.xml,0
-
-examples/.idea/scopes/scope_settings.xml,0
-
-examples/.idea/vcs.xml,0
-
-examples/.idea/workspace.xml,4377
-      <pane id="ProjectPane">pane ProjectPane55,2097
-      <pane id="Scope" />pane Scope65,2440
-      <changelist id="098d916b-57cc-4e33-96ad-6d2912d034fd" name="Default" comment="" />changelist 098d916b-57cc-4e33-96ad-6d2912d034fd77,2849
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Changes87,3215
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />window_info TODO88,3430
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Database89,3641
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Structure90,3856
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />window_info Project91,4070
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Debug92,4287
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />window_info Favorites93,4498
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />window_info Event Log94,4712
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />window_info Run95,4928
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Version Control96,5138
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />window_info Cvs97,5361
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Message98,5571
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Find99,5785
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Ant Build100,5996
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Commander101,6211
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />window_info Inspection102,6427
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />window_info Hierarchy103,6643
 
 examples/one/one.rb,0
 
@@ -94,9 +61,14 @@ module ZaptZapt9,233
     def initialize(*)initialize13,291
 
 lib/zapt/commands/list.rb,74
-module ZaptZapt2,29
-  class CLI < ThorCLI4,42
-    def listlist8,212
+module ZaptZapt2,30
+  class CLI < ThorCLI4,43
+    def listlist7,242
+
+lib/zapt/commands/runtasks.rb,80
+module ZaptZapt2,30
+  class CLI < ThorCLI4,43
+    def runtaskruntask8,338
 
 lib/zapt/commands/version.rb,79
 module ZaptZapt3,31
@@ -107,19 +79,9 @@ lib/zapt/delegator.rb,57
 module ZaptZapt2,25
   module DelegatorDelegator6,133
 
-lib/zapt/error.rb,67
-module ZaptZapt1,0
-  class Error < StandardError; endError2,12
-
-lib/zapt/etc.rb,102
-module ZaptZapt3,15
-    def homehome6,44
-    def binbin10,135
-    def ask(statement)ask14,190
-
 lib/zapt/friendly_errors.rb,80
-module ZaptZapt2,25
-  def self.with_friendly_errorswith_friendly_errors3,37
+module ZaptZapt2,27
+  def self.with_friendly_errorswith_friendly_errors3,39
 
 lib/zapt/logger.rb,0
 
@@ -137,18 +99,15 @@ lib/zapt/require_args.rb,66
 module ZaptZapt3,20
    def require_args(list)require_args6,53
 
-lib/zapt/runner.rb,68
-module ZaptZapt1,0
-    def runner filename, argumentsrunner5,30
-
 lib/zapt/system.rb,73
 module ZaptZapt2,16
     def system cmd, user=nil, host=nilsystem5,45
 
-lib/zapt/task.rb,111
+lib/zapt/task.rb,146
 module ZaptZapt1,0
   class TaskTask2,12
-    def initialize name:'anon', desc:'a zapt task'initialize7,71
+    def initialize name:'anon', desc:'a zapt task'initialize7,81
+    def message msgmessage12,189
 
 lib/zapt/tasks/common/dir.rb,103
 module ZaptZapt2,30
@@ -159,58 +118,58 @@ module ZaptZapt2,30
 lib/zapt/tasks/filesystem_task.rb,409
 module ZaptZapt9,147
   class FilesystemTask < TaskFilesystemTask10,159
-    def initialize argsinitialize14,221
-    def erb source, target, owner:nil, group:nil, mode:nilerb18,279
-    def copy source, target, owner:nil, group:nil, mode:nilcopy24,503
-    def mkdir target, owner:nil, group:nil, mode:nilmkdir28,636
-    def file_operation op, target, source, owner, group, modefile_operation33,857
+    def initialize argsinitialize12,190
+    def erb source, target, owner:nil, group:nil, mode:nilerb16,235
+    def copy source, target, owner:nil, group:nil, mode:nilcopy22,459
+    def mkdir target, owner:nil, group:nil, mode:nilmkdir26,592
+    def file_operation op, target, source, owner, group, modefile_operation31,813
 
 lib/zapt/tasks/gem_task.rb,299
 module ZaptZapt6,101
   class GemTask < TaskGemTask7,113
     def initialize argsinitialize9,137
-    def names names, action:installnames12,170
-    def name name, action:installname16,262
-    def gem_op name, actiongem_op22,345
-    def is_installed? name, version=nilis_installed?29,506
+    def names names, action:installnames13,182
+    def name name, action:installname17,274
+    def gem_op name, actiongem_op23,357
+    def is_installed? name, version=nilis_installed?30,518
 
 lib/zapt/tasks/git_task.rb,351
 module ZaptZapt6,112
   class GitTask < TaskGitTask8,125
     def initialize argsinitialize10,149
-    def repos value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepos14,222
-    def repo value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepo18,387
-    def update_or_clone repo, user, working_dir, branchupdate_or_clone24,537
+    def repos value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepos15,234
+    def repo value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepo19,399
+    def update_or_clone repo, user, working_dir, branchupdate_or_clone25,549
 
 lib/zapt/tasks/package_task.rb,366
 module ZaptZapt5,82
   class PackageTask < TaskPackageTask6,94
     def initialize argsinitialize11,177
-    def names values, action:'install'names14,210
-    def name value, action:'install'name20,330
-    def package_action pkg, actionpackage_action26,432
-    def apt_action pkg, actionapt_action34,598
-    def brew_action pkg, actionbrew_action38,693
+    def names values, action:'install'names15,222
+    def name value, action:'install'name21,342
+    def package_action pkg, actionpackage_action27,444
+    def apt_action pkg, actionapt_action35,610
+    def brew_action pkg, actionbrew_action39,705
 
 lib/zapt/tasks/ruby_task.rb,123
 module ZaptZapt3,28
   class RubyTask < TaskRubyTask4,40
     def initialize argsinitialize6,65
-    def runrun10,143
+    def runrun11,155
 
 lib/zapt/tasks/shell_task.rb,313
 module ZaptZapt6,112
   class ShellTask < TaskShellTask8,125
     def initialize argsinitialize13,206
     def commands cmds, working_dir:nil, user:nil, host:nilcommands17,251
-    def command cmd, working_dir:nil, user:nil, host:nilcommand23,400
-    def run_cmd cmd, working_dir, user, hostrun_cmd29,527
+    def command cmd, working_dir:nil, user:nil, host:nilcommand24,425
+    def run_cmd cmd, working_dir, user, hostrun_cmd30,559
 
 lib/zapt/tasks/version_task.rb,129
 module ZaptZapt4,58
   class VersionTask < TaskVersionTask6,71
     def initialize argsinitialize8,99
-    def runrun11,132
+    def runrun12,144
 
 lib/zapt/tasks.rb,199
 class StringString3,28
@@ -218,7 +177,7 @@ class StringString3,28
 module ZaptZapt10,164
   class TasksTasks11,176
       def define_task task_namedefine_task21,541
-    def register taskregister36,1127
+    def register taskregister38,1168
 
 lib/zapt/ui.rb,1042
 module ZaptZapt3,37
@@ -252,7 +211,54 @@ module ZaptZapt3,15
 lib/zapt/version.rb,22
 module ZaptZapt2,15
 
-lib/zapt.rb,0
+lib/zapt.rb,248
+module ZaptZapt10,261
+  class Error < StandardError; endError12,293
+    def message msgmessage17,373
+    def load_and_eval filename, *argsload_and_eval21,426
+    def homehome26,554
+    def binbin30,639
+    def ask(statement)ask34,694
+
+test/unit/.idea/encodings.xml,0
+
+test/unit/.idea/misc.xml,0
+
+test/unit/.idea/modules.xml,0
+
+test/unit/.idea/scopes/scope_settings.xml,0
+
+test/unit/.idea/vcs.xml,0
+
+test/unit/.idea/workspace.xml,5646
+      <pane id="ProjectPane">pane ProjectPane99,4068
+      <pane id="Scope" />pane Scope119,4882
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension140,6047
+      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension141,6131
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension142,6187
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension147,6472
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension162,7315
+      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension163,7399
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension164,7455
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension169,7740
+      <changelist id="5f0c258f-2a9f-4a67-afa2-6dcaf98cda0d" name="Default" comment="" />changelist 5f0c258f-2a9f-4a67-afa2-6dcaf98cda0d186,8423
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Changes196,8788
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />window_info TODO197,9003
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Database198,9214
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Structure199,9429
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14797136" sideWeight="0.60048425" order="0" side_tool="false" content_ui="combo" />window_info Project200,9643
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39951575" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Debug201,9868
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />window_info Favorites202,10084
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />window_info Event Log203,10298
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />window_info Run204,10514
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Version Control205,10724
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />window_info Cvs206,10947
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Message207,11157
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Find208,11371
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Ant Build209,11582
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Commander210,11797
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />window_info Inspection211,12013
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />window_info Hierarchy212,12229
 
 test/unit/test_delegator.rb,144
 class TestZapt < Minitest::TestTestZapt5,87
@@ -265,3 +271,9 @@ class TestZapt < Minitest::TestTestZapt6,133
   def setupsetup8,166
   def teardownteardown11,185
   def test_systemtest_system14,209
+
+test/unit/test_zapt.rb,175
+class TestZapt < Minitest::TestTestZapt6,126
+  def setupsetup8,159
+  def teardownteardown11,178
+  def test_message_global_namespacetest_message_global_namespace14,202

@@ -10,7 +10,7 @@ module Zapt
     end
 
     def message msg
-      $logger.info(msg)
+      Zapt.message msg
     end
 
   end
