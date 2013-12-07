@@ -14,6 +14,10 @@ module Zapt
   # class instance methods
   class << self
 
+    def message msg
+      $logger.info(msg)
+    end
+
     def load_and_eval filename, *args
       proc = Proc.new {}
       eval(File.read(filename), proc.binding, filename)
@@ -34,3 +38,5 @@ module Zapt
 
   end
 end
+
+

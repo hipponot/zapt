@@ -2,7 +2,7 @@ require 'etc'
 
 module Zapt
 
-  @user = Etc.getlogin
+  @user = ENV['SUDO_USER'] || ENV['USER']
   @group = Etc.getgrgid(Etc.getpwnam(@user).gid).name
   class << self
     attr_reader :user

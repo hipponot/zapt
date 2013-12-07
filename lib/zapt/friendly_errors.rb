@@ -14,8 +14,7 @@ module Zapt
     rescue SystemExit => e
       exit e.status
     rescue Exception => e
-      Zapt.ui.error(
-        "Unfortunately, a fatal error has occurred.")
+      Zapt.ui.error("Unfortunately, a fatal error has occurred #{e.message}")
       raise e
     end
   end

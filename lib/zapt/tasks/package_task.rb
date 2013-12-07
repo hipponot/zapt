@@ -12,24 +12,31 @@ module Zapt
       super
     end
 
-    def names values, action:'install'
+    def names values, action:'install', provider:'apt'
       values.each do |pkg|
-        package_action pkg, action
+        package_action pkg, action, provider
       end
     end
 
-    def name value, action:'install'
-      package_action value, action
+    def name value, action:'install', provider:'apt'
+      package_action value, action, provider
     end
     
     private
     
-    def package_action pkg, action
-      if Zapt.is_osx
+    def package_action pkg, action, provider
+      case provider
+      when 'brew'
         brew_action(pkg, action)
-      elsif Zapt.is_linux
+      when 'apt'
         apt_action(pkg, action)
+      when 'gem'
+        gem_action(pkg, action)
       end
+    end
+
+    def gem_action pkg, action
+      Zapt.system("gem -f --no-ri --no-rdoc #{action} #{pkg}")
     end
 
     def apt_action pkg, action
