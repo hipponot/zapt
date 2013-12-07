@@ -14,13 +14,14 @@ module Zapt
         if options[:cluster]
           cluster = options[:cluster]
           $logger.error("Can't find cluster definition #{cluster}") and exit(1) unless File.exist?(cluster) 
+          task = Zapt::Tasks.registry[task]
           nodes = YAML::load(IO.read(cluster))[:nodes]
           nodes.each do |node|
-            puts node[:ip]
-            task = Zapt::Tasks.registry[task]
-            remote_task = ShellTask.new
-            remote_dir = File.basedir(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
-            remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task}", host:node[:ip], user:node[:user]
+            "running #{task.task_name} on #{node[:public_ip]}"
+            # {} placeholder for args
+            remote_task = ShellTask.new({})
+            remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
+            remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name}", host:node[:public_ip], user:node[:user]
           end
         else
           "running #{task}"
