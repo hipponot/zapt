@@ -3,7 +3,8 @@ module Zapt
 
     attr_reader :task_name
     attr_reader :task_desc
-    attr_accessor: taskargs
+    attr_accessor :taskargs
+
     def initialize name:'anon', desc:'a zapt task'
       @task_name = name
       @task_desc = desc
