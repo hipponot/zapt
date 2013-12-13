@@ -18,7 +18,7 @@ module Zapt
 
       options[:runlist].each_with_index do |task, i|
 
-        args = options[:arglist] ? parse_args options[:arglist][i] : {}
+#        args = options[:arglist] ? parse_args options[:arglist][i] : {}
 
         $logger.error("No such task #{task}") and exit(1) unless Zapt::Tasks.registry.has_key? task
         if options[:cluster]
@@ -50,7 +50,7 @@ module Zapt
       rescue
         args = YAML.load(string)
       end
-      args || = {}
+      args ||= {}
     end
 
   end
