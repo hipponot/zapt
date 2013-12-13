@@ -1,4 +1,7 @@
+require 'json'
+require 'yaml'
 require_relative '../../zapt'
+
 module Zapt
 
   class CLI < Thor
@@ -7,9 +10,16 @@ module Zapt
     method_option :runlist, :aliases => "-r", :type=>:array, :required=>true, :desc => "Run list"
     method_option :cluster, :aliases => "-c", :type=>:string, :required=>false, :desc => "Specify cluster on which to run task"
     def runtask
+
+      raise Error.new("arglist length > runlist length") if options[:arglist] and options[:arglist].length > options[:runlist]
+
       task_file = options[:tasks]
       Zapt.load_and_eval task_file
-      options[:runlist].each do |task|
+
+      options[:runlist].each_with_index do |task, i|
+
+        args = options[:arglist] ? parse_args options[:arglist][i] : {}
+
         $logger.error("No such task #{task}") and exit(1) unless Zapt::Tasks.registry.has_key? task
         if options[:cluster]
           cluster = options[:cluster]
@@ -18,7 +28,6 @@ module Zapt
           nodes = YAML::load(IO.read(cluster))[:nodes]
           nodes.each do |node|
             "running #{task.task_name} on #{node[:public_ip]}"
-            # {} placeholder for args
             remote_task = ShellTask.new({})
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name}", host:node[:public_ip], user:node[:user]
@@ -30,6 +39,20 @@ module Zapt
         end
       end
     end
+
+    private
+    
+    def parse_args string
+      begin
+        args = eval(string)
+      rescue
+        args = JSON.parse(string)
+      rescue
+        args = YAML.load(string)
+      end
+      args || = {}
+    end
+
   end
 
 end
