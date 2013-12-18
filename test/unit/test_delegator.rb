@@ -12,10 +12,6 @@ class TestZapt < Minitest::Test
   def teardown
   end
   
-  def test_delegator
-    assert_equal('0.0.1',version)
-  end
-
 end
 
 

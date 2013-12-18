@@ -4,17 +4,22 @@ module Zapt
     begin
       yield
     rescue Zapt::Error => e
-      Zapt.ui.error e.message
-      Zapt.ui.debug e.backtrace.join("\n")
+      $logger.error e.message
+      $logger.debug e.backtrace.join("\n")
+      $fail = true
       exit 1
     rescue Interrupt => e
-      Zapt.ui.error "\nQuitting..."
-      Zapt.ui.debug e.backtrace.join("\n")
+      $logger.error "\nQuitting..."
+      $logger.debug e.backtrace.join("\n")
+      $fail = true
       exit 1
     rescue SystemExit => e
+      $logger.error e.message
+      $fail = true
       exit e.status
     rescue Exception => e
-      Zapt.ui.error("Unfortunately, a fatal error has occurred #{e.message}")
+      $logger.error("Unfortunately, a fatal error has occurred #{e.message}")
+      $fail = true
       raise e
     end
   end

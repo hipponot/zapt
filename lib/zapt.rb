@@ -5,7 +5,6 @@ require_relative "zapt/user"
 
 # top level require puts the DSL methods into main scope
 include Zapt::Delegator
-at_exit { $logger.info('...tasks have been Zapt') }
 
 module Zapt
   # friendly errors
@@ -18,7 +17,12 @@ module Zapt
       $logger.info(msg)
     end
 
+    def set_logger_level level
+      $logger.level = level
+    end
+
     def load_and_eval filename, *args
+      raise Error.new("Can't stat file #{filename}") unless File.exist?(filename)
       proc = Proc.new {}
       eval(File.read(filename), proc.binding, filename)
     end

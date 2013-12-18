@@ -12,7 +12,9 @@ module Zapt
 
     def initialize(*)
       super
-      the_shell = (options["no-color"] ? Thor::Shell::Basic.new : shell)
+      $zapt_no_color = options[:'no-color']
+      Zapt.set_logger_level options[:'log-level']
+      the_shell = (options[:'no-color'] ? Thor::Shell::Basic.new : shell)
       Zapt.ui = UI::Shell.new(the_shell)
       Zapt.ui.debug! if options["debug"]
       # Let zapt know its running under the cli
@@ -22,9 +24,9 @@ module Zapt
     check_unknown_options!(:except => [:config, :exec])
 
     default_task :help
-    class_option :'no-color', :type => :boolean, :banner => "Disable colorization in output"
-    class_option :verbose,  :type => :boolean, :banner => "Enable verbose output mode", :aliases => "-V"
     class_option :arglist,  :type => :array,   :banner => "Arg list", :aliases => "-a"
+    class_option :'no-color', :type => :boolean, :banner => "Disable colorization in output", :default => false
+    class_option :'log-level',  :type => :numeric, :banner => "Set the log-level", :aliases => "-l", :default => 1 
 
   end
 end

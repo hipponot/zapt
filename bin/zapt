@@ -7,5 +7,9 @@ Zapt.with_friendly_errors {
   Zapt::CLI.start
 }
 
+at_exit {
+  $logger.info '...tasks have been Zapt' unless $fail
+}
+
 
 

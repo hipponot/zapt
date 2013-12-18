@@ -25,7 +25,7 @@ module Zapt
           task = Zapt::Tasks.registry[task]
           nodes = YAML::load(IO.read(cluster))[:nodes]
           nodes.each do |node|
-            "running #{task.task_name} on #{node[:public_ip]}"
+            "Running task: #{task.task_name} on #{node[:public_ip]}"
             remote_task = ShellTask.new({})
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             if options[:arglist]
@@ -35,8 +35,7 @@ module Zapt
             end
           end
         else
-          "running #{task}"
-          $logger.info "running #{task}"
+          $logger.info "Running task: #{task}"
           task = Zapt::Tasks.registry[task]
           task.taskargs = taskargs
           task.run

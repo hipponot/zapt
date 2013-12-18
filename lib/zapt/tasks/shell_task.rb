@@ -14,15 +14,16 @@ module Zapt
       super
     end
 
-    def commands cmds, working_dir:nil, user:nil, host:nil, quiet:false
+    def commands cmds, working_dir:nil, user:nil, host:nil, quiet:false, ignore_failure:false
       rval = []
       cmds.each do |cmd| 
         rval << run_cmd(cmd, working_dir, user, host, quiet)
       end
     end
 
-    def command cmd, working_dir:nil, user:nil, host:nil, quiet:false
-      return run_cmd cmd, working_dir, user, host, quiet
+    def command cmd, working_dir:nil, user:nil, host:nil, quiet:false, ignore_failure:false
+      rval, status = run_cmd cmd, working_dir, user, host, quiet
+      raise Error.new "Command bad exit status #{cmd}" unless status or ignore_failure
     end
 
     private 

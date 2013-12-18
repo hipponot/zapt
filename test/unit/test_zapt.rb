@@ -10,9 +10,13 @@ class TestZapt < Minitest::Test
 
   def teardown
   end
-  
+
   def test_message
-    Zapt.message 'hello world'
+    out = capture_stdout { 
+      $logger = Logger.new($stdout)
+      Zapt.message 'hello world' 
+    }
+    assert(/INFO -- : hello world/ =~ out.string.chomp)
   end
 
 end

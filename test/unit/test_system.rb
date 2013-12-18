@@ -11,9 +11,20 @@ class TestZapt < Minitest::Test
   def teardown
   end
   
-  def test_system
-    out = capture_stdout { Zapt.system_stream_stdout('echo foo') }
-    assert_equal(out.string.chomp, 'foo')
+  def test_system_status
+    # succeeds
+    stdout, status = Zapt.system('true',nil,nil,true) 
+    assert_equal(status, true)
+    # fails 
+    stdout, status = Zapt.system('false',nil,nil,true) 
+    assert_equal(status, false)
+  end
+
+  def test_system_rval
+    # succeeds
+    stdout, status = Zapt.system('echo foo',nil,nil,true) 
+    assert_equal(stdout.chomp, 'foo')
+    assert_equal(stdout.chomp, 'foo')
   end
 
 end
