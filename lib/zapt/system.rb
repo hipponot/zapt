@@ -11,7 +11,7 @@ module Zapt
       Open3::popen3(cmd) do |stdin, stdout, stderr, status|
         stdout.each do |line|
           $logger.info line.chomp unless quiet
-          rval += line.chomp
+          rval += line
         end
         stderr.each do |line|
           $logger.warn line.chomp
