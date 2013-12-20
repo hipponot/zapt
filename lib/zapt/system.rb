@@ -4,7 +4,11 @@ module Zapt
 
     def system cmd, user=nil, host=nil, quiet=false
       cmd = "sudo su #{user} -l -c \"#{cmd}\"" if user and !host
-      cmd = "ssh -o \"StrictHostKeyChecking no\" -i ~/credentials/wootmath_ec2_hosts.pem #{user}@#{host} \'#{cmd}\'" if host
+      if /54/ =~ host
+        cmd = "ssh -o \"StrictHostKeyChecking no\" -i ~/credentials/wootmath_ec2_hosts.pem #{user}@#{host} \'#{cmd}\'" if host
+      else
+        cmd = "ssh -o \"StrictHostKeyChecking no\" vagrant@#{host} \'#{cmd}\'" if host
+      end
       rval = ""
       exit_status = nil
       $logger.info "Running command: #{cmd}" unless quiet
