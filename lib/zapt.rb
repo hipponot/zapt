@@ -17,6 +17,10 @@ module Zapt
       $logger.info(msg)
     end
 
+    def error msg
+      raise Zapt::Error.new(msg)
+    end
+
     def set_logger_level level
       $logger.level = level
     end
