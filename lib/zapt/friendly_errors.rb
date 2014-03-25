@@ -20,7 +20,7 @@ module Zapt
     rescue Exception => e
       $logger.error("Unfortunately, a fatal error has occurred #{e.message}")
       $fail = true
-      raise e
+      exit 1
     end
   end
 end
