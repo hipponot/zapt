@@ -2,7 +2,7 @@ require 'open3'
 module Zapt
   class << self
 
-    def system cmd, user=nil, host=nil, quiet=false, pem="~/credentials/wootmath_ec2_hosts.pem"
+    def system cmd, user=nil, host=nil, pem=nil, quiet=false 
       cmd = "sudo su #{user} -l -c \"#{cmd}\"" if user and !host
       if /54/ =~ host
         cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \'#{cmd}\'" if host
