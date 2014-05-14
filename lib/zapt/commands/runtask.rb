@@ -9,6 +9,7 @@ module Zapt
     method_option :tasks, :aliases => "-t", :type=>:string, :default=>'tasks.rb', :required=>false, :desc => "Task file"
     method_option :runlist, :aliases => "-r", :type=>:array, :required=>true, :desc => "Run list"
     method_option :cluster, :aliases => "-c", :type=>:string, :required=>false, :desc => "Specify cluster on which to run task"
+    method_option :pem, :aliases => "-p", :type=>:string, :required=>false, :default=>"~/credentials/wootmath_ec2_hosts.pem", :desc => "Remote command PEM"
     def runtask
 
       raise Error.new("arglist length > runlist length") if options[:arglist] and options[:arglist].length > options[:runlist].length
@@ -29,9 +30,9 @@ module Zapt
             remote_task = ShellTask.new({})
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             if options[:arglist]
-              remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name} -a \"#{options[:arglist]}\"", host:node[:public_ip], user:node[:user]
+              remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name} -a \"#{options[:arglist]}\"", host:node[:public_ip], user:node[:user], pem:options[:pem]
             else
-              remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name}", host:node[:public_ip], user:node[:user]
+              remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name}", host:node[:public_ip], user:node[:user], pem:options[:pem]
             end
           end
         else
