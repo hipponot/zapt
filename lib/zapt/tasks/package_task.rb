@@ -36,7 +36,7 @@ module Zapt
     end
 
     def gem_action pkg, action
-      Zapt.system("gem -f --no-ri --no-rdoc #{action} #{pkg}")
+      Zapt.system("gem #{action} -f --no-ri --no-rdoc  #{pkg}")
     end
 
     def apt_action pkg, action
