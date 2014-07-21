@@ -14,24 +14,26 @@ module Zapt
       super
     end
 
-    def commands cmds, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false
+    def commands cmds, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false, dryrun:false
       rval = []
       cmds.each do |cmd| 
-        rval << run_cmd(cmd, working_dir, user, host, pem, quiet)
+        rval << run_cmd(cmd, working_dir, user, host, pem, quiet, dryrun)
       end
     end
 
-    def command cmd, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false
-      rval, status = run_cmd cmd, working_dir, user, host, pem, quiet
+    def command cmd, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false, dryrun:false
+      rval, status = run_cmd cmd, working_dir, user, host, pem, quiet, dryrun
       raise Error.new "Command bad exit status #{cmd}" unless status or ignore_failure
       return rval, status
     end
 
     private 
     
-    def run_cmd cmd, working_dir, user, host, pem, quiet
+    def run_cmd cmd, working_dir, user, host, pem, quiet, dryrun
       cmd.insert(0,"cd #{working_dir};") if working_dir
-      return Zapt.system(cmd, user, host, pem, quiet)
+      return Zapt.system(cmd, user, host, pem, quiet) unless dryrun
+      puts "dryrun: #{cmd}"
+      return nil, 0
     end
 
   end
