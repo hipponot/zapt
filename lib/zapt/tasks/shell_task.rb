@@ -1,13 +1,13 @@
-require 'erubis'
-
 require_relative '../task'
 require_relative '../os'
 require_relative '../system'
 require_relative 'common/dir'
+require_relative 'filesystem_task'
 
 module Zapt
 
-  class ShellTask < Task
+
+  class ShellTask < FilesystemTask
 
     include Zapt::Common::Dir
 
@@ -27,12 +27,6 @@ module Zapt
       rval, status = run_cmd cmd, working_dir, user, host, pem, quiet, dryrun
       raise Error.new "Command bad exit status #{cmd}" unless status or ignore_failure
       return rval, status
-    end
-
-    def erb source, target, owner:nil, group:nil, mode:nil
-      eruby = Erubis::Eruby.new(IO.read(source))
-      IO.write(target, eruby.result(binding()))
-      file_operation(nil, target, nil, owner, group, mode)
     end
 
     private 
