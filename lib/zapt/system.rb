@@ -3,11 +3,12 @@ module Zapt
   class << self
 
     def system cmd, user=nil, host=nil, pem=nil, quiet=false 
-      cmd = "sudo su #{user} -l -c \"#{cmd}\"" if user and !host
-      unless /10/ =~ host
-        cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\"" if host
-      else
+      if user and !host
+        cmd = "sudo su #{user} -l -c \"#{cmd}\"" 
+      elsif /10.0.10.14/ =~ host
         cmd = "ssh -o \"StrictHostKeyChecking no\" vagrant@#{host} \'#{cmd}\'" if host
+      else
+        cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\"" if host
       end
       rval = ""
       exit_status = nil
