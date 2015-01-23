@@ -1,162 +1,68 @@
 
-.idea/encodings.xml,0
-
-.idea/misc.xml,0
-
-.idea/modules.xml,0
-
-.idea/runConfigurations/log_mon.xml,626
-    <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension10,534
-    <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension11,616
-    <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension12,697
-    <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension17,972
-
-.idea/runConfigurations/runtask.xml,627
-    <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension10,582
-    <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension11,664
-    <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension12,745
-    <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension17,1020
-
-.idea/runConfigurations/runtask__remote_.xml,627
-    <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension10,591
-    <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension11,673
-    <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension12,754
-    <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension17,1029
-
-.idea/scopes/scope_settings.xml,0
-
-.idea/vcs.xml,0
-
-.idea/workspace.xml,9656
-      <pane id="Scope" />pane Scope133,7101
-      <pane id="ProjectPane">pane ProjectPane134,7127
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension202,10527
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension203,10611
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension204,10694
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension209,10979
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension224,11925
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension225,12009
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension226,12092
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension231,12377
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension246,13308
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension247,13392
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension248,13475
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension253,13760
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />predefined_log_file RUBY_RSPEC261,14233
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension269,14743
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension270,14827
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension271,14910
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension276,15195
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension299,16669
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension300,16753
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension301,16836
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension306,17121
-      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />predefined_log_file RUBY_TESTUNIT315,17619
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension323,18132
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension324,18216
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension325,18299
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension330,18584
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension349,19830
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />EXTENSION JRubyRunConfigurationExtension350,19914
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension351,19997
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension356,20282
-      <changelist id="1c6a4bdc-95f4-4460-89c1-b90cd48b9d94" name="Default" comment="" />changelist 1c6a4bdc-95f4-4460-89c1-b90cd48b9d94383,21743
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Changes393,22108
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Terminal394,22322
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />window_info TODO395,22537
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Database396,22748
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Structure397,22962
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10779634" sideWeight="0.53585815" order="0" side_tool="false" content_ui="combo" />window_info Project398,23176
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22524565" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Debug399,23400
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />window_info Favorites400,23618
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />window_info Event Log401,23831
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32955405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />window_info Run402,24046
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Version Control403,24262
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />window_info Cvs404,24484
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Message405,24694
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Ant Build406,24908
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Find407,25123
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32955405" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />window_info Messages408,25334
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Commander409,25555
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />window_info Hierarchy410,25771
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />window_info Inspection411,25987
-
 .sql,0
-
-bin/zapt,0
 
 examples/one/one.rb,0
 
-kudu.yaml,0
+test/unit/test_delegator.rb,101
+class TestZapt < Minitest::TestTestZapt5,87
+  def setupsetup9,147
+  def teardownteardown12,166
+
+test/unit/test_zapt.rb,141
+class TestZapt < Minitest::TestTestZapt6,126
+  def setupsetup8,159
+  def teardownteardown11,178
+  def test_messagetest_message14,200
+
+test/unit/test_runtask.rb,229
+class TestRuntask < Minitest::TestTestRuntask6,126
+  def setupsetup10,189
+  def teardownteardown15,304
+  def test_exit_status_failtest_exit_status_fail19,327
+  def test_exit_status_succeedtest_exit_status_succeed25,474
+
+test/unit/tasks.rb,0
+
+test/unit/test_system.rb,200
+class TestZapt < Minitest::TestTestZapt6,133
+  def setupsetup8,166
+  def teardownteardown11,185
+  def test_system_statustest_system_status14,209
+  def test_system_rvaltest_system_rval23,443
+
+bin/zapt,0
 
 lib/cl.rb,41
 module ZaptZapt3,28
     def uiui7,77
 
-lib/zapt/capture_stdout.rb,67
-module KernelKernel3,20
-  def capture_stdoutcapture_stdout5,35
+lib/zapt.rb,396
+module ZaptZapt9,209
+  class Error < StandardError; endError11,241
+    def message msgmessage16,321
+    def error msgerror20,374
+    def set_logger_level levelset_logger_level24,434
+    def load_and_eval filename, *argsload_and_eval28,502
+    def homehome34,712
+    def binbin38,797
+    def ask(statement)ask42,852
+    def yes?(prompt = 'Continue?', default = true)yes?47,955
 
 lib/zapt/cli.rb,93
 module ZaptZapt9,233
   class CLI < ThorCLI10,245
     def initialize(*)initialize13,291
 
-lib/zapt/commands/list.rb,74
-module ZaptZapt2,30
-  class CLI < ThorCLI4,43
-    def listlist7,242
+lib/zapt/user.rb,22
+module ZaptZapt3,15
 
-lib/zapt/commands/runtask.rb,126
-module ZaptZapt5,61
-  class CLI < ThorCLI7,74
-    def runtaskruntask13,653
-    def parse_args stringparse_args49,2262
-
-lib/zapt/commands/version.rb,79
-module ZaptZapt3,31
-  class CLI < ThorCLI5,44
-    def versionversion7,99
-
-lib/zapt/delegator.rb,57
-module ZaptZapt2,25
-  module DelegatorDelegator6,133
-
-lib/zapt/friendly_errors.rb,80
-module ZaptZapt2,27
-  def self.with_friendly_errorswith_friendly_errors3,39
-
-lib/zapt/logger.rb,0
-
-lib/zapt/os.rb,83
-module ZaptZapt3,20
-    def is_osxis_osx7,118
-    def is_linuxis_linux11,168
-
-lib/zapt/path.rb,84
-module ZaptZapt3,20
-    def path! valuepath!6,49
-    def path valuepath10,121
-
-lib/zapt/require_args.rb,66
-module ZaptZapt3,20
-   def require_args(list)require_args6,53
-
-lib/zapt/system.rb,96
-module ZaptZapt2,16
-    def system cmd, user=nil, host=nil, pem=nil, quiet=false system5,45
-
-lib/zapt/task.rb,147
-module ZaptZapt1,0
-  class TaskTask2,12
-    def initialize name:'anon', desc:'a zapt task'initialize8,109
-    def message msgmessage13,217
-
-lib/zapt/tasks/common/dir.rb,103
-module ZaptZapt2,30
-  module CommonCommon3,42
-    module DirDir4,58
-      def dir valuedir6,98
+lib/zapt/tasks/shell_task.rb,530
+module ZaptZapt7,147
+  class ShellTask < FilesystemTaskShellTask10,161
+    def initialize argsinitialize15,252
+    def commands cmds, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false, dryrun:falsecommands19,297
+    def command cmd, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false, dryrun:falsecommand26,584
+    def run_cmd cmd, working_dir, user, host, pem, quiet, dryrunrun_cmd34,952
 
 lib/zapt/tasks/filesystem_task.rb,409
 module ZaptZapt9,147
@@ -167,13 +73,17 @@ module ZaptZapt9,147
     def mkdir target, owner:nil, group:nil, mode:nilmkdir26,592
     def file_operation op, target, source, owner, group, modefile_operation31,813
 
-lib/zapt/tasks/git_task.rb,351
-module ZaptZapt6,112
-  class GitTask < TaskGitTask8,125
-    def initialize argsinitialize10,149
-    def repos value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepos15,234
-    def repo value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepo19,399
-    def update_or_clone repo, user, working_dir, branchupdate_or_clone25,549
+lib/zapt/tasks/common/dir.rb,103
+module ZaptZapt2,30
+  module CommonCommon3,42
+    module DirDir4,58
+      def dir valuedir6,98
+
+lib/zapt/tasks/ruby_task.rb,123
+module ZaptZapt3,28
+  class RubyTask < TaskRubyTask4,40
+    def initialize argsinitialize6,65
+    def runrun11,155
 
 lib/zapt/tasks/package_task.rb,457
 module ZaptZapt5,82
@@ -186,33 +96,19 @@ module ZaptZapt5,82
     def apt_action pkg, actionapt_action42,833
     def brew_action pkg, actionbrew_action46,928
 
-lib/zapt/tasks/ruby_task.rb,123
-module ZaptZapt3,28
-  class RubyTask < TaskRubyTask4,40
-    def initialize argsinitialize6,65
-    def runrun11,155
-
-lib/zapt/tasks/shell_task.rb,519
-module ZaptZapt6,112
-  class ShellTask < TaskShellTask8,125
-    def initialize argsinitialize13,206
-    def commands cmds, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false, dryrun:falsecommands17,251
-    def command cmd, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false, dryrun:falsecommand24,538
-    def run_cmd cmd, working_dir, user, host, pem, quiet, dryrunrun_cmd32,906
-
 lib/zapt/tasks/version_task.rb,129
 module ZaptZapt4,58
   class VersionTask < TaskVersionTask6,71
     def initialize argsinitialize8,99
     def runrun12,144
 
-lib/zapt/tasks.rb,199
-class StringString3,28
-  def camel_casecamel_case4,41
-module ZaptZapt10,164
-  class TasksTasks11,176
-      def define_task task_namedefine_task21,541
-    def register taskregister38,1168
+lib/zapt/tasks/git_task.rb,351
+module ZaptZapt6,112
+  class GitTask < TaskGitTask8,125
+    def initialize argsinitialize10,149
+    def repos value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepos15,234
+    def repo value, user:Zapt.user, working_dir:ENV['HOME'], branch:nilrepo19,399
+    def update_or_clone repo, user, working_dir, branchupdate_or_clone25,549
 
 lib/zapt/ui.rb,1042
 module ZaptZapt3,37
@@ -240,98 +136,67 @@ module ZaptZapt3,37
       def initialize(ui)initialize83,1606
       def say(message)say88,1675
 
-lib/zapt/user.rb,22
-module ZaptZapt3,15
+lib/zapt/path.rb,84
+module ZaptZapt3,20
+    def path! valuepath!6,49
+    def path valuepath10,121
+
+lib/zapt/system.rb,96
+module ZaptZapt2,16
+    def system cmd, user=nil, host=nil, pem=nil, quiet=false system5,45
+
+lib/zapt/os.rb,83
+module ZaptZapt3,20
+    def is_osxis_osx7,118
+    def is_linuxis_linux11,168
+
+lib/zapt/tasks.rb,199
+class StringString3,28
+  def camel_casecamel_case4,41
+module ZaptZapt10,164
+  class TasksTasks11,176
+      def define_task task_namedefine_task21,541
+    def register taskregister38,1168
+
+lib/zapt/friendly_errors.rb,80
+module ZaptZapt2,27
+  def self.with_friendly_errorswith_friendly_errors3,39
+
+lib/zapt/require_args.rb,66
+module ZaptZapt3,20
+   def require_args(list)require_args6,53
+
+lib/zapt/delegator.rb,57
+module ZaptZapt2,25
+  module DelegatorDelegator6,133
+
+lib/zapt/task.rb,147
+module ZaptZapt1,0
+  class TaskTask2,12
+    def initialize name:'anon', desc:'a zapt task'initialize8,109
+    def message msgmessage13,217
+
+lib/zapt/capture_stdout.rb,67
+module KernelKernel3,20
+  def capture_stdoutcapture_stdout5,35
 
 lib/zapt/version.rb,22
 module ZaptZapt2,15
 
-lib/zapt.rb,333
-module ZaptZapt9,209
-  class Error < StandardError; endError11,241
-    def message msgmessage16,321
-    def error msgerror20,374
-    def set_logger_level levelset_logger_level24,434
-    def load_and_eval filename, *argsload_and_eval28,502
-    def homehome34,712
-    def binbin38,797
-    def ask(statement)ask42,852
+lib/zapt/commands/runtask.rb,126
+module ZaptZapt5,61
+  class CLI < ThorCLI7,74
+    def runtaskruntask13,653
+    def parse_args stringparse_args49,2262
 
-test/reports/TEST-TestRuntask.xml,0
+lib/zapt/commands/list.rb,74
+module ZaptZapt2,30
+  class CLI < ThorCLI4,43
+    def listlist7,242
 
-test/reports/TEST-TestZapt.xml,0
+lib/zapt/commands/version.rb,79
+module ZaptZapt3,31
+  class CLI < ThorCLI5,44
+    def versionversion7,99
 
-test/unit/.idea/encodings.xml,0
-
-test/unit/.idea/misc.xml,0
-
-test/unit/.idea/modules.xml,0
-
-test/unit/.idea/scopes/scope_settings.xml,0
-
-test/unit/.idea/vcs.xml,0
-
-test/unit/.idea/workspace.xml,5648
-      <pane id="ProjectPane">pane ProjectPane99,4068
-      <pane id="Scope" />pane Scope119,4882
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension141,6096
-      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension142,6180
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension143,6236
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension148,6521
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />EXTENSION BundlerRunConfigurationExtension163,7364
-      <EXTENSION ID="JRubyRunConfigurationExtension" />EXTENSION JRubyRunConfigurationExtension164,7448
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">EXTENSION RubyCoverageRunConfigurationExtension165,7504
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />EXTENSION org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension170,7789
-      <changelist id="5f0c258f-2a9f-4a67-afa2-6dcaf98cda0d" name="Default" comment="" />changelist 5f0c258f-2a9f-4a67-afa2-6dcaf98cda0d187,8472
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Changes197,8837
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />window_info TODO198,9052
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Database199,9263
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Structure200,9478
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14797136" sideWeight="0.60048425" order="0" side_tool="false" content_ui="combo" />window_info Project201,9692
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39951575" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />window_info Debug202,9917
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />window_info Favorites203,10135
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />window_info Event Log204,10349
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />window_info Run205,10565
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />window_info Version Control206,10775
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />window_info Cvs207,10998
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Message208,11208
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Find209,11422
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />window_info Ant Build210,11633
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />window_info Commander211,11848
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />window_info Inspection212,12064
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />window_info Hierarchy213,12280
-
-test/unit/minitest_setup.rb,39
-module MiniTestSetupMiniTestSetup1,0
-
-test/unit/setup.rb,39
-module MiniTestSetupMiniTestSetup1,0
-
-test/unit/tasks.rb,0
-
-test/unit/test/reports/TEST-TestZapt.xml,0
-
-test/unit/test_delegator.rb,101
-class TestZapt < Minitest::TestTestZapt5,87
-  def setupsetup9,147
-  def teardownteardown12,166
-
-test/unit/test_runtask.rb,229
-class TestRuntask < Minitest::TestTestRuntask6,126
-  def setupsetup10,189
-  def teardownteardown15,304
-  def test_exit_status_failtest_exit_status_fail19,327
-  def test_exit_status_succeedtest_exit_status_succeed25,474
-
-test/unit/test_system.rb,200
-class TestZapt < Minitest::TestTestZapt6,133
-  def setupsetup8,166
-  def teardownteardown11,185
-  def test_system_statustest_system_status14,209
-  def test_system_rvaltest_system_rval23,443
-
-test/unit/test_zapt.rb,141
-class TestZapt < Minitest::TestTestZapt6,126
-  def setupsetup8,159
-  def teardownteardown11,178
-  def test_messagetest_message14,200
+lib/zapt/logger.rb,0

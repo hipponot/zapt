@@ -13,6 +13,8 @@ $logger.formatter = proc{ |level, datetime, progname, msg|
       str.yellow
     when 'ERROR'
       str.red
+    when 'DEBUG'
+      str.green
     end
   else
     str

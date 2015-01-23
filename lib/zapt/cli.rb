@@ -13,7 +13,7 @@ module Zapt
     def initialize(*)
       super
       $zapt_no_color = options[:'no-color']
-      Zapt.set_logger_level options[:'log-level']
+      Zapt.set_logger_level options[:verbose] ? 0 : :options[:'log-level']
       the_shell = (options[:'no-color'] ? Thor::Shell::Basic.new : shell)
       Zapt.ui = UI::Shell.new(the_shell)
       Zapt.ui.debug! if options["debug"]
@@ -27,6 +27,6 @@ module Zapt
     class_option :arglist,  :type => :array,   :banner => "Arg list", :aliases => "-a"
     class_option :'no-color', :type => :boolean, :banner => "Disable colorization in output", :default => false
     class_option :'log-level',  :type => :numeric, :banner => "Set the log-level", :aliases => "-l", :default => 1 
-
+    class_option :'verbose',  :type => :boolean, :banner => "Verbose (max logging)", :aliases => "-v", :lazy_default => true
   end
 end

@@ -19,6 +19,7 @@ module Zapt
       exit e.status
     rescue Exception => e
       $logger.error("Unfortunately, a fatal error has occurred #{e.message}")
+      $logger.debug e.backtrace.join("\n")
       $fail = true
       exit 1
     end
