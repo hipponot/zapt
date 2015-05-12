@@ -31,7 +31,7 @@ module Zapt
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             if options[:arglist]
               args = options[:arglist][i]
-              remote_task.command(%Q{cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}"\\}, host:node[:public_ip], user:node[:user], pem:options[:pem])
+              remote_task.command(%Q{cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:node[:public_ip], user:node[:user], pem:options[:pem])
             else
               remote_task.command "cd #{remote_dir}; rvmsudo zapt runtask -r #{task.task_name}", host:node[:public_ip], user:node[:user], pem:options[:pem]
             end
