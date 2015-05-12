@@ -6,7 +6,7 @@ module Zapt
       if user and !host
         cmd = "sudo su #{user} -l -c \"#{cmd}\"" 
       elsif /10\.0\.10\.14/ =~ host
-        cmd = "ssh -o \"StrictHostKeyChecking no\" vagrant@#{host} \'#{cmd}\'" if host
+        cmd = "ssh -o \"StrictHostKeyChecking no\" vagrant@#{host} \"#{cmd}\"" if host
       else
         cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\"" if host
       end
