@@ -6,7 +6,6 @@ require_relative 'filesystem_task'
 
 module Zapt
 
-
   class ShellTask < FilesystemTask
 
     include Zapt::Common::Dir
