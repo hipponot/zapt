@@ -18,3 +18,4 @@ id_rsa.pub
 # the encypted file
 *.pem
 */certs/*.csv
+VERSION
