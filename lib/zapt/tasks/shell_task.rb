@@ -22,7 +22,7 @@ module Zapt
       end
     end
 
-    def command cmd, working_dir:nil, user:nil, host:nil, pem:nil, quiet:false, ignore_failure:false, dryrun:false
+    def command cmd, working_dir:nil, user:nil, host:nil, pem:"~/credentials/wootmath_ec2_hosts.pem", quiet:false, ignore_failure:false, dryrun:false
       rval, status = run_cmd cmd, working_dir, user, host, pem, quiet, dryrun
       raise Error.new "Command bad exit status #{cmd}" unless status or ignore_failure
       return rval, status
