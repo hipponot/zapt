@@ -14,7 +14,11 @@ module Zapt
   class << self
 
     def message msg
-      $logger.info(msg)
+      unless $zapt_no_color
+        puts msg.white_on_black
+      else
+        puts msg
+      end
     end
 
     def error msg
