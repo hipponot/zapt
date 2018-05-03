@@ -13,8 +13,7 @@ module Zapt
       rval = ""
       exit_status = nil
       $logger.info "Running command: #{cmd}" unless quiet
-      rval = `#{cmd}`; exit_status=$?
-      puts rval
+        rval = `#{cmd}`; exit_status=($?.exitstatus == 0)
       # Open3::popen3(cmd) do |stdin, stdout, stderr, status|
       #   stdout.each do |line|
       #     $logger.info line.chomp unless quiet
