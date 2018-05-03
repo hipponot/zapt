@@ -18,15 +18,22 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.license       = 'MIT'
   gem.require_paths = ["lib"]
+
   begin
-    text = IO.read(File.join(basedir,'kudu.yaml'))
+    kudu_file = File.join(basedir,'kudu.yaml')
+    lock_file = File.join(basedir,'kudu.lock.yaml')
+    file = File.exist?(lock_file) ? lock_file : kudu_file
+    text = IO.read(file)
     kudu = YAML::load(text)
-    kudu[:dependencies].each do |dep|
+    kudu[:dependencies].select {|e| e[:group] != 'developer' }.each do |dep|
       name = dep[:namespace].nil? ? dep[:name] : dep[:namespace] + "_" + dep[:name]
-      gem.add_dependency name, dep[:version]
+      gem.add_dependency name, dep[:version] 
     end                                                   
-    gem.version = kudu[:publications][0][:version]
+    ver_file = File.join(basedir,'VERSION')
+    gem.version = IO.read(ver_file)
+    gem.files << File.basename(ver_file)
   rescue
     abort("Error parsing kudu.yaml")
   end
+
 end
