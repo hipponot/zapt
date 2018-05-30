@@ -32,8 +32,8 @@ Gem::Specification.new do |gem|
     ver_file = File.join(basedir,'VERSION')
     gem.version = IO.read(ver_file)
     gem.files << File.basename(ver_file)
-  rescue
-    abort("Error parsing kudu.yaml")
+  rescue Exception=>e
+    abort("Error parsing kudu.yaml #{e}")
   end
 
 end
