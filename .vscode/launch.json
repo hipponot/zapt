@@ -5,12 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Local File",
-            "type": "Ruby",
-            "request": "launch",
-            "program": "${workspaceRoot}/main.rb"
-        },
-        {
             "name": "zapt list",
             "type": "Ruby",
             "request": "launch",

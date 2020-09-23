@@ -10,7 +10,7 @@ module Zapt
   class FilesystemTask < Task
 
     def initialize args
-      super
+      super(**args)
     end
 
     def erb source, target, owner:nil, group:nil, mode:nil
@@ -29,7 +29,7 @@ module Zapt
     end
 
     def file_operation op, target, source, owner, group, mode
-      # condition paths 
+      # condition paths
       [source, target].compact.map{ |p| Zapt.path!(p) }
       case op
       when :copy
