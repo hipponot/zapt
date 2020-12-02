@@ -1,11 +1,13 @@
 require 'open3'
+
 module Zapt
   class << self
 
     def system cmd, user=nil, host=nil, pem=nil, quiet=false
       if user and !host
         cmd = "sudo su #{user} -l -c \"#{cmd}\""
-      elsif /10\.0\.1\d\.\d\d/ =~ host
+      #ToDo: use ipaddr private? when we upgrade to 2.5.x or better
+      elsif  /[10|192]\.\d+\.\d+\.\d+/ =~ host
         cmd = "ssh -o \"StrictHostKeyChecking no\" vagrant@#{host} \"#{cmd}\"" if host
       else
         cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\"" if host
