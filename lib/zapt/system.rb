@@ -16,6 +16,12 @@ module Zapt
       exit_status = nil
       $logger.info "Running command: #{cmd}" unless quiet
       rval = `#{cmd}`; exit_status=($?.exitstatus == 0)
+      if(exit_status)
+        $logger.info(rval);
+      else
+        $logger.error(rval);
+      end
+      # Boo - this causes HANGs over ssh (was trying to get it to flush output line by line)
       # Open3::popen3(cmd) do |stdin, stdout, stderr, status|
       #   stdout.each do |line|
       #     $logger.info line.chomp unless quiet
