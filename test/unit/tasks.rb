@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
-require 'zapt'
-
 
 shell name:'shell_fail', desc:'This task should fail' do
   command 'false'

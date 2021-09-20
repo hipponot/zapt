@@ -14,8 +14,9 @@ id_rsa
 id_rsa.pub
 .sass-cache
 # do not remove - unencrypted public/private key pair should not be
-# checked in.  run gpg --symmetric --output [pem file] and check in 
+# checked in.  run gpg --symmetric --output [pem file] and check in
 # the encypted file
 *.pem
 */certs/*.csv
 VERSION
+zapt-1.0.1.gem

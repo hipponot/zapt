@@ -10,7 +10,7 @@ end
 module Zapt
   class Tasks
 
-    @zapt_cli = false;    
+    @zapt_cli = false;
     @registry = {}
     class << self
       # running zapt naked or via zapt cli ?
