@@ -7,7 +7,7 @@ module Zapt
     def system cmd, user=nil, host=nil, pem=nil, quiet=false
       if user and !host
         cmd = "sudo su #{user} -l -c \"#{cmd}\""
-      elsif user = 'ubuntu' 
+      elsif user == 'ubuntu' 
         cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\"" if host
       elsif  /[(10)|(192)]\.\d+\.\d+\.\d+/ =~ host || user=='vagrant'
         cmd = "ssh -o \"StrictHostKeyChecking no\" vagrant@#{host} \"#{cmd}\"" if host
