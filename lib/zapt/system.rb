@@ -7,10 +7,10 @@ module Zapt
       if user and !host
         cmd = "sudo su #{user} -l -c \"#{cmd}\""
         #ToDo: use ipaddr private? when we upgrade to 2.5.x or better
-      elsif  /[10|192]\.\d+\.\d+\.\d+/ =~ host
-        cmd = "ssh -o \"StrictHostKeyChecking no\" vagrant@#{host} \"#{cmd}\"" if host
+      elsif  pem.nil?
+        cmd = "ssh -o \"StrictHostKeyChecking no\" #{user}@#{host} \"#{cmd}\""
       else
-        cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\"" if host
+        cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\""
       end
       rval = ""
       exit_status = nil

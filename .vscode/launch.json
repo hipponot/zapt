@@ -5,13 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "zapt list",
+            "name": "zapt runtask -r rsync_zcripts",
             "type": "Ruby",
             "request": "launch",
-            "program": "${workspaceRoot}/bin/zapt",
-            "cwd" : "${workspaceRoot}/test/unit",
+            "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+            "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
             "args" : [
-                "list"
+              "runtask",
+              "-r",
+              "rsync_zcripts",
+              "-a",
+              "{cluster_name:'test-vpc-single-stack'}"
             ]
         }
     ]

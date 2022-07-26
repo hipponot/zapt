@@ -7,6 +7,7 @@ require_relative "zapt/user"
 include Zapt::Delegator
 
 module Zapt
+
   # friendly errors
   class Error < StandardError; end
 
@@ -20,6 +21,8 @@ module Zapt
         puts msg
       end
     end
+
+    attr_accessor :cluster_config
 
     def error msg
       raise Zapt::Error.new(msg)
