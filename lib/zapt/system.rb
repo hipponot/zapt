@@ -1,5 +1,7 @@
 require 'open3'
 
+USE_BACKTICKS = false
+
 module Zapt
   class << self
 
@@ -10,33 +12,36 @@ module Zapt
         #ToDo: use ipaddr private? when we upgrade to 2.5.x or better
       # run on remove host with no pem
       elsif  host && pem.nil?
-        cmd = "ssh -o \"StrictHostKeyChecking no\" #{user}@#{host} \"#{cmd}\""
+        cmd = "ssh -tt -o \"StrictHostKeyChecking no\" #{user}@#{host} \"#{cmd}\""
       # run on remove host with pem
       elsif host
-        cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\""
+        cmd = "ssh -tt -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\""
       end
       rval = ""
       exit_status = nil
       $logger.info "Running command: #{cmd}" unless quiet
-      rval = `#{cmd}`; exit_status=($?.exitstatus == 0)
-      if(exit_status)
-        $logger.info(rval);
+      # alternatively use Open3.capture3 (this caused hangs but maybe -tt fixed the issue?)
+      if USE_BACKTICKS
+       rval = `#{cmd}`; exit_status=($?.exitstatus == 0)
+       if(exit_status)
+         $logger.info(rval);
+       else
+         $logger.error(rval);
+       end
       else
-        $logger.error(rval);
+        Open3::popen3(cmd) do |stdin, stdout, stderr, status|
+          stdout.each do |line|
+            $logger.info line.chomp unless quiet
+            stdout.flush
+            rval += line
+          end
+          stderr.each do |line|
+            $logger.warn line.chomp
+            stderr.flush
+          end
+          exit_status = status.value.success?
+        end
       end
-      # Boo - this causes HANGs over ssh (was trying to get it to flush output line by line)
-      # Open3::popen3(cmd) do |stdin, stdout, stderr, status|
-      #   stdout.each do |line|
-      #     $logger.info line.chomp unless quiet
-      #     stdout.flush
-      #     rval += line
-      #   end
-      #   stderr.each do |line|
-      #     $logger.warn line.chomp
-      #     stderr.flush
-      #   end
-      #   exit_status = status.value.success?
-      # end
       return rval, exit_status
     end
   end
