@@ -27,11 +27,12 @@ module Zapt
           task = Zapt::Tasks.registry[task]
           cluster_config = YAML::load(IO.read(cluster))
 
-          # user and pem from cluster config file now
-          user, pem =cluster_config.values_at(:ec2user,:pem)
+          # pem from top level cluster config
+          pem =cluster_config.values_at(:pem)
 
           nodes = cluster_config[:nodes]
           nodes.each_with_index do |node|
+            user = node[:user]
             "Running task: #{task.task_name} on #{node[:public_ip]}"
             remote_task = ShellTask.new({})
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
