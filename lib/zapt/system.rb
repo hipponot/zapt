@@ -4,12 +4,15 @@ module Zapt
   class << self
 
     def system cmd, user=nil, host=nil, pem=nil, quiet=false
+      # switch user
       if user and !host
         cmd = "sudo su #{user} -l -c \"#{cmd}\""
         #ToDo: use ipaddr private? when we upgrade to 2.5.x or better
-      elsif  pem.nil?
+      # run on remove host with no pem
+      elsif  host && pem.nil?
         cmd = "ssh -o \"StrictHostKeyChecking no\" #{user}@#{host} \"#{cmd}\""
-      else
+      # run on remove host with pem
+      elsif host
         cmd = "ssh -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\""
       end
       rval = ""
