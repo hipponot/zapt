@@ -28,7 +28,7 @@ module Zapt
           cluster_config = YAML::load(IO.read(cluster))
 
           # pem from top level cluster config
-          pem = cluster_config[:pem]
+          pem = "#{ENV['HOME']}/credentials/#{cluster_config[:key]}.pem"
 
           nodes = cluster_config[:nodes]
           nodes.each_with_index do |node|
