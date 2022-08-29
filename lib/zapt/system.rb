@@ -1,6 +1,6 @@
 require 'open3'
 
-USE_BACKTICKS = false
+USE_BACKTICKS = true
 
 module Zapt
   class << self
