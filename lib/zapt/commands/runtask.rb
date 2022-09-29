@@ -32,7 +32,7 @@ module Zapt
 
           nodes = cluster_config[:nodes]
           nodes.each_with_index do |node|
-            ip = Zapt.is_ec2_build_server? ? node[:internal_ip] : node[:public_ip]
+            ip = Zapt.ip_from_node(node)
             user = node[:user]
             "Running task: #{task.task_name} on #{ip}"
             remote_task = ShellTask.new({})
