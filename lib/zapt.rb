@@ -14,6 +14,10 @@ module Zapt
   # class instance methods
   class << self
 
+    def is_ec2_build_server?
+      !(/Amazon\s+EC2/ =~ `sudo dmidecode -s chassis-asset-tag`.chomp)
+    end
+
     def message msg
       unless $zapt_no_color
         puts msg.white_on_black

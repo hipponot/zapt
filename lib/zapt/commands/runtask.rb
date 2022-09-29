@@ -32,15 +32,16 @@ module Zapt
 
           nodes = cluster_config[:nodes]
           nodes.each_with_index do |node|
+            ip = Zapt.is_ec2_build_server? ? node[:internal_ip] : node[:public_ip]
             user = node[:user]
-            "Running task: #{task.task_name} on #{node[:public_ip]}"
+            "Running task: #{task.task_name} on #{ip}"
             remote_task = ShellTask.new({})
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             if options[:arglist]
               args = options[:arglist][i]
-              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:node[:public_ip], user:user, pem:pem)
+              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem)
             else
-              remote_task.command "cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name}", host:node[:public_ip], user:user, pem:pem
+              remote_task.command "cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name}", host:ip, user:user, pem:pem
             end
           end
         else

@@ -5,7 +5,7 @@ USE_BACKTICKS = true
 module Zapt
   class << self
 
-    def system cmd, user=nil, host=nil, pem=nil, quiet=false
+    def system cmd, user=nil, host=nil, pem=nil, quiet=false, ignore_failure=false
       # switch user
       if user and !host
         cmd = "sudo su #{user} -l -c \"#{cmd}\""
@@ -26,7 +26,7 @@ module Zapt
        if(exit_status)
          $logger.info(rval);
        else
-         $logger.error(rval);
+         $logger.error(rval) unless ignore_failure
        end
       else
         Open3::popen3(cmd) do |stdin, stdout, stderr, status|
