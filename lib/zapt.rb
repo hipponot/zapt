@@ -18,7 +18,7 @@ module Zapt
       !(/Amazon\s+EC2/ =~ `sudo dmidecode -s chassis-asset-tag`.chomp)
     end
 
-    def ip_from_node
+    def ip_from_node(node)
       abort("Bad config passed to Zapt.host_ip_from_node") unless node.is_a(Hash) && node.has_key(:internal_ip) && node.has_key(:public_ip)
       ip_addr_key = Zapt.is_ec2_build_server? ? :internal_ip : :public_ip
       node[ip_addr_key]
