@@ -15,7 +15,7 @@ module Zapt
   class << self
 
     def is_ec2_build_server?
-      !(/Amazon\s+EC2/ =~ `sudo dmidecode -s chassis-asset-tag`.chomp)
+      (/Amazon\s+EC2/ =~ `sudo dmidecode -s chassis-asset-tag`.chomp)
     end
 
     def ip_from_node(node)
