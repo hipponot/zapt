@@ -20,8 +20,8 @@ module Zapt
 
     def ip_from_node
       abort("Bad config passed to Zapt.host_ip_from_node") unless node.is_a(Hash) && node.has_key(:internal_ip) && node.has_key(:public_ip)
-      IP_ADDR_KEY = Zapt.is_ec2_build_server? ? :internal_ip : :public_ip
-      node[IP_ADDR_KEY]
+      ip_addr_key = Zapt.is_ec2_build_server? ? :internal_ip : :public_ip
+      node[ip_addr_key]
     end
 
     def message msg
