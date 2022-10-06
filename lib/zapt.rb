@@ -7,11 +7,22 @@ require_relative "zapt/user"
 include Zapt::Delegator
 
 module Zapt
+
   # friendly errors
   class Error < StandardError; end
 
   # class instance methods
   class << self
+
+    def is_ec2_build_server?
+      (/Amazon\s+EC2/ =~ `sudo dmidecode -s chassis-asset-tag`.chomp)
+    end
+
+    def ip_from_node(node)
+      abort("Bad config passed to Zapt.host_ip_from_node") unless node.is_a?(Hash) && node.has_key?(:internal_ip) && node.has_key?(:public_ip)
+      ip_addr_key = Zapt.is_ec2_build_server? ? :internal_ip : :public_ip
+      node[ip_addr_key]
+    end
 
     def message msg
       unless $zapt_no_color
@@ -20,6 +31,8 @@ module Zapt
         puts msg
       end
     end
+
+    attr_accessor :cluster_config
 
     def error msg
       raise Zapt::Error.new(msg)

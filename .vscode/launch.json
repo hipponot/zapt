@@ -4,19 +4,47 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "zapt runtask -r rsync_zcripts",
-            "type": "Ruby",
-            "request": "launch",
-            "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
-            "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
-            "args" : [
-              "runtask",
-              "-r",
-              "rsync_zcripts",
-              "-a",
-              "{cluster_name:'test-vpc-single-stack'}"
-            ]
-        }
-    ]
+      {
+        "name": "zapt runtask -r rsync_zcripts",
+        "type": "Ruby",
+        "request": "launch",
+        "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+        "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+        "args" : [
+          "runtask",
+          "-r",
+          "rsync_zcripts",
+          "-a",
+          "{cluster_name:'test-vpc-single-stack'}"
+        ]
+    },
+    {
+      "name": "bootstrap",
+      "type": "Ruby",
+      "request": "launch",
+      "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+      "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+      "args" : [
+        "runtask",
+        "-r",
+        "bootstrap",
+        "-a",
+        "{cluster_name:'test-vpc-single-stack', staging_area:'release'}"
+      ]
+    },
+    {
+      "name": "zapt runtask -r hello_world",
+      "type": "Ruby",
+      "request": "launch",
+      "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+      "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+      "args" : [
+        "runtask",
+        "-r",
+        "hello_world",
+        "-c",
+        "../common/cluster_defs/test-vpc-single-stack.yaml"
+      ]
+  }
+]
 }
