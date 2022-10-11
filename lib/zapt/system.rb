@@ -3,6 +3,7 @@ require 'open3'
 USE_BACKTICKS = true
 
 module Zapt
+  class << self
   def system cmd, user=nil, host=nil, pem=nil, quiet=false, ignore_failure=false
     # switch user
     if user and !host
@@ -43,5 +44,5 @@ module Zapt
     return rval, exit_status
   end
 end
-
+end
 

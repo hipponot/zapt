@@ -5,20 +5,34 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "zapt runtask -r rsync_zcripts",
+        "name": "zapt runtask -r rsync_www_staging",
         "type": "Ruby",
         "request": "launch",
         "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
-        "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+        "cwd" : "${workspaceRoot}/../vega/zcripts/deploy",
         "args" : [
           "runtask",
           "-r",
-          "rsync_zcripts",
+          "rsync_www_staging",
           "-a",
-          "{cluster_name:'test-vpc-single-stack'}"
+          "{cluster_name:'mbchir'}"
         ]
     },
     {
+      "name": "zapt runtask -r rsync_zcripts",
+      "type": "Ruby",
+      "request": "launch",
+      "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+      "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+      "args" : [
+        "runtask",
+        "-r",
+        "rsync_zcripts",
+        "-a",
+        "{cluster_name:'test-vpc-single-stack'}"
+      ]
+  },
+  {
       "name": "bootstrap",
       "type": "Ruby",
       "request": "launch",
