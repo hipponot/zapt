@@ -15,7 +15,8 @@ module Zapt
   class << self
 
     def is_ec2_build_server?
-      system("which ec2metadata > /dev/null")
+      # Kernel.system because apparently zapt has an overridden system that prints red ERROR:
+      Kernel.system("which ec2metadata > /dev/null")
     end
 
     def ip_from_node(node)
