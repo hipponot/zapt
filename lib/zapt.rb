@@ -18,9 +18,17 @@ module Zapt
       (/Amazon\s+EC2/ =~ `sudo dmidecode -s chassis-asset-tag`.chomp)
     end
 
+    def is_aws_vpn?
+      `curl -s ifconfig.co`.chomp == "35.85.111.35"
+    end
+
     def ip_from_node(node)
       abort("Bad config passed to Zapt.host_ip_from_node") unless node.is_a?(Hash) && node.has_key?(:internal_ip) && node.has_key?(:public_ip)
-      ip_addr_key = Zapt.is_ec2_build_server? ? :internal_ip : :public_ip
+      if Zapt.is_ec2_build_server? || is_aws_vpn?
+        ip_addr_key = :internal_ip
+      else
+        ip_add_key = :public_ip
+      end
       node[ip_addr_key]
     end
 
