@@ -15,7 +15,8 @@ module Zapt
   class << self
 
     def is_ec2_build_server?
-      (/Amazon\s+EC2/ =~ `sudo dmidecode -s chassis-asset-tag`.chomp)
+      # Kernel.system because apparently zapt has an overridden system that prints red ERROR:
+      Kernel.system("which ec2metadata > /dev/null")
     end
 
     def is_aws_vpn?
