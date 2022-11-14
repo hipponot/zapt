@@ -28,7 +28,7 @@ module Zapt
       if Zapt.is_ec2_build_server? || is_aws_vpn?
         ip_addr_key = :internal_ip
       else
-        ip_add_key = :public_ip
+        ip_addr_key = :public_ip
       end
       node[ip_addr_key]
     end
