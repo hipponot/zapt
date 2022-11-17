@@ -20,7 +20,7 @@ module Zapt
     end
 
     def is_aws_vpn?
-      `curl -s ifconfig.co`.chomp == "35.85.111.35"
+      `dig +short myip.opendns.com @resolver1.opendns.com`.chomp == "35.85.111.35"
     end
 
     def ip_from_node(node)
