@@ -23,7 +23,9 @@ module Zapt
       `dig +short myip.opendns.com @resolver1.opendns.com`.chomp == "35.85.111.35" ||
       `dig +short myip.opendns.com @resolver1.opendns.com`.chomp == "2601:280:5c80:42ea:2c71:eb00:23b4:1b09" ||
       `curl -s ifconfig.co`.chomp == "35.85.111.35" ||
-      `curl -s ifconfig.co`.chomp == "2601:280:5c80:42ea:2c71:eb00:23b4:1b09"
+      `curl -s ifconfig.co`.chomp == "2601:280:5c80:42ea:2c71:eb00:23b4:1b09" ||
+      `curl -s http://checkip.amazonaws.com`.chomp == "35.85.111.35" ||
+      `curl -s http://ifconfig.me`.chomp == "35.85.111.35"
     end
 
     def ip_from_node(node)
