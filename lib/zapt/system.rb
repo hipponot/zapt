@@ -14,7 +14,7 @@ module Zapt
       cmd = "ssh -tt -o \"StrictHostKeyChecking no\" #{user}@#{host} \"#{cmd}\""
     # run on remove host with pem
     elsif host
-      cmd = "ssh -tt -o \"StrictHostKeyChecking no\" -i #{pem} #{user}@#{host} \"#{cmd}\""
+      cmd = "ssh -tt -o \"StrictHostKeyChecking no\" -o \"ForwardAgent yes\" -i #{pem} #{user}@#{host} \"#{cmd}\""
     end
     rval = ""
     exit_status = nil
