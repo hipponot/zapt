@@ -3,6 +3,8 @@ require_relative "zapt/delegator"
 require_relative "zapt/logger"
 require_relative "zapt/user"
 
+require 'json'
+
 # top level require puts the DSL methods into main scope
 include Zapt::Delegator
 
@@ -19,13 +21,25 @@ module Zapt
       Kernel.system("which ec2metadata > /dev/null")
     end
 
+    $IS_AWS_CACHE = nil
     def is_aws_vpn?
-      `dig +short myip.opendns.com @resolver1.opendns.com`.chomp == "35.85.111.35" ||
-      `dig +short myip.opendns.com @resolver1.opendns.com`.chomp == "2601:280:5c80:42ea:2c71:eb00:23b4:1b09" ||
-      `curl -s ifconfig.co`.chomp == "35.85.111.35" ||
-      `curl -s ifconfig.co`.chomp == "2601:280:5c80:42ea:2c71:eb00:23b4:1b09" ||
-      `curl -s http://checkip.amazonaws.com`.chomp == "35.85.111.35" ||
-      `curl -s http://ifconfig.me`.chomp == "35.85.111.35"
+      # Rate limit - max 1 request per 2 minutes
+      now = Time.now.to_f
+      if ($IS_AWS_CACHE == nil) then
+        $IS_AWS_CACHE = JSON.parse File.read("/tmp/.is.aws.cache") rescue nil
+      end
+      cache_hit = ($IS_AWS_CACHE != nil && now - $IS_AWS_CACHE["ts"] < 120) rescue false
+      return $IS_AWS_CACHE["result"] if cache_hit
+
+      result = `dig +short myip.opendns.com @resolver1.opendns.com`.chomp == "35.85.111.35" ||
+               `dig +short myip.opendns.com @resolver1.opendns.com`.chomp == "2601:280:5c80:42ea:2c71:eb00:23b4:1b09" ||
+               `curl -s ifconfig.co`.chomp == "35.85.111.35" ||
+               `curl -s ifconfig.co`.chomp == "2601:280:5c80:42ea:2c71:eb00:23b4:1b09" ||
+               `curl -s http://checkip.amazonaws.com`.chomp == "35.85.111.35" ||
+               `curl -s http://ifconfig.me`.chomp == "35.85.111.35"
+      $IS_AWS_CACHE = { "ts" => now, "result" => result }
+      File.open("/tmp/.is.aws.cache", "w") { |f| f.puts JSON.generate $IS_AWS_CACHE } rescue nil
+      return result
     end
 
     def ip_from_node(node)
