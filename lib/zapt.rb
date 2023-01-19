@@ -21,6 +21,10 @@ module Zapt
       Kernel.system("which ec2metadata > /dev/null")
     end
 
+    # ! Sorry ya'll need to copy paste this to vega sitedb.rb and break the dependency
+    # ! between vega & zapt
+    # !
+    # ! If you change this then change sitedb.rb version as well
     $IS_AWS_CACHE = nil
     def is_aws_vpn?
       # Rate limit - max 1 request per 2 minutes
