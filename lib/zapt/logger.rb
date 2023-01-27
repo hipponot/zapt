@@ -15,6 +15,8 @@ $logger.formatter = proc{ |level, datetime, progname, msg|
       str.red
     when 'DEBUG'
       str.green
+    when 'TRACE'
+      str.green
     end
   else
     str
