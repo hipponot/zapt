@@ -44,6 +44,7 @@ module Zapt
         remote_hash_cmd = "find #{REMOTE_ZAPT_DIR}/lib -type f -name '*.rb' | sort -d | xargs cat | md5sum"
         pem = "#{ENV['HOME']}/credentials/#{cluster_conf[:key]}.pem"
 
+
         hosts.each_with_index do |host|
           rval, = Zapt.system(remote_hash_cmd, host[:user], host[:ip], pem)
           remote_hash = rval.split(/\s+/).first
