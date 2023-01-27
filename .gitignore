@@ -20,3 +20,4 @@ id_rsa.pub
 */certs/*.csv
 VERSION
 zapt-1.0.1.gem
+.last_build.json
