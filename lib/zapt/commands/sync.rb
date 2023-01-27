@@ -40,6 +40,7 @@ module Zapt
           hosts << { ip:ip, user:user }
         end
 
+
         # pem from top level cluster config
         remote_hash_cmd = "find #{REMOTE_ZAPT_DIR}/lib -type f -name '*.rb' | sort -d | xargs cat | md5sum"
         pem = "#{ENV['HOME']}/credentials/#{cluster_conf[:key]}.pem"
@@ -85,7 +86,7 @@ module Zapt
 
     def update_cluster_zapt_from_github(host, pem)
       $logger.info("Updating cluster zapt from github")
-      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git pull", host[:user], host[:ip], pem)
+      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD", host[:user], host[:ip], pem)
       $logger.info("Building and installing zapt on remote node")
       rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem)
     end
