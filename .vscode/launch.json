@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
       {
+        "name": "zapt sync",
+        "type": "Ruby",
+        "request": "launch",
+        "program": "/home/skelly/dev/zapt/bin/zapt",
+        "cwd" : "${workspaceRoot}/../vega/zcripts/deploy",
+        "args" : [
+          "sync",
+          "-c",
+          "skelly",
+        ]
+      },
+      {
         "name": "zapt runtask -r rsync_www_staging",
         "type": "Ruby",
         "request": "launch",

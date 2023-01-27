@@ -2,6 +2,7 @@ require 'open3'
 
 USE_BACKTICKS = true
 
+
 module Zapt
   class << self
   def system cmd, user=nil, host=nil, pem=nil, quiet=false, ignore_failure=false
