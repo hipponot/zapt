@@ -48,11 +48,11 @@ module Zapt
           rval, = Zapt.system(remote_hash_cmd, host[:user], host[:ip], pem)
           remote_hash = rval.split(/\s+/).first
           unless (local_hash == remote_hash)
-            $logger.warn("local and #{cluster_conf[:name]} cluster versions of zapt source differ")
-            ans = no_prompt ? true : (yes? "Do you want to sync zapt to cluster #{cluster_conf[:name]} (Y/N)")
-            return unless ans
             if ans
               if local_diff_from_github
+                $logger.warn("local and #{cluster_conf[:name]} cluster versions of zapt source differ")
+                ans = no_prompt ? true : (yes? "Do you want to sync zapt to cluster #{cluster_conf[:name]} (Y/N)")
+                return unless ans
                 update_cluster_zapt_from_local(host, pem)
               else
                 update_cluster_zapt_from_github(host, pem)
@@ -85,7 +85,7 @@ module Zapt
     end
 
     def update_cluster_zapt_from_github(host, pem)
-      $logger.info("Updating cluster zapt from github")
+      $logger.warn("Updating cluster zapt from github")
       rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD", host[:user], host[:ip], pem)
       $logger.info("Building and installing zapt on remote node")
       rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem)
