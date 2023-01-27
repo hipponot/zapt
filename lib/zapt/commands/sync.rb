@@ -55,6 +55,7 @@ module Zapt
                 return unless ans
                 update_cluster_zapt_from_local(host, pem)
               else
+                $logger.warn("local and github versions of zapt are the same")
                 update_cluster_zapt_from_github(host, pem)
               end
             end
