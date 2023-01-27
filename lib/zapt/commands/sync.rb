@@ -40,7 +40,6 @@ module Zapt
           hosts << { ip:ip, user:user }
         end
 
-
         # pem from top level cluster config
         remote_hash_cmd = "find #{REMOTE_ZAPT_DIR}/lib -type f -name '*.rb' | sort -d | xargs cat | md5sum"
         pem = "#{ENV['HOME']}/credentials/#{cluster_conf[:key]}.pem"
