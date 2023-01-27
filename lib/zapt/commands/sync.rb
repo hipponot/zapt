@@ -12,8 +12,8 @@ module Zapt
     def sync
       Dir.chdir(LOCAL_ZAPT_DIR) {
         no_prompt = options[:yes]
-        `git diff origin --quiet`; local_diff = $?
-        if local_diff
+        `git diff origin --quiet`; local_diff_from_github = $?
+        if local_diff_from_github
           ans = no_prompt ? true : (yes? "Local zapt version differs from (github) origin, do you want to continue with sync?")
           unless ans
             $logger.info("You can rerun this command after pulling remote changes or pushing local changes")
@@ -53,7 +53,7 @@ module Zapt
             ans = no_prompt ? true : (yes? "Do you want to sync zapt to cluster #{cluster_conf[:name]} (Y/N)")
             return unless ans
             if ans
-              if local_diff
+              if local_diff_from_github
                 update_cluster_zapt_from_local(host, pem)
               else
                 update_cluster_zapt_from_github(host, pem)
