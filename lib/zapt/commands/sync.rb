@@ -48,21 +48,23 @@ module Zapt
         hosts.each_with_index do |host|
           rval, = Zapt.system(remote_hash_cmd, host[:user], host[:ip], pem)
           remote_hash = rval.split(/\s+/).first
-          unless (local_hash == remote_hash)
+
             if ans
               if local_diff_from_github
-                $logger.warn("local and #{cluster_conf[:name]} cluster versions of zapt source differ")
-                ans = no_prompt ? true : (yes? "Do you want to sync zapt to cluster #{cluster_conf[:name]} (Y/N)")
-                return unless ans
-                update_cluster_zapt_from_local(host, pem)
+                unless (local_hash == remote_hash)
+                  $logger.warn("local and #{cluster_conf[:name]} cluster versions of zapt source differ")
+                  ans = no_prompt ? true : (yes? "Do you want to sync zapt to cluster #{cluster_conf[:name]} (Y/N)")
+                  return unless ans
+                  update_cluster_zapt_from_local(host, pem)
+                end
               else
                 $logger.warn("local and github versions of zapt are the same")
                 update_cluster_zapt_from_github(host, pem)
               end
             end
-          else
-            $logger.warn("local and #{cluster_conf[:name]} cluster versions of zapt source match")
-          end
+          # else
+          #   $logger.warn("local and #{cluster_conf[:name]} cluster versions of zapt source match")
+          # end
         end
       }
       $logger.warn("Running rsync_zcripts task")
