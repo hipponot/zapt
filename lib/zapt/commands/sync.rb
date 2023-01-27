@@ -12,7 +12,7 @@ module Zapt
     def sync
       Dir.chdir(LOCAL_ZAPT_DIR) {
         no_prompt = options[:yes]
-        `git diff origin --quiet`; local_diff_from_github = $?
+        `git diff origin --quiet`; local_diff_from_github = !($?.success?)
         if local_diff_from_github
           ans = no_prompt ? true : (yes? "Local zapt version differs from (github) origin, do you want to continue with sync?")
           unless ans
