@@ -34,6 +34,7 @@ module Zapt
 
       # don't try to sync if have local mods
       return if handle_zapt_has_local_mods
+      handle_local_zapt_is_out_of_date
       handle_remote_zapt_is_out_of_date
       return if handle_zcripts_have_local_mods
       handle_remote_zcripts_are_out_of_date
@@ -131,6 +132,20 @@ module Zapt
       }
     end
 
+    def handle_local_zapt_is_out_of_date
+      puts BANNER.yellow
+      puts wrap("Checking Local Zapt:\n", 80)
+      local_cmd = "cd #{LOCAL_ZAPT_DIR}; git fetch; git diff origin --quiet"
+      `#{local_cmd}`; up_to_date = $?.success
+      if up_to_date
+        puts wrap("Local zapt is up to date")
+      else
+        puts wrap("Local_zapt needs an update")
+        update_local_zapt_from_github()
+      end
+      puts BANNER.yellow
+    end
+
     def handle_remote_zapt_is_out_of_date
       puts BANNER.yellow
       puts wrap("Checking Remote Zapt:\n", 80)
@@ -160,7 +175,6 @@ module Zapt
         puts BANNER.yellow
         return local_mods
       }
-
     end
 
     def handle_remote_zcripts_are_out_of_date
@@ -181,6 +195,15 @@ module Zapt
       rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD; git pull", host[:user], host[:ip], pem, true)
       puts wrap("Building and installing zapt on remote node")
       rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem, true)
+    end
+
+    def update_local_zapt_from_github()
+      puts wrap("Updating local zapt from github")
+      status = system("git reset --hard HEAD; git pull")
+      abort("Something went wrong with pulling local zapt") unless status.success?
+      puts wrap("Building and installing local zapt")
+      status = system("gem build zapt.gemspec; gem install zapt-1.0.1.gem")
+      abort("Something went wrong building zapt locally") unless status.success?
     end
 
     def self.exit_on_failure?
