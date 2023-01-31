@@ -212,21 +212,23 @@ module Zapt
     end
 
     def handle_remote_zcripts_are_out_of_date
-        local_hash = `find #{LOCAL_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum`.chomp
-        hosts.each do |host|
-          remote_cmd = "find #{REMOTE_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum".chomp
-          remote_hash,  = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true) # quiet and ignore_failure
-          if(remote_hash != local_hash)
-            puts wrap("Remote zcripts out of sync with local")
-            Dir.chdir(File.join(ENV['HOME'], 'dev/vega/zcripts/cluster')) {
-              cmd = %Q{zapt runtask -r rsync_zcripts -a "{cluster_name:'#{cluster_conf[:name]}'}"}
-              system(cmd)
-            }
-          else
-            puts wrap("Remote zcripts are in sync with local")
-          end
+      puts BANNER.yellow
+      local_hash = `find #{LOCAL_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum`.chomp
+      hosts.each do |host|
+        remote_cmd = "find #{REMOTE_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum".chomp
+        remote_hash,  = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true) # quiet and ignore_failure
+        if(remote_hash != local_hash)
+          puts wrap("Remote zcripts out of sync with local")
+          Dir.chdir(File.join(ENV['HOME'], 'dev/vega/zcripts/cluster')) {
+            cmd = %Q{zapt runtask -r rsync_zcripts -a "{cluster_name:'#{cluster_conf[:name]}'}"}
+            system(cmd)
+          }
+        else
+          puts wrap("Remote zcripts are in sync with local")
         end
       end
+      puts BANNER.yellow
+    end
 
     def update_cluster_zapt_from_local(host, pem)
       user, ip = host.values_at(:user, :ip)
