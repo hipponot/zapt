@@ -186,7 +186,7 @@ module Zapt
           puts wrap("Local zcripts have no local modifications")
         end
         if !local_mods
-          unpushed_commits = !`git cherry -v .`.empty?
+          unpushed_commits = !`git cherry -v`.empty?
           if unpushed_commits
             puts wrap("You have unpushed commits to #{LOCAL_ZCRIPTS_DIR}. Please push before attempting to sync\n", 80)
           else
