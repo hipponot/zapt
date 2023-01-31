@@ -151,7 +151,7 @@ module Zapt
         local_cmd = "cd #{LOCAL_ZAPT_DIR}; git fetch; git diff origin --quiet"
         `#{local_cmd}`; up_to_date = $?.success?
         if up_to_date
-          puts wrap("Local zapt is up to date")
+          puts wrap("Local zapt is up to date with origin")
         else
           puts wrap("Local_zapt needs an update")
           update_local_zapt_from_github()
@@ -166,7 +166,7 @@ module Zapt
         remote_cmd = "cd #{REMOTE_ZAPT_DIR}; git fetch; git diff origin --quiet"
         rval, up_to_date = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true, true) # quiet and ignore_failure
         if up_to_date
-          puts wrap("Remote zapt is up to date")
+          puts wrap("Remote zapt is up to date with origin")
         else
           puts wrap("Remote zapt needs an update")
           update_cluster_zapt_from_github(host, pem)
