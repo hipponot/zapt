@@ -121,6 +121,7 @@ module Zapt
       s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
     end
 
+
     def handle_zapt_has_local_mods
       Dir.chdir(LOCAL_ZAPT_DIR) {
         `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
