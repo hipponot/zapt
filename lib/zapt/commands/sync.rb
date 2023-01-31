@@ -34,9 +34,9 @@ module Zapt
 
       # don't try to sync if have local mods
       return if handle_zapt_has_local_mods
-      handle_zapt_remote_is_out_of_date
+      handle_remote_zapt_is_out_of_date
       return if handle_zcripts_have_local_mods
-      handle_zcripts_local_are_out_of_date
+      handle_remote_zcripts_are_out_of_date
 
     end
       # $logger.error("Can't find cluster definition #{cluster}") and exit(1) unless File.exist?(cluster)
@@ -131,7 +131,7 @@ module Zapt
       }
     end
 
-    def handle_zapt_remote_is_out_of_date
+    def handle_remote_zapt_is_out_of_date
       puts BANNER.yellow
       puts wrap("Checking Remote Zapt:\n", 80)
       hosts.each do |host|
@@ -163,7 +163,7 @@ module Zapt
 
     end
 
-    def handle_zcripts_local_are_out_of_date
+    def handle_remote_zcripts_are_out_of_date
     end
 
     def update_cluster_zapt_from_local(host, pem)
