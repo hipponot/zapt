@@ -16,7 +16,7 @@ module Zapt
     method_option :yes, :aliases => "-y", :type=>:boolean, :required=>false, :desc => "yes to all prompts"
     desc "sync", "print version"
     def sync
-      puts BANNER.yellow
+
       cluster = options[:cluster]
       unless File.exist? cluster
         cluster = File.join(ENV['HOME'], 'dev/vega/zcripts/common/cluster_defs/', "#{cluster}.yaml")
@@ -31,7 +31,8 @@ module Zapt
         user = node[:user]
         hosts << { ip:ip, user:user }
       end
-      puts
+
+      puts BANNER.yellow
       # sync zapt
       return if handle_zapt_has_local_mods # abort if local mods or unpushed changes
       handle_local_zapt_is_out_of_date
