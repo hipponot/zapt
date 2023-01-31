@@ -161,7 +161,7 @@ module Zapt
     def handle_local_zcripts_are_out_of_date
       puts BANNER.yellow
       puts wrap("Checking local zcripts:\n", 80)
-        local_cmd = "cd #{LOCAL_ZCRIPTS_DIR}; git fetch; git --quiet diff origin ." # note the . -- don't want the whole repo just zcripts
+        local_cmd = "cd #{LOCAL_ZCRIPTS_DIR}; git fetch; git diff --quiet origin ." # note the . -- don't want the whole repo just zcripts
         `#{local_cmd}`; up_to_date = $?.success?
         if up_to_date
           puts wrap("Local zcripts are up to date with origin")
