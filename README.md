@@ -1,5 +1,6 @@
-zapt
+cd zapt
 ====
+
 
 ## Introduction
 Are you a ruby fan that can't stand CHEF? Do you need to configure some servers? or run some
