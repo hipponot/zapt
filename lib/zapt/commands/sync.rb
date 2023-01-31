@@ -213,11 +213,16 @@ module Zapt
 
     def handle_remote_zcripts_are_out_of_date
       puts BANNER.yellow
+      puts wrap("Checking if remote zcripts need rsync:\n", 80)
       local_hash = `find #{LOCAL_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum`.chomp
       hosts.each do |host|
         cmd = %Q{rsync  -arc -e "ssh -i #{pem} -l #{host[:user]}" #{LOCAL_ZCRIPTS_DIR} #{host[:user]}@#{host[:ip]}:. --exclude "common/cluster_defs/*"}
         rval = `#{cmd}`
-        puts rval
+        if rval.empty?
+          puts wrap("Remote zcripts are up to date")
+        else
+          puts wrap("Remote zcripts need rsynced")
+        end
       end
       puts BANNER.yellow
     end
