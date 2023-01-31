@@ -105,7 +105,7 @@ module Zapt
       hosts.each do |host|
         remote_cmd = "cd #{REMOTE_ZAPT_DIR}; git fetch; git diff origin --quiet"
         rval, up_to_date = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true, true) # quiet and ignore_failure
-        if up_to_date
+        if up_to_dateIntroduction
           puts wrap("Remote zapt is up to date with origin")
         else
           puts wrap("Remote zapt needs an update")
@@ -147,6 +147,8 @@ module Zapt
           puts wrap("Remote zcripts are up to date")
         else
           puts wrap("Remote zcripts need rsynced")
+          cmd = %Q{cd #{ENV['HOME']}/dev/vega/zcripts/cluster; zapt runtask -r rsync_zcripts -a "{cluster_name:'#{cluster_conf[:name]}'}"}
+          system(cmd)
         end
       end
       puts BANNER.yellow
