@@ -3,6 +3,8 @@ require_relative '../version'
 module Zapt
   LOCAL_ZAPT_DIR = File.expand_path(File.join(ENV['HOME'],'dev/zapt'))
   REMOTE_ZAPT_DIR = "zapt"
+  LOCAL_ZCRIPTS_DIR = File.expand_path(File.join(ENV['HOME'],'dev/vega/zcripts'))
+  REMOTE_ZCRIPTS_DIR = "zcripts"
 
   BANNER = "#"*80
 
@@ -121,6 +123,8 @@ module Zapt
         puts wrap("Checking Local Zapt:\n", 80)
         if local_mods
           puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync\n", 80)
+        else
+          puts wrap("Local zapt has no local modifications")
         end
         puts BANNER.yellow
         return local_mods
