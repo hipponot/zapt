@@ -215,7 +215,7 @@ module Zapt
         local_hash = `find #{LOCAL_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum`.chomp
         hosts.each do |host|
           remote_cmd = `find #{REMOTE_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum`.chomp
-          rval,  = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true, true) # quiet and ignore_failure
+          remote_hash,  = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true, true) # quiet and ignore_failure
           puts local_hash
           puts remote_hash
         end
