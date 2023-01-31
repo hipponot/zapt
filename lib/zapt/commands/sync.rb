@@ -118,7 +118,7 @@ module Zapt
 
     def handle_zapt_has_local_mods
       Dir.chdir(LOCAL_ZAPT_DIR) {
-        `git diff HEAD --quiet $REF -- $DIR`; local_mods = !$?.success?
+        `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
         puts BANNER.yellow
         puts wrap("Checking Local Zapt:\n", 80)
         if local_mods
@@ -149,7 +149,7 @@ module Zapt
 
     def handle_zcripts_have_local_mods
       Dir.chdir(LOCAL_ZCRIPTS_DIR) {
-        `git diff HEAD --quiet $REF -- $DIR`; local_mods = !$?.success?
+        `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
         puts BANNER.yellow
         puts wrap("Checking local zcripts:\n", 80)
         if local_mods
