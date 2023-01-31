@@ -32,11 +32,15 @@ module Zapt
         hosts << { ip:ip, user:user }
       end
 
-      # don't try to sync if have local mods
-      return if handle_zapt_has_local_mods
+      # sync zapt
+      # ToDo - check for unpushed CS
+      return if handle_zapt_has_local_mods # abort if local mods or unpushed changes
       handle_local_zapt_is_out_of_date
       handle_remote_zapt_is_out_of_date
-      return if handle_zcripts_have_local_mods
+
+      # sync zcripts
+      # ToDo - check for unpushed CS
+      return if handle_zcripts_have_local_mods # abort if local mods or unpushed changes
       handle_remote_zcripts_are_out_of_date
 
     end
@@ -200,10 +204,10 @@ module Zapt
     def update_local_zapt_from_github()
       puts wrap("Updating local zapt from github")
       status = system("git reset --hard HEAD; git pull")
-      abort("Something went wrong with pulling local zapt") unless status.success?
+      abort("Something went wrong with pulling local zapt") unless status
       puts wrap("Building and installing local zapt")
       status = system("gem build zapt.gemspec; gem install zapt-1.0.1.gem")
-      abort("Something went wrong building zapt locally") unless status.success?
+      abort("Something went wrong building zapt locally") unless status
     end
 
     def self.exit_on_failure?
