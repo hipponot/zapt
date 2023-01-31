@@ -33,15 +33,14 @@ module Zapt
       end
 
       # sync zapt
-      # ToDo - check for unpushed CS
       return if handle_zapt_has_local_mods # abort if local mods or unpushed changes
       handle_local_zapt_is_out_of_date
       handle_remote_zapt_is_out_of_date
 
       # sync zcripts
-      # ToDo - check for unpushed CS
       return if handle_zcripts_have_local_mods # abort if local mods or unpushed changes
-      handle_remote_zcripts_are_out_of_date
+      handle_local_zcripts_are_out_of_date
+      #handle_remote_zcripts_are_out_of_date
 
     end
       # $logger.error("Can't find cluster definition #{cluster}") and exit(1) unless File.exist?(cluster)
@@ -153,8 +152,22 @@ module Zapt
         if up_to_date
           puts wrap("Local zapt is up to date with origin")
         else
-          puts wrap("Local_zapt needs an update")
+          puts wrap("Local zapt needs an update")
           update_local_zapt_from_github()
+        end
+      puts BANNER.yellow
+    end
+
+    def handle_local_zcripts_are_out_of_date
+      puts BANNER.yellow
+      puts wrap("Checking local zcripts are up to date:\n", 80)
+        local_cmd = "cd #{LOCAL_ZCRIPTS_DIR}; git fetch; git diff origin . --quiet" # note the . -- don't want the whole repo just zcripts
+        `#{local_cmd}`; up_to_date = $?.success?
+        if up_to_date
+          puts wrap("Local zcripts are up to date with origin")
+        else
+          puts wrap("Local zcripts needs an update")
+          update_local_zcripts_from_github()
         end
       puts BANNER.yellow
     end
@@ -225,6 +238,12 @@ module Zapt
       puts wrap("Building and installing local zapt")
       status = system("gem build zapt.gemspec; gem install zapt-1.0.1.gem")
       abort("Something went wrong building zapt locally") unless status
+    end
+
+    def update_local_zcripts_from_github()
+      puts wrap("Updating local zcripts from github")
+      status = system("git checkout -- .; git pull")
+      abort("Something went wrong with pulling local zcripts") unless status
     end
 
     def self.exit_on_failure?
