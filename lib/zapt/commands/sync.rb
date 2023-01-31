@@ -132,8 +132,14 @@ module Zapt
         else
           puts wrap("Local zapt has no local modifications")
         end
+        unpushed_commits = !`git cherry -v`.empty?
+        if unpushed_commits
+          puts wrap("You have unpushed commits to #{LOCAL_ZAPT_DIR}. Please push before attempting to sync\n", 80)
+        else
+          puts wrap("Local zapt has no unpushed commits")
+        end
         puts BANNER.yellow
-        return local_mods
+        return local_mods || unpushed_commits
       }
     end
 
