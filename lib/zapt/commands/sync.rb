@@ -105,7 +105,7 @@ module Zapt
       hosts.each do |host|
         remote_cmd = "cd #{REMOTE_ZAPT_DIR}; git fetch; git diff origin --quiet"
         rval, up_to_date = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true, true) # quiet and ignore_failure
-        if up_to_dateIntroduction
+        if up_to_date
           puts wrap("Remote zapt is up to date with origin")
         else
           puts wrap("Remote zapt needs an update")
