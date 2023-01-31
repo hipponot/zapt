@@ -3,6 +3,8 @@ require_relative '../version'
 module Zapt
   LOCAL_ZAPT_DIR = File.expand_path(File.join(ENV['HOME'],'dev/zapt'))
   REMOTE_ZAPT_DIR = "zapt"
+  LOCAL_ZCRIPTS_DIR = File.expand_path(File.join(ENV['HOME'],'dev/vega/zcripts'))
+  REMOTE_ZCRIPTS_DIR = "zcripts"
 
   BANNER = "#"*80
 
@@ -30,10 +32,11 @@ module Zapt
         hosts << { ip:ip, user:user }
       end
 
-      handle_zapt_has_local_mods
-      handle_zapt_remote_is_out_of_date
-      handle_zcripts_have_local_mods
-      handle_zcripts_local_are_out_of_date
+      # don't try to sync if have local mods
+      return if handle_zapt_has_local_mods
+      handle_remote_zapt_is_out_of_date
+      return if handle_zcripts_have_local_mods
+      handle_remote_zcripts_are_out_of_date
 
     end
       # $logger.error("Can't find cluster definition #{cluster}") and exit(1) unless File.exist?(cluster)
@@ -115,15 +118,20 @@ module Zapt
 
     def handle_zapt_has_local_mods
       Dir.chdir(LOCAL_ZAPT_DIR) {
-        `git diff HEAD --quiet $REF -- $DIR`; local_mods = !$?.success?
+        `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
         puts BANNER.yellow
         puts wrap("Checking Local Zapt:\n", 80)
-        puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync.\n", 80)
+        if local_mods
+          puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync\n", 80)
+        else
+          puts wrap("Local zapt has no local modifications")
+        end
         puts BANNER.yellow
+        return local_mods
       }
     end
 
-    def handle_zapt_remote_is_out_of_date
+    def handle_remote_zapt_is_out_of_date
       puts BANNER.yellow
       puts wrap("Checking Remote Zapt:\n", 80)
       hosts.each do |host|
@@ -133,15 +141,29 @@ module Zapt
           puts wrap("Remote zapt is up to date")
         else
           puts wrap("Remote zapt needs an update")
+          update_cluster_zapt_from_github(host, pem)
         end
       end
       puts BANNER.yellow
     end
 
     def handle_zcripts_have_local_mods
+      Dir.chdir(LOCAL_ZCRIPTS_DIR) {
+        `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
+        puts BANNER.yellow
+        puts wrap("Checking local zcripts:\n", 80)
+        if local_mods
+          puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR}. Please commit and push before attempting to sync\n", 80)
+        else
+          puts wrap("Local zcripts have no local modifications")
+        end
+        puts BANNER.yellow
+        return local_mods
+      }
+
     end
 
-    def handle_zcripts_local_are_out_of_date
+    def handle_remote_zcripts_are_out_of_date
     end
 
     def update_cluster_zapt_from_local(host, pem)
@@ -155,10 +177,10 @@ module Zapt
     end
 
     def update_cluster_zapt_from_github(host, pem)
-      $logger.warn("Updating cluster zapt from github")
-      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD", host[:user], host[:ip], pem)
-      $logger.info("Building and installing zapt on remote node")
-      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem)
+      puts wrap("Updating zapt from github on host #{host}")
+      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD; git pull", host[:user], host[:ip], pem, true)
+      puts wrap("Building and installing zapt on remote node")
+      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem, true)
     end
 
     def self.exit_on_failure?
