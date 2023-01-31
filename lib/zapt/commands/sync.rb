@@ -30,9 +30,10 @@ module Zapt
         hosts << { ip:ip, user:user }
       end
 
-      handle_zapt_has_local_mods
+      # don't try to sync if have local mods
+      return if handle_zapt_has_local_mods
       handle_zapt_remote_is_out_of_date
-      handle_zcripts_have_local_mods
+      return if handle_zcripts_have_local_mods
       handle_zcripts_local_are_out_of_date
 
     end
@@ -118,8 +119,11 @@ module Zapt
         `git diff HEAD --quiet $REF -- $DIR`; local_mods = !$?.success?
         puts BANNER.yellow
         puts wrap("Checking Local Zapt:\n", 80)
-        puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync.\n", 80)
+        if local_mods
+          puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync\n", 80)
+        end
         puts BANNER.yellow
+        return local_mods
       }
     end
 
@@ -133,12 +137,26 @@ module Zapt
           puts wrap("Remote zapt is up to date")
         else
           puts wrap("Remote zapt needs an update")
+          update_cluster_zapt_from_github(host, pem)
         end
       end
       puts BANNER.yellow
     end
 
     def handle_zcripts_have_local_mods
+      Dir.chdir(LOCAL_ZCRIPTS_DIR) {
+        `git diff HEAD --quiet $REF -- $DIR`; local_mods = !$?.success?
+        puts BANNER.yellow
+        puts wrap("Checking local zcripts:\n", 80)
+        if local_mods
+          puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR}. Please commit and push before attempting to sync\n", 80)
+        else
+          puts wrap("Local zcripts have no local modifications")
+        end
+        puts BANNER.yellow
+        return local_mods
+      }
+
     end
 
     def handle_zcripts_local_are_out_of_date
@@ -155,10 +173,10 @@ module Zapt
     end
 
     def update_cluster_zapt_from_github(host, pem)
-      $logger.warn("Updating cluster zapt from github")
-      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD", host[:user], host[:ip], pem)
-      $logger.info("Building and installing zapt on remote node")
-      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem)
+      puts wrap("Updating zapt from github on host #{host}")
+      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD; git pull", host[:user], host[:ip], pem, true)
+      puts wrap("Building and installing zapt on remote node")
+      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem, true)
     end
 
     def self.exit_on_failure?
