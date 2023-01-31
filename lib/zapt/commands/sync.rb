@@ -174,7 +174,7 @@ module Zapt
 
     def handle_remote_zapt_is_out_of_date
       puts BANNER.yellow
-      puts wrap("Checking Remote Zapt:\n", 80)
+      puts wrap("Checking remote zapt:\n", 80)
       hosts.each do |host|
         remote_cmd = "cd #{REMOTE_ZAPT_DIR}; git fetch; git diff origin --quiet"
         rval, up_to_date = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true, true) # quiet and ignore_failure
