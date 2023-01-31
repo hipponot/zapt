@@ -24,7 +24,7 @@ module Zapt
     if USE_BACKTICKS
       rval = `#{cmd}`; exit_status=($?.exitstatus == 0)
       if(exit_status)
-        $logger.info(rval);
+        $logger.info(rval) unless quiet;
       else
         $logger.error(rval) unless ignore_failure
       end
