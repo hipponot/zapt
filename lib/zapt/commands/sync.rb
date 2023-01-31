@@ -124,7 +124,6 @@ module Zapt
     def handle_zapt_has_local_mods
       Dir.chdir(LOCAL_ZAPT_DIR) {
         `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
-        puts BANNER.yellow
         puts wrap("Checking local zapt:\n", 80)
         if local_mods
           puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync\n", 80)
@@ -145,7 +144,6 @@ module Zapt
     end
 
     def handle_local_zapt_is_out_of_date
-      puts BANNER.yellow
       puts wrap("Checking local zapt:\n", 80)
         local_cmd = "cd #{LOCAL_ZAPT_DIR}; git fetch; git diff origin --quiet"
         `#{local_cmd}`; up_to_date = $?.success?
@@ -159,7 +157,6 @@ module Zapt
     end
 
     def handle_local_zcripts_are_out_of_date
-      puts BANNER.yellow
       puts wrap("Checking local zcripts:\n", 80)
         local_cmd = "cd #{LOCAL_ZCRIPTS_DIR}; git fetch; git diff --quiet origin ." # note the . -- don't want the whole repo just zcripts
         `#{local_cmd}`; up_to_date = $?.success?
@@ -173,7 +170,6 @@ module Zapt
     end
 
     def handle_remote_zapt_is_out_of_date
-      puts BANNER.yellow
       puts wrap("Checking remote zapt:\n", 80)
       hosts.each do |host|
         remote_cmd = "cd #{REMOTE_ZAPT_DIR}; git fetch; git diff origin --quiet"
@@ -191,7 +187,6 @@ module Zapt
     def handle_zcripts_have_local_mods
       Dir.chdir(LOCAL_ZCRIPTS_DIR) {
         `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
-        puts BANNER.yellow
         puts wrap("Checking local zcripts:\n", 80)
         if local_mods
           puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR}. Please commit and push before attempting to sync\n", 80)
@@ -212,7 +207,6 @@ module Zapt
     end
 
     def handle_remote_zcripts_are_out_of_date
-      puts BANNER.yellow
       puts wrap("Checking if remote zcripts need rsync:\n", 80)
       local_hash = `find #{LOCAL_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum`.chomp
       hosts.each do |host|
