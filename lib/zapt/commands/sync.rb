@@ -117,18 +117,25 @@ module Zapt
       Dir.chdir(LOCAL_ZAPT_DIR) {
         `git diff HEAD --quiet $REF -- $DIR`; local_mods = !$?.success?
         puts BANNER.yellow
-        puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync\n", 80)
+        puts wrap("Checking Local Zapt:\n", 80)
+        puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync.\n", 80)
         puts BANNER.yellow
       }
     end
 
     def handle_zapt_remote_is_out_of_date
+      puts BANNER.yellow
+      puts wrap("Checking Remote Zapt:\n", 80)
       hosts.each do |host|
-        remote_cmd = "cd #{REMOTE_ZAPT_DIR}; git diff origin --quiet"
-        rval, out_of_date = !Zapt.system(remote_cmd, host[:user], host[:ip], pem)
-        puts rval
-        puts out_of_date
+        remote_cmd = "cd #{REMOTE_ZAPT_DIR}; git fetch; git diff origin --quiet"
+        rval, up_to_date = Zapt.system(remote_cmd, host[:user], host[:ip], pem, true, true) # quiet and ignore_failure
+        if up_to_date
+          puts wrap("Remote zapt is up to date")
+        else
+          puts wrap("Remote zapt needs an update")
+        end
       end
+      puts BANNER.yellow
     end
 
     def handle_zcripts_have_local_mods
