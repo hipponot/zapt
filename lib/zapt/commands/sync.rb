@@ -125,7 +125,7 @@ module Zapt
       Dir.chdir(LOCAL_ZAPT_DIR) {
         `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
         puts BANNER.yellow
-        puts wrap("Checking local zapt for modifications:\n", 80)
+        puts wrap("Checking local zapt:\n", 80)
         if local_mods
           puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR} Please commit and push before attempting to sync\n", 80)
         else
@@ -146,7 +146,7 @@ module Zapt
 
     def handle_local_zapt_is_out_of_date
       puts BANNER.yellow
-      puts wrap("Checking local zapt is up to date:\n", 80)
+      puts wrap("Checking local zapt:\n", 80)
         local_cmd = "cd #{LOCAL_ZAPT_DIR}; git fetch; git diff origin --quiet"
         `#{local_cmd}`; up_to_date = $?.success?
         if up_to_date
@@ -160,7 +160,7 @@ module Zapt
 
     def handle_local_zcripts_are_out_of_date
       puts BANNER.yellow
-      puts wrap("Checking local zcripts are up to date:\n", 80)
+      puts wrap("Checking local zcripts:\n", 80)
         local_cmd = "cd #{LOCAL_ZCRIPTS_DIR}; git fetch; git diff origin . --quiet" # note the . -- don't want the whole repo just zcripts
         `#{local_cmd}`; up_to_date = $?.success?
         if up_to_date
