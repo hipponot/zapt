@@ -22,7 +22,7 @@ zapt sync -c skelly
 
 Example Output
 
-```bash
+```
 skelly-> bin/zapt sync -c skelly
 ################################################################################
 Checking local zapt:
@@ -44,7 +44,6 @@ Checking local zcripts:
 Local zcripts are up to date with origin
 ################################################################################
 Checking if remote zcripts need rsync:
-rsync  --out-format="%f" -n -arc -e "ssh -i /home/skelly/credentials/dev-test-tmp.pem -l ubuntu" /home/skelly/dev/vega/zcripts ubuntu@54.187.149.211:. --exclude "common/cluster_defs/*"
 Remote zcripts need rsynced
 INFO: Running task: rsync_zcripts
 Loaded /home/skelly/dev/vega/zcripts/common/cluster_defs/skelly.yaml
@@ -61,3 +60,5 @@ INFO: ...tasks have been Zapt
 INFO: ...tasks have been Zapt
 
 ```
+
+Note the sync command will prompt you to update and push local modifications before completing the sync operation if detects local mods or unpushed commits in either `zapt` or `vega/zcripts`.
