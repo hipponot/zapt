@@ -141,7 +141,7 @@ module Zapt
       puts wrap("Checking if remote zcripts need rsync:\n", 80)
       local_hash = `find #{LOCAL_ZCRIPTS_DIR} -type f | grep -v cluster_defs | sort -d | xargs cat | md5sum`.chomp
       hosts.each do |host|
-        cmd = %Q{rsync  -n -varc -e "ssh -i #{pem} -l #{host[:user]}" #{LOCAL_ZCRIPTS_DIR} #{host[:user]}@#{host[:ip]}:. --exclude "common/cluster_defs/*"}
+        cmd = %Q{rsync  --out-format="%f" -n -arc -e "ssh -i #{pem} -l #{host[:user]}" #{LOCAL_ZCRIPTS_DIR} #{host[:user]}@#{host[:ip]}:. --exclude "common/cluster_defs/*"}
         puts cmd
         rval = `#{cmd}`
         if rval.empty?
