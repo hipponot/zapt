@@ -27,7 +27,7 @@ module Zapt
       @pem = "#{ENV['HOME']}/credentials/#{cluster_conf[:key]}.pem"
       @hosts = []
       cluster_conf[:nodes].each do |node|
-        ip = Zapt.is_aws_vpn? ? node[:internal_ip] : node[:public_ip]
+        ip = Zapt.is_aws_vpn? || Zapt.is_ec2_build_server? ? node[:internal_ip] : node[:public_ip]
         user = node[:user]
         hosts << { ip:ip, user:user }
       end
