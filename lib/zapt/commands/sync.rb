@@ -1,7 +1,7 @@
 require_relative '../version'
 
 module Zapt
-  LOCAL_ZAPT_DIR = File.expand_path(File.join(ENV['HOME'],'dev/zapt'))
+  LOCAL_ZAPT_DIR = is_ec2_build_server? ? File.expand_path(File.join(ENV['HOME'],'zapt')) : File.expand_path(File.join(ENV['HOME'],'dev/zapt'))
   REMOTE_ZAPT_DIR = "zapt"
   LOCAL_ZCRIPTS_DIR = File.expand_path(File.join(ENV['HOME'],'dev/vega/zcripts'))
   REMOTE_ZCRIPTS_DIR = "zcripts"
@@ -34,7 +34,7 @@ module Zapt
 
       puts BANNER.yellow
       # sync zapt
-      return if handle_zapt_has_local_mods # abort if local mods or unpushed changes
+      abort('Aborting zapt sync') if handle_zapt_has_local_mods # abort if local mods or unpushed changes
       handle_local_zapt_is_out_of_date
       handle_remote_zapt_is_out_of_date
 
