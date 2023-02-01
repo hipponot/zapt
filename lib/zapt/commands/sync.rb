@@ -148,8 +148,7 @@ module Zapt
         else
           puts wrap("Remote zcripts need rsynced")
           cmd = %Q{cd #{ENV['HOME']}/dev/vega/zcripts/cluster; zapt runtask -r rsync_zcripts -a "{cluster_name:'#{cluster_conf[:name]}'}"}
-          puts cmd
-          #system(cmd)
+          system(cmd)
         end
       end
       puts BANNER.yellow
