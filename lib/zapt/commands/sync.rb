@@ -120,7 +120,7 @@ module Zapt
         `git diff HEAD --quiet $REF -- $DIR .`; local_mods = !$?.success?
         puts wrap("Checking local zcripts:\n", 80)
         if local_mods
-          puts wrap("You have local modificatons to #{LOCAL_ZAPT_DIR}. Please commit and push before attempting to sync\n", 80)
+          puts wrap("You have local modificatons to #{LOCAL_ZCRIPTS_DIR}. Please commit and push before attempting to sync\n", 80)
         else
           puts wrap("Local zcripts have no local modifications")
         end
