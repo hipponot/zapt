@@ -154,16 +154,6 @@ module Zapt
       puts BANNER.yellow
     end
 
-    def update_cluster_zapt_from_local(host, pem)
-      user, ip = host.values_at(:user, :ip)
-      $logger.warn("Updating cluster zapt from local")
-      cmd = "rsync -av -e \"ssh -i #{pem} -l #{user}\"   #{LOCAL_ZAPT_DIR}/lib #{user}@#{ip}:#{REMOTE_ZAPT_DIR}"
-      $logger.info("Running: #{cmd}")
-      system(cmd)
-      $logger.warn("Building and installing zapt on remote node")
-      rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; gem build zapt.gemspec; gem install zapt-1.0.1.gem", host[:user], host[:ip], pem)
-    end
-
     def update_cluster_zapt_from_github(host, pem)
       puts wrap("Updating zapt from github on host #{host}")
       rval, = Zapt.system("cd #{REMOTE_ZAPT_DIR}; git reset --hard HEAD; git pull", host[:user], host[:ip], pem, true)
