@@ -75,16 +75,18 @@ module Zapt
     end
 
     def handle_local_zapt_is_out_of_date
-      puts wrap("Checking local zapt:\n", 80)
-        local_cmd = "cd #{LOCAL_ZAPT_DIR}; git fetch; git diff origin --quiet"
-        `#{local_cmd}`; up_to_date = $?.success?
-        if up_to_date
-          puts wrap("Local zapt is up to date with origin")
-        else
-          puts wrap("Local zapt needs an update")
-          update_local_zapt_from_github()
-        end
-      puts BANNER.yellow
+      Dir.chdir(LOCAL_ZAPT_DIR) {
+        puts wrap("Checking local zapt:\n", 80)
+          local_cmd = "cd #{LOCAL_ZAPT_DIR}; git fetch; git diff origin --quiet"
+          `#{local_cmd}`; up_to_date = $?.success?
+          if up_to_date
+            puts wrap("Local zapt is up to date with origin")
+          else
+            puts wrap("Local zapt needs an update")
+            update_local_zapt_from_github()
+          end
+        puts BANNER.yellow
+      }
     end
 
     def handle_local_zcripts_are_out_of_date
