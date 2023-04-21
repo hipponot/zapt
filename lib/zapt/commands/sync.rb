@@ -40,7 +40,7 @@ module Zapt
 
       # sync zcripts
       return if handle_zcripts_have_local_mods # abort if local mods or unpushed changes
-      handle_local_zcripts_are_out_of_date
+      handle_local_zcripts_are_out_of_date unless is_detached_head?
       handle_remote_zcripts_are_out_of_date
 
     end
@@ -51,6 +51,12 @@ module Zapt
       s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
     end
 
+    def is_detached_head?
+      Dir.chdir(LOCAL_ZCRIPTS_DIR) {
+        `git branch | grep '*'`; rval = $?.success?
+        return rval
+      }
+    end
 
     def handle_zapt_has_local_mods
       Dir.chdir(LOCAL_ZAPT_DIR) {
