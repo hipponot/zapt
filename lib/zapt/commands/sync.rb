@@ -34,13 +34,15 @@ module Zapt
 
       puts BANNER.yellow
       # sync zapt
-      abort('Aborting zapt sync') if handle_zapt_has_local_mods # abort if local mods or unpushed changes
-      handle_local_zapt_is_out_of_date
-      handle_remote_zapt_is_out_of_date
+      # abort('Aborting zapt sync') if handle_zapt_has_local_mods # abort if local mods or unpushed changes
+      #handle_local_zapt_is_out_of_date
+
+      # ToDo: remote zapt should be in the same detached head state
+      #handle_remote_zapt_is_out_of_date
 
       # sync zcripts
-      return if handle_zcripts_have_local_mods # abort if local mods or unpushed changes
-      handle_local_zcripts_are_out_of_date unless is_detached_head?
+      # return if handle_zcripts_have_local_mods # abort if local mods or unpushed changes
+      #handle_local_zcripts_are_out_of_date unless is_detached_head?
       handle_remote_zcripts_are_out_of_date
 
     end
