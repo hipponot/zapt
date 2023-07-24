@@ -43,7 +43,7 @@ module Zapt
       # sync zcripts
       # return if handle_zcripts_have_local_mods # abort if local mods or unpushed changes
       #handle_local_zcripts_are_out_of_date unless is_detached_head?
-      handle_remote_zcripts_are_out_of_date
+      #handle_remote_zcripts_are_out_of_date
 
     end
 
