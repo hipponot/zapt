@@ -28,7 +28,7 @@ module Zapt
       else
         $logger.error(rval) unless ignore_failure
       end
-      puts rval.split('\n').grep_v('INFO') if capture # bypass logger for capture
+      puts rval if $logger.disabled
     else
       Open3::popen3(cmd) do |stdin, stdout, stderr, status|
         stdout.each do |line|

@@ -5,16 +5,18 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "zapt sync",
+        "name": "zapt capture",
         "type": "Ruby",
         "request": "launch",
         "program": "/home/skelly/dev/zapt/bin/zapt",
-        "cwd" : "${workspaceRoot}/../vega/zcripts/deploy",
+        "cwd" : "${workspaceRoot}/../vega/zcripts/invariants",
         "args" : [
-          "sync",
+          "runtask",
+          "--capture"
+          "-r",
+          "check_zapt_ref",
           "-c",
-          "skelly",
-          "--yes"
+          "/home/skelly/dev/vega/zcripts/common/cluster_defs/skelly.yaml"
         ]
       },
       {

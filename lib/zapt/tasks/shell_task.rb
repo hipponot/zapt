@@ -32,7 +32,7 @@ module Zapt
 
     def run_cmd cmd, working_dir, user, host, pem, quiet, dryrun, ignore_failure, capture
       cmd.insert(0,"cd #{working_dir};") if working_dir
-      return Zapt.system(cmd, user, host, pem, quiet, ignore_failur, capture) unless dryrun
+      return Zapt.system(cmd, user, host, pem, quiet, ignore_failure, capture) unless dryrun
       puts "dryrun: #{cmd}"
       return nil, 0
     end

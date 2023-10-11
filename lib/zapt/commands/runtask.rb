@@ -18,6 +18,8 @@ module Zapt
       task_file = options[:tasks]
       Zapt.load_and_eval task_file
 
+      $logger.disabled = options[:capture]
+
       options[:runlist].each_with_index do |task, i|
         taskargs = options[:arglist] ? (parse_args options[:arglist][i]) : {}
         $logger.error("No such task #{task}") and exit(1) unless Zapt::Tasks.registry.has_key? task
@@ -40,9 +42,9 @@ module Zapt
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             if options[:arglist]
               args = options[:arglist][i]
-              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem, capture:options[:capture])
+              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem)
             else
-              remote_task.command "cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name}", host:ip, user:user, pem:pem, capture:options[:capture]
+              remote_task.command "cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name}", host:ip, user:user, pem:pem
             end
           end
         else
