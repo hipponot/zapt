@@ -10,6 +10,7 @@ module Zapt
     method_option :runlist, :aliases => "-r", :type=>:array, :required=>true, :desc => "Run list"
     method_option :cluster, :aliases => "-c", :type=>:string, :required=>false, :desc => "Specify cluster on which to run task"
     method_option :pem, :aliases => "-p", :type=>:string, :required=>false, :default=>"~/.ssh/dev-test-key.pem", :desc => "Remote command PEM"
+    method_option :capture, :type=>:boolean, :required=>false, :desc => "bypass logging and capture output to stdout"
     def runtask
 
       raise Error.new("arglist length > runlist length") if options[:arglist] and options[:arglist].length > options[:runlist].length
@@ -39,9 +40,9 @@ module Zapt
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             if options[:arglist]
               args = options[:arglist][i]
-              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem)
+              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem, capture:options[:capture])
             else
-              remote_task.command "cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name}", host:ip, user:user, pem:pem
+              remote_task.command "cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name}", host:ip, user:user, pem:pem, capture:options[:capture]
             end
           end
         else
