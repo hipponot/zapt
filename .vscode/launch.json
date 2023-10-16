@@ -4,15 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
+
       {
         "name": "zapt capture",
-        "type": "Ruby",
+        "type": "ruby-debug",
         "request": "launch",
         "program": "/home/skelly/dev/zapt/bin/zapt",
-        "cwd" : "${workspaceRoot}/../vega/zcripts/invariants",
-        "args" : [
+        //"preLaunchTask": "zapt capture cwd",
+        "programArgs" : [
           "runtask",
-          "--capture"
+          "--capture",
           "-r",
           "check_zapt_ref",
           "-c",

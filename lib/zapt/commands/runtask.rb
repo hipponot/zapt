@@ -44,7 +44,7 @@ module Zapt
               args = options[:arglist][i]
               remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem)
             else
-              remote_task.command "cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name}", host:ip, user:user, pem:pem
+              remote_task.command %Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask #{options[:capture] ? '-l 2' : ''} -r #{task.task_name}}, host:ip, user:user, pem:pem
             end
           end
         else
