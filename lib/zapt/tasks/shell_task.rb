@@ -18,7 +18,7 @@ module Zapt
     def commands cmds, working_dir:nil, user:nil, host:nil, pem:nil, quiet:false, ignore_failure:false, dryrun:false, capture:false
       rval = []
       cmds.each do |cmd|
-        rval << run_cmd(cmd, working_dir, user, host, pem, quiet, dryrun, ignore_failure)
+        rval << run_cmd(cmd, working_dir, user, host, pem, quiet, dryrun, ignore_failure, capture)
       end
     end
 
@@ -39,5 +39,3 @@ module Zapt
 
   end
 end
-
-
