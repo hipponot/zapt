@@ -2,6 +2,8 @@ require 'thor'
 require 'rubygems/user_interaction'
 require 'rubygems/config_file'
 require_relative '../zapt'
+require_relative 'ui'
+
 # require all commands
 root = File.dirname(File.absolute_path(__FILE__))
 Dir.glob(root + '/commands/*', &method(:require))
@@ -26,7 +28,7 @@ module Zapt
     default_task :help
     class_option :arglist,  :type => :array,   :banner => "Arg list", :aliases => "-a"
     class_option :no_color, :type => :boolean, :banner => "Disable colorization in output", :default => false
-    class_option :log_level,  :type => :numeric, :banner => "Set the log-level", :aliases => "-l", :default => 1 
+    class_option :log_level,  :type => :numeric, :banner => "Set the log-level", :aliases => "-l", :default => 1
     class_option :verbose,  :type => :boolean, :banner => "Verbose (max logging)", :aliases => "-v", :lazy_default => true
   end
 end
