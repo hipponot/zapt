@@ -1,15 +1,4 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/cl'
-require_relative '../lib/zapt/cli'
-require_relative '../lib/zapt/friendly_errors'
-Zapt.with_friendly_errors {
-  Zapt::CLI.start
-}
-
-at_exit {
-  $logger.info '...tasks have been Zapt' unless $fail
-}
-
-
-
+require "zapt"
+Zapt::CLI.start
