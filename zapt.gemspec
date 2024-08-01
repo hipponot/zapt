@@ -20,9 +20,14 @@ Gem::Specification.new do |spec|
         f.start_with?(*%w[bin/ test/ spec/ features/ .git appveyor Gemfile])
     end
   end
-  puts spec.files
+
   spec.bindir = "bin"
-  spec.executables = spec.files.grep(%r{\Abin/}) { |f| File.basename(f) }
+  spec.executables = ['zapt']
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "colored"
+  spec.add_dependency "erubis"
+  spec.add_dependency "thor"
+  spec.add_dependency "logger"
 
 end

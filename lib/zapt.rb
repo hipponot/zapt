@@ -2,6 +2,7 @@ require_relative "zapt/version"
 require_relative "zapt/delegator"
 require_relative "zapt/logger"
 require_relative "zapt/user"
+require_relative "zapt/cli"
 
 require 'json'
 
@@ -106,5 +107,3 @@ module Zapt
 
   end
 end
-
-
