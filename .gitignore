@@ -21,3 +21,4 @@ id_rsa.pub
 VERSION
 zapt-1.0.1.gem
 .last_build.json
+.bundle/
