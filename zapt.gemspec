@@ -25,10 +25,11 @@ Gem::Specification.new do |spec|
   spec.executables = ['zapt']
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "thor", "1.2.2"
   spec.add_dependency "colored"
   spec.add_dependency "erubis"
-  spec.add_dependency "thor", "<1.3"
   spec.add_dependency "logger"
   spec.add_dependency "facter"
+  spec.add_dependency "rvm"
 
 end
