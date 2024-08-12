@@ -26,6 +26,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "thor", "1.2.2"
+  spec.add_dependency "mongo", "1.12.5"
+  spec.add_dependency "bson_ext", "1.12.5"
   spec.add_dependency "colored"
   spec.add_dependency "erubis"
   spec.add_dependency "logger"
