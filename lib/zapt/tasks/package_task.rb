@@ -9,7 +9,7 @@ module Zapt
     attr_accessor :action
 
     def initialize args
-      super args
+      super(**args)
     end
 
     def names values, action:'install', provider:'apt'
