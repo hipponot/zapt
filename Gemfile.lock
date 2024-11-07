@@ -49,6 +49,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  stringio (= 3.0.4)
   zapt!
 
 BUNDLED WITH
