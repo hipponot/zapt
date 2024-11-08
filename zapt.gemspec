@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Zapt::VERSION
   spec.authors = ["Sean Kelly"]
   spec.email = ["skelly@saga.org"]
+  spec.license = "MIT"
 
   spec.summary = "cluster deploy remoting"
   spec.required_ruby_version = ">= 3.0.0"
@@ -33,5 +34,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "erubis", "~> 2.7"
   spec.add_dependency "facter", "~> 4.10"
   spec.add_dependency "rvm", "~> 1.11"
-
 end
