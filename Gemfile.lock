@@ -2,14 +2,6 @@ PATH
   remote: .
   specs:
     zapt (1.0.1)
-      bson_ext (~> 1.12.5)
-      colored (~> 1.2)
-      erubis (~> 2.7)
-      facter (~> 4.10)
-      logger (~> 1.6.0)
-      mongo (~> 1.12.5)
-      rvm (~> 1.11)
-      thor (~> 1.2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -26,7 +18,6 @@ GEM
     logger (1.6.0)
     mongo (1.12.5)
       bson (= 1.12.5)
-    rvm (1.11.3.9)
     stringio (3.1.2)
     thor (1.2.2)
 
@@ -35,7 +26,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  stringio (= 3.1.2)
+  bson_ext (~> 1.12.5)
+  colored (~> 1.2)
+  erubis (~> 2.7)
+  facter (~> 4.7)
+  logger (~> 1.6.0)
+  mongo (~> 1.12.5)
+  stringio (~> 3.1.2)
+  thor (~> 1.2)
   zapt!
 
 BUNDLED WITH

@@ -26,12 +26,4 @@ Gem::Specification.new do |spec|
   spec.executables = ['zapt']
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "thor", "~> 1.2.2"
-  spec.add_dependency "mongo", "~> 1.12.5"
-  spec.add_dependency "bson_ext", "~> 1.12.5"
-  spec.add_dependency "logger", "~> 1.6.0"
-  spec.add_dependency "colored", "~> 1.2"
-  spec.add_dependency "erubis", "~> 2.7"
-  spec.add_dependency "facter", "~> 4.10"
-  spec.add_dependency "rvm", "~> 1.11"
 end
