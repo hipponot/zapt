@@ -10,6 +10,9 @@ gem "logger", "~> 1.6.0"
 gem "colored", "~> 1.2"
 gem "erubis", "~> 2.7"
 gem "facter", "~> 4.7"
+gem 'rake', '13.2.1'
+gem 'rvm', '1.11.3.9'
+
 
 # Specify your gem's dependencies in zapt.gemspec
 gemspec
