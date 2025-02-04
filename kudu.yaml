@@ -22,5 +22,8 @@
 - :name: mongo
   :type: gem
   :group: 1.12.3
+- :name: bson_ext
+  :type: gem
+  :group: 1.12.3
 
   
