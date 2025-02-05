@@ -12,7 +12,8 @@ gem "erubis", "~> 2.7"
 gem 'rake', '13.2.1'
 gem 'rvm', '1.11.3.9'
 gem 'facter', '4.7.0'
-gem 'sqlite','2.0.3'
+gem 'sqlite','1.0.2'
+gem 'sqlite3','2.5.0'
 gem 'cssminify', '1.0.2'
 gem 'sass', '3.4.25'
 
