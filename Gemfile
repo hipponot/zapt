@@ -9,7 +9,6 @@ gem "bson_ext", "~> 1.12.5"
 gem "logger", "~> 1.6.5"
 gem "colored", "~> 1.2"
 gem "erubis", "~> 2.7"
-gem "facter", "~> 4.7"
 gem 'rake', '13.2.1'
 gem 'rvm', '1.11.3.9'
 gem 'facter', '4.7.0'
