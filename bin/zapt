@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
+require_relative "../auto_bundler"
 require "zapt"
 
 Zapt::CLI.start
