@@ -6,7 +6,7 @@
   :version: 0.0.1
   :group: in-house
   :type: gem
-:dependencies: 
+:dependencies:
 - :name: logger
   :type: gem
   :group: third-party
@@ -19,5 +19,11 @@
 - :name: thor
   :type: gem
   :group: third-party
+- :name: mongo
+  :type: gem
+  :group: 1.12.3
+- :name: bson_ext
+  :type: gem
+  :group: 1.12.3
 
   

@@ -2,6 +2,8 @@ require_relative "zapt/version"
 require_relative "zapt/delegator"
 require_relative "zapt/logger"
 require_relative "zapt/user"
+require_relative "zapt/cli"
+
 
 require 'json'
 
@@ -15,6 +17,8 @@ module Zapt
 
   # class instance methods
   class << self
+
+    attr_writer :ui
 
     def is_ec2_build_server?
       # Kernel.system because apparently zapt has an overridden system that prints red ERROR:
@@ -106,5 +110,3 @@ module Zapt
 
   end
 end
-
-

@@ -4,78 +4,87 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
-
       {
-        "name": "zapt capture",
-        "type": "ruby-debug",
+        "type": "rdbg",
+        "name": "zapt 3.x",
         "request": "launch",
-        "program": "/home/skelly/dev/zapt/bin/zapt",
-        //"preLaunchTask": "zapt capture cwd",
-        "programArgs" : [
+        "script": "${workspaceFolder}/bin/zapt",
+        "args": [
           "runtask",
-          "--capture",
           "-r",
-          "check_zapt_ref",
-          "-c",
-          "/home/skelly/dev/vega/zcripts/common/cluster_defs/skelly.yaml"
-        ]
+          "rvm_location_hack"
+        ],
       },
-      {
-        "name": "zapt runtask -r rsync_www_staging",
-        "type": "Ruby",
-        "request": "launch",
-        "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
-        "cwd" : "${workspaceRoot}/../vega/zcripts/deploy",
-        "args" : [
-          "runtask",
-          "-r",
-          "rsync_www_staging",
-          "-a",
-          "{cluster_name:'mbchir'}"
-        ]
-    },
-    {
-      "name": "zapt runtask -r rsync_zcripts",
-      "type": "Ruby",
-      "request": "launch",
-      "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
-      "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
-      "args" : [
-        "runtask",
-        "-r",
-        "rsync_zcripts",
-        "-a",
-        "{cluster_name:'test-vpc-single-stack'}"
-      ]
-  },
-  {
-      "name": "bootstrap",
-      "type": "Ruby",
-      "request": "launch",
-      "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
-      "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
-      "args" : [
-        "runtask",
-        "-r",
-        "bootstrap",
-        "-a",
-        "{cluster_name:'test-vpc-single-stack', staging_area:'release'}"
-      ]
-    },
-    {
-      "name": "zapt runtask -r hello_world",
-      "type": "Ruby",
-      "request": "launch",
-      "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
-      "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
-      "args" : [
-        "runtask",
-        "-r",
-        "hello_world",
-        "-c",
-        "../common/cluster_defs/test-vpc-single-stack.yaml"
-      ]
-  }
+  //     {
+  //       "name": "zapt capture",
+  //       "type": "ruby-debug",
+  //       "request": "launch",
+  //       "program": "/home/skelly/dev/zapt/bin/zapt",
+  //       //"preLaunchTask": "zapt capture cwd",
+  //       "programArgs" : [
+  //         "runtask",
+  //         "--capture",
+  //         "-r",
+  //         "check_zapt_ref",
+  //         "-c",
+  //         "/home/skelly/dev/vega/zcripts/common/cluster_defs/skelly.yaml"
+  //       ]
+  //     },
+  //     {
+  //       "name": "zapt runtask -r rsync_www_staging",
+  //       "type": "Ruby",
+  //       "request": "launch",
+  //       "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+  //       "cwd" : "${workspaceRoot}/../vega/zcripts/deploy",
+  //       "args" : [
+  //         "runtask",
+  //         "-r",
+  //         "rsync_www_staging",
+  //         "-a",
+  //         "{cluster_name:'mbchir'}"
+  //       ]
+  //    },
+  //   {
+  //     "name": "zapt runtask -r rsync_zcripts",
+  //     "type": "Ruby",
+  //     "request": "launch",
+  //     "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+  //     "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+  //     "args" : [
+  //       "runtask",
+  //       "-r",
+  //       "rsync_zcripts",
+  //       "-a",
+  //       "{cluster_name:'test-vpc-single-stack'}"
+  //     ]
+  // },
+  // {
+  //     "name": "bootstrap",
+  //     "type": "Ruby",
+  //     "request": "launch",
+  //     "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+  //     "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+  //     "args" : [
+  //       "runtask",
+  //       "-r",
+  //       "bootstrap",
+  //       "-a",
+  //       "{cluster_name:'test-vpc-single-stack', staging_area:'release'}"
+  //     ]
+  //   },
+  //   {
+  //     "name": "zapt runtask -r hello_world",
+  //     "type": "Ruby",
+  //     "request": "launch",
+  //     "program": "/home/skelly/.rvm/gems/ruby-2.4.9/bin/zapt",
+  //     "cwd" : "${workspaceRoot}/../vega/zcripts/cluster",
+  //     "args" : [
+  //       "runtask",
+  //       "-r",
+  //       "hello_world",
+  //       "-c",
+  //       "../common/cluster_defs/test-vpc-single-stack.yaml"
+  //     ]
+  // }
 ]
 }

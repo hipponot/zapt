@@ -4,7 +4,9 @@ build_ver: BW2
 builder: ShellCmdBuilder
 type: in-house
 steps:
-  - cmd: gem build zapt.gemspec && gem install zapt-1.0.1.gem
-dependencies: []
-
-
+  - cmd: bundle cache
+    paths:
+      - ./**/*.rb
+  - cmd: bundle exec rake install
+    paths:
+      - ./**/*.rb

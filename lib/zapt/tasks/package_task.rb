@@ -9,7 +9,7 @@ module Zapt
     attr_accessor :action
 
     def initialize args
-      super
+      super(**args)
     end
 
     def names values, action:'install', provider:'apt'
@@ -21,9 +21,9 @@ module Zapt
     def name value, action:'install', provider:'apt'
       package_action value, action, provider
     end
-    
+
     private
-    
+
     def package_action pkg, action, provider
       case provider
       when 'brew'
@@ -49,5 +49,3 @@ module Zapt
 
   end
 end
-
-
