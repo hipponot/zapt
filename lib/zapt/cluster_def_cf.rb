@@ -6,13 +6,21 @@
 #   Set CLUSTER_DEF_SOURCE=cloudformation to use CF-based loading
 #   Or call Zapt::ClusterDefCF.load_from_stack(stack_name) directly
 #
+# Features:
+#   - Caches AWS API responses for 60 seconds to reduce API calls
+#   - Parallelizes independent AWS API calls for faster loading
+#   - Loads production RTP hosts from SSM Parameter Store (with fallback)
+#
 require 'json'
 
 module Zapt
   module ClusterDefCF
-    # Production RTP channel hosts configuration
-    # These are static since production comms servers are fixed infrastructure
-    PROD_RTP_CHANNEL_HOSTS = {
+    # Cache for AWS API responses to reduce API calls during multi-task deployments
+    @cache = {}
+    @cache_ttl = 60 # seconds
+
+    # Default production RTP channel hosts (fallback if SSM param not found)
+    DEFAULT_PROD_RTP_CHANNEL_HOSTS = {
       A: [
         'https://comms0.wootmath.com',
         'https://comms1.wootmath.com',
@@ -26,6 +34,22 @@ module Zapt
     }.freeze
 
     class << self
+      # Clear the cache (useful for testing or forced refresh)
+      def clear_cache!
+        @cache = {}
+      end
+
+      # Get cached value or fetch and cache
+      def cached_fetch(cache_key, &block)
+        @cache ||= {}
+        if @cache[cache_key] && (Time.now - @cache[cache_key][:time]) < (@cache_ttl || 60)
+          return @cache[cache_key][:data]
+        end
+        data = block.call
+        @cache[cache_key] = { data: data, time: Time.now }
+        data
+      end
+
       # Check if we should use CloudFormation-based loading
       def use_cloudformation?
         ENV['CLUSTER_DEF_SOURCE'] == 'cloudformation'
@@ -33,13 +57,15 @@ module Zapt
 
       # Get the current instance's metadata using IMDSv2
       def get_instance_metadata(path)
-        # Get token for IMDSv2
-        token = `curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600" 2>/dev/null`.strip
-        return nil if token.empty?
+        cached_fetch("metadata:#{path}") do
+          # Get token for IMDSv2
+          token = `curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600" 2>/dev/null`.strip
+          next nil if token.empty?
 
-        # Use token to get metadata
-        result = `curl -s -H "X-aws-ec2-metadata-token: #{token}" "http://169.254.169.254/latest/meta-data/#{path}" 2>/dev/null`.strip
-        result.empty? ? nil : result
+          # Use token to get metadata
+          result = `curl -s -H "X-aws-ec2-metadata-token: #{token}" "http://169.254.169.254/latest/meta-data/#{path}" 2>/dev/null`.strip
+          result.empty? ? nil : result
+        end
       end
 
       # Get the current instance ID from EC2 metadata
@@ -56,15 +82,17 @@ module Zapt
       # Get instance tags using AWS CLI
       def get_instance_tags(instance_id, region = nil)
         region ||= get_current_region
-        cmd = "aws ec2 describe-tags --filters \"Name=resource-id,Values=#{instance_id}\" --region #{region} --output json 2>/dev/null"
-        result = `#{cmd}`
-        return {} if result.empty?
+        cached_fetch("tags:#{instance_id}:#{region}") do
+          cmd = "aws ec2 describe-tags --filters \"Name=resource-id,Values=#{instance_id}\" --region #{region} --output json 2>/dev/null"
+          result = `#{cmd}`
+          next {} if result.empty?
 
-        tags = {}
-        JSON.parse(result)['Tags'].each do |tag|
-          tags[tag['Key']] = tag['Value']
+          tags = {}
+          JSON.parse(result)['Tags'].each do |tag|
+            tags[tag['Key']] = tag['Value']
+          end
+          tags
         end
-        tags
       rescue JSON::ParserError
         {}
       end
@@ -72,18 +100,20 @@ module Zapt
       # Get CloudFormation stack outputs
       def get_stack_outputs(stack_name, region = nil)
         region ||= get_current_region || 'us-west-2'
-        cmd = "aws cloudformation describe-stacks --stack-name #{stack_name} --region #{region} --output json 2>/dev/null"
-        result = `#{cmd}`
-        return {} if result.empty?
+        cached_fetch("outputs:#{stack_name}:#{region}") do
+          cmd = "aws cloudformation describe-stacks --stack-name #{stack_name} --region #{region} --output json 2>/dev/null"
+          result = `#{cmd}`
+          next {} if result.empty?
 
-        outputs = {}
-        stack = JSON.parse(result)['Stacks']&.first
-        return {} unless stack
+          outputs = {}
+          stack = JSON.parse(result)['Stacks']&.first
+          next {} unless stack
 
-        (stack['Outputs'] || []).each do |output|
-          outputs[output['OutputKey']] = output['OutputValue']
+          (stack['Outputs'] || []).each do |output|
+            outputs[output['OutputKey']] = output['OutputValue']
+          end
+          outputs
         end
-        outputs
       rescue JSON::ParserError
         {}
       end
@@ -91,20 +121,56 @@ module Zapt
       # Get CloudFormation stack parameters
       def get_stack_parameters(stack_name, region = nil)
         region ||= get_current_region || 'us-west-2'
-        cmd = "aws cloudformation describe-stacks --stack-name #{stack_name} --region #{region} --output json 2>/dev/null"
-        result = `#{cmd}`
-        return {} if result.empty?
+        cached_fetch("params:#{stack_name}:#{region}") do
+          cmd = "aws cloudformation describe-stacks --stack-name #{stack_name} --region #{region} --output json 2>/dev/null"
+          result = `#{cmd}`
+          next {} if result.empty?
 
-        params = {}
-        stack = JSON.parse(result)['Stacks']&.first
-        return {} unless stack
+          params = {}
+          stack = JSON.parse(result)['Stacks']&.first
+          next {} unless stack
 
-        (stack['Parameters'] || []).each do |param|
-          params[param['ParameterKey']] = param['ParameterValue']
+          (stack['Parameters'] || []).each do |param|
+            params[param['ParameterKey']] = param['ParameterValue']
+          end
+          params
         end
-        params
       rescue JSON::ParserError
         {}
+      end
+
+      # Get SSM parameter value
+      def get_ssm_parameter(param_name, region = nil)
+        region ||= get_current_region || 'us-west-2'
+        cached_fetch("ssm:#{param_name}:#{region}") do
+          cmd = "aws ssm get-parameter --name #{param_name} --region #{region} --output json 2>/dev/null"
+          result = `#{cmd}`
+          next nil if result.empty?
+
+          JSON.parse(result).dig('Parameter', 'Value')
+        end
+      rescue JSON::ParserError
+        nil
+      end
+
+      # Get production RTP channel hosts from SSM or use default
+      def get_prod_rtp_channel_hosts(region = nil)
+        # Try to load from SSM Parameter Store
+        ssm_value = get_ssm_parameter('/prod/rtp/channel-hosts', region)
+        if ssm_value
+          begin
+            parsed = JSON.parse(ssm_value)
+            return {
+              A: Array(parsed['A']),
+              B: Array(parsed['B'])
+            }
+          rescue JSON::ParserError
+            # Fall through to default
+          end
+        end
+
+        # Return default if SSM not configured
+        DEFAULT_PROD_RTP_CHANNEL_HOSTS
       end
 
       # Try to find associated routing stack for an instance stack
@@ -159,17 +225,19 @@ module Zapt
       # Get all EC2 instances in a CloudFormation stack
       def get_stack_instances(stack_name, region = nil)
         region ||= get_current_region || 'us-west-2'
-        cmd = "aws ec2 describe-instances --filters \"Name=tag:aws:cloudformation:stack-name,Values=#{stack_name}\" \"Name=instance-state-name,Values=running\" --region #{region} --output json 2>/dev/null"
-        result = `#{cmd}`
-        return [] if result.empty?
+        cached_fetch("instances:#{stack_name}:#{region}") do
+          cmd = "aws ec2 describe-instances --filters \"Name=tag:aws:cloudformation:stack-name,Values=#{stack_name}\" \"Name=instance-state-name,Values=running\" --region #{region} --output json 2>/dev/null"
+          result = `#{cmd}`
+          next [] if result.empty?
 
-        instances = []
-        JSON.parse(result)['Reservations'].each do |reservation|
-          reservation['Instances'].each do |instance|
-            instances << instance
+          instances = []
+          JSON.parse(result)['Reservations'].each do |reservation|
+            reservation['Instances'].each do |instance|
+              instances << instance
+            end
           end
+          instances
         end
-        instances
       rescue JSON::ParserError
         []
       end
@@ -177,32 +245,33 @@ module Zapt
       # Get all EC2 instances in an AutoScaling Group
       def get_asg_instances(asg_name, region = nil)
         region ||= get_current_region || 'us-west-2'
+        cached_fetch("asg:#{asg_name}:#{region}") do
+          # First get instance IDs from the ASG
+          asg_cmd = "aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names #{asg_name} --region #{region} --output json 2>/dev/null"
+          asg_result = `#{asg_cmd}`
+          next [] if asg_result.empty?
 
-        # First get instance IDs from the ASG
-        asg_cmd = "aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names #{asg_name} --region #{region} --output json 2>/dev/null"
-        asg_result = `#{asg_cmd}`
-        return [] if asg_result.empty?
+          asg_data = JSON.parse(asg_result)
+          asg = asg_data['AutoScalingGroups']&.first
+          next [] unless asg
 
-        asg_data = JSON.parse(asg_result)
-        asg = asg_data['AutoScalingGroups']&.first
-        return [] unless asg
+          instance_ids = asg['Instances']&.select { |i| i['LifecycleState'] == 'InService' }&.map { |i| i['InstanceId'] }
+          next [] if instance_ids.nil? || instance_ids.empty?
 
-        instance_ids = asg['Instances']&.select { |i| i['LifecycleState'] == 'InService' }&.map { |i| i['InstanceId'] }
-        return [] if instance_ids.nil? || instance_ids.empty?
+          # Then get full instance details
+          ids_str = instance_ids.join(' ')
+          ec2_cmd = "aws ec2 describe-instances --instance-ids #{ids_str} --region #{region} --output json 2>/dev/null"
+          ec2_result = `#{ec2_cmd}`
+          next [] if ec2_result.empty?
 
-        # Then get full instance details
-        ids_str = instance_ids.join(' ')
-        ec2_cmd = "aws ec2 describe-instances --instance-ids #{ids_str} --region #{region} --output json 2>/dev/null"
-        ec2_result = `#{ec2_cmd}`
-        return [] if ec2_result.empty?
-
-        instances = []
-        JSON.parse(ec2_result)['Reservations'].each do |reservation|
-          reservation['Instances'].each do |instance|
-            instances << instance if instance['State']['Name'] == 'running'
+          instances = []
+          JSON.parse(ec2_result)['Reservations'].each do |reservation|
+            reservation['Instances'].each do |instance|
+              instances << instance if instance['State']['Name'] == 'running'
+            end
           end
+          instances
         end
-        instances
       rescue JSON::ParserError
         []
       end
@@ -229,36 +298,40 @@ module Zapt
       # This is the main function that provides the same interface as load_named_cluster_def
       # It combines data from the instance stack and the associated routing stack (for dev boxes)
       # or uses ASG discovery (for production clusters)
+      #
+      # Uses parallel fetching for independent API calls to improve performance
       def load_from_stack(stack_name, region = nil)
         region ||= get_current_region || 'us-west-2'
 
         $logger.info "Loading cluster definition from CloudFormation stack: #{stack_name}" if $logger
 
-        # Get stack outputs
-        outputs = get_stack_outputs(stack_name, region)
+        # Parallel fetch: stack outputs and instances (independent calls)
+        outputs = nil
+        instances = []
+        routing_stack = nil
+
+        threads = []
+        threads << Thread.new { outputs = get_stack_outputs(stack_name, region) }
+        threads << Thread.new { instances = get_stack_instances(stack_name, region) }
+        threads << Thread.new { routing_stack = find_routing_stack(stack_name, region) }
+        threads.each(&:join)
+
         if outputs.empty?
           raise Zapt::Error.new("CloudFormation stack '#{stack_name}' not found or has no outputs")
         end
 
-        # Get instances - try ASG first (for production clusters), then CF stack instances (for dev boxes)
-        instances = []
+        # Check for ASG-based instances (parallel fetch already done for CF instances)
         asg_name = outputs['AutoScalingGroupName']
-        if asg_name
+        if asg_name && instances.empty?
           $logger.info "Found ASG: #{asg_name}, discovering instances..." if $logger
           instances = get_asg_instances(asg_name, region)
-        end
-
-        # Fall back to CF stack instances if no ASG or no ASG instances found
-        if instances.empty?
-          instances = get_stack_instances(stack_name, region)
         end
 
         if instances.empty?
           raise Zapt::Error.new("No running instances found in stack '#{stack_name}'")
         end
 
-        # Try to find associated routing stack for frontend_host and rtp_channel_hosts (dev boxes)
-        routing_stack = find_routing_stack(stack_name, region)
+        # Get routing info if routing stack found
         routing_info = {}
         if routing_stack
           routing_info = get_routing_info(routing_stack, region)
@@ -273,6 +346,13 @@ module Zapt
         # Determine environment
         env = outputs['ClusterEnv'] || first_tags['env'] || 'development'
         is_production = (env == 'production')
+
+        # Get RTP hosts (from SSM for production, routing stack for dev)
+        rtp_hosts = if is_production
+          get_prod_rtp_channel_hosts(region)
+        else
+          routing_info[:rtp_channel_hosts] || parse_rtp_hosts(outputs['ClusterRtpChannelHosts'] || first_tags['cluster-rtp-channel-hosts'])
+        end
 
         # Build cluster definition hash matching YAML structure
         # Priority: routing stack > stack outputs > instance tags > defaults
@@ -289,8 +369,7 @@ module Zapt
           site_dbname: outputs['ClusterSiteDbname'] || first_tags['cluster-site-dbname'],
           # frontend_host: routing stack for dev, stack output for prod
           frontend_host: routing_info[:frontend_host] || outputs['ClusterFrontendHost'] || first_tags['cluster-frontend-host'],
-          # rtp_channel_hosts: production uses static config, dev uses routing stack
-          rtp_channel_hosts: is_production ? PROD_RTP_CHANNEL_HOSTS : (routing_info[:rtp_channel_hosts] || parse_rtp_hosts(outputs['ClusterRtpChannelHosts'] || first_tags['cluster-rtp-channel-hosts'])),
+          rtp_channel_hosts: rtp_hosts,
           nodes: [],
           bins: nil,
           debug: is_production ? {
