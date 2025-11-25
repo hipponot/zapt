@@ -36,17 +36,29 @@ module Zapt
           pem = "#{ENV['HOME']}/credentials/#{cluster_config[:key]}.pem"
 
           nodes = cluster_config[:nodes]
+
+          # Pass stack name to remote tasks so they can load cluster def from CloudFormation
+          # This is needed because remote instances may not have CF stack tags
+          # Use cluster_config[:name] (from CF), or extract from cluster path/arg
+          cluster_base = cluster.end_with?('.yaml') ? File.basename(cluster, '.yaml') : cluster
+          stack_name = cluster_config[:name] || cluster_base
+
           nodes.each_with_index do |node|
             ip = Zapt.ip_from_node(node)
             user = node[:user]
             "Running task: #{task.task_name} on #{ip}"
             remote_task = ShellTask.new({})
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
+
+            # Set CLUSTER_DEF_STACK env var so remote load_cluster_def can find the stack
+            # Use sudo env to pass environment variable through to the subprocess
+            env_var = "CLUSTER_DEF_STACK=#{stack_name}"
+
             if options[:arglist]
               args = options[:arglist][i]
-              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem)
+              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo env #{env_var} zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem)
             else
-              remote_task.command %Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask #{options[:capture] ? '--capture' : ''} -r #{task.task_name}}, host:ip, user:user, pem:pem
+              remote_task.command %Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo env #{env_var} zapt runtask #{options[:capture] ? '--capture' : ''} -r #{task.task_name}}, host:ip, user:user, pem:pem
             end
           end
         else
