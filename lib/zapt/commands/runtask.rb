@@ -1,6 +1,7 @@
 require 'json'
 require 'yaml'
 require_relative '../../zapt'
+require_relative '../cluster_def_cf'
 
 module Zapt
 
@@ -8,7 +9,7 @@ module Zapt
     desc "runtask", "run the tasks specified in runlist"
     method_option :tasks, :aliases => "-t", :type=>:string, :default=>'tasks.rb', :required=>false, :desc => "Task file"
     method_option :runlist, :aliases => "-r", :type=>:array, :required=>true, :desc => "Run list"
-    method_option :cluster, :aliases => "-c", :type=>:string, :required=>false, :desc => "Specify cluster on which to run task"
+    method_option :cluster, :aliases => "-c", :type=>:string, :required=>false, :desc => "Specify cluster on which to run task (YAML file or stack name)"
     method_option :pem, :aliases => "-p", :type=>:string, :required=>false, :default=>"~/.ssh/dev-test-key.pem", :desc => "Remote command PEM"
     method_option :capture, :type=>:boolean, :required=>false, :desc => "bypass logging and capture output to stdout"
     def runtask
@@ -26,9 +27,10 @@ module Zapt
 
         if options[:cluster]
           cluster = options[:cluster]
-          $logger.error("Can't find cluster definition #{cluster}") and exit(1) unless File.exist?(cluster)
           task = Zapt::Tasks.registry[task]
-          cluster_config = YAML::load(IO.read(cluster))
+
+          # Load cluster config - try CloudFormation first, then YAML file
+          cluster_config = load_cluster_config(cluster)
 
           # pem from top level cluster config
           pem = "#{ENV['HOME']}/credentials/#{cluster_config[:key]}.pem"
@@ -67,6 +69,60 @@ module Zapt
         args = YAML.load(string)
       end
       args ||= {}
+    end
+
+    # Load cluster configuration from CloudFormation or YAML file
+    # Supports:
+    #   - CloudFormation stack name (e.g., "jward", "snapper-box")
+    #   - YAML file path (e.g., "/path/to/cluster.yaml")
+    # Environment variable CLUSTER_DEF_SOURCE controls behavior:
+    #   - 'cloudformation': Only try CloudFormation
+    #   - 'yaml': Only try YAML file
+    #   - 'auto' (default): Try CloudFormation first, fall back to YAML
+    def load_cluster_config(cluster)
+      source = ENV['CLUSTER_DEF_SOURCE'] || 'auto'
+
+      # Extract cluster name from path if it's a YAML file path
+      if cluster.end_with?('.yaml')
+        cluster_name = File.basename(cluster, '.yaml')
+        yaml_path = cluster
+      else
+        cluster_name = cluster
+        yaml_path = nil
+      end
+
+      # Try CloudFormation first (unless explicitly set to yaml)
+      if source == 'cloudformation' || source == 'auto'
+        begin
+          cluster_config = Zapt::ClusterDefCF.load_from_stack(cluster_name)
+          return cluster_config
+        rescue Zapt::Error => e
+          if source == 'cloudformation'
+            raise e
+          end
+          # Auto mode: fall through to YAML
+          $logger.info "CloudFormation loading failed (#{e.message}), falling back to YAML" if $logger
+        end
+      end
+
+      # Fall back to YAML file
+      if yaml_path.nil?
+        # Try to find YAML file in common locations
+        possible_paths = [
+          cluster_name,
+          "#{cluster_name}.yaml",
+          File.join(Dir.pwd, 'cluster_defs', "#{cluster_name}.yaml"),
+          File.join(Dir.pwd, '..', 'common', 'cluster_defs', "#{cluster_name}.yaml")
+        ]
+        yaml_path = possible_paths.find { |p| File.exist?(p) }
+      end
+
+      if yaml_path.nil? || !File.exist?(yaml_path)
+        raise Zapt::Error.new("Can't find cluster definition: #{cluster_name} (tried CloudFormation and YAML)")
+      end
+
+      $logger.info "Loading cluster from YAML: #{yaml_path}" if $logger
+      YAML::load(IO.read(yaml_path))
     end
 
   end
