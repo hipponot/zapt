@@ -400,6 +400,47 @@ module Zapt
         cluster_def
       end
 
+      # Load cluster definition for the current EC2 instance
+      # Auto-detects the CloudFormation stack from instance tags and sets :this_node
+      # Returns a cluster_def hash with :this_node populated
+      def load_for_current_instance
+        instance_id = get_current_instance_id
+        raise Zapt::Error.new("Not running on EC2 instance (no instance-id from metadata)") unless instance_id
+
+        region = get_current_region
+        raise Zapt::Error.new("Could not determine region from instance metadata") unless region
+
+        $logger.info "Auto-detecting cluster for instance #{instance_id} in #{region}" if $logger
+
+        # Get instance tags to find the stack name
+        tags = get_instance_tags(instance_id, region)
+        stack_name = tags['aws:cloudformation:stack-name']
+
+        unless stack_name
+          raise Zapt::Error.new("Instance #{instance_id} is not part of a CloudFormation stack (missing aws:cloudformation:stack-name tag)")
+        end
+
+        $logger.info "Found stack name from instance tags: #{stack_name}" if $logger
+
+        # Load the cluster definition from the stack
+        cluster_def = load_from_stack(stack_name, region)
+
+        # Get this instance's internal IP to set :this_node
+        internal_ip = get_instance_metadata('local-ipv4')
+
+        # Find this node in the nodes array and set :this_node
+        my_node = cluster_def[:nodes].find { |n| n[:internal_ip] == internal_ip }
+
+        unless my_node
+          raise Zapt::Error.new("Could not find node with IP #{internal_ip} in cluster '#{cluster_def[:name]}'")
+        end
+
+        cluster_def[:this_node] = my_node
+        $logger.info "Set this_node to instance with IP #{internal_ip}" if $logger
+
+        cluster_def
+      end
+
       # Parse RTP hosts into the expected hash structure
       def parse_rtp_hosts(rtp_input)
         return nil if rtp_input.nil?
