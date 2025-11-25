@@ -22,7 +22,8 @@ module Zapt
     $logger.info "Running command: #{cmd}" unless quiet
     # alternatively use Open3.capture3 (this caused hangs but maybe -tt fixed the issue?)
     if USE_BACKTICKS
-      rval = `#{cmd}`; exit_status=($?.exitstatus == 0)
+      # Capture both stdout and stderr (2>&1) so errors are included in output
+      rval = `#{cmd} 2>&1`; exit_status=($?.exitstatus == 0)
       if(exit_status)
         $logger.info(rval) unless quiet;
       else
