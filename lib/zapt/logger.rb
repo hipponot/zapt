@@ -3,7 +3,7 @@ require "colored"
 class Logger
   attr_accessor :disabled
 end
-$logger = Logger.new(STDOUT)
+$logger = Logger.new(STDERR)
 $logger.level = Logger::INFO
 
 $logger.formatter = proc{ |level, datetime, progname, msg|
