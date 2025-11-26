@@ -303,7 +303,7 @@ module Zapt
       def load_from_stack(stack_name, region = nil)
         region ||= get_current_region || 'us-west-2'
 
-        $logger.info "Loading cluster definition from CloudFormation stack: #{stack_name}" if $logger
+        $logger.debug "Loading cluster definition from CloudFormation stack: #{stack_name}" if $logger
 
         # Parallel fetch: stack outputs and instances (independent calls)
         outputs = nil
@@ -323,7 +323,7 @@ module Zapt
         # Check for ASG-based instances (parallel fetch already done for CF instances)
         asg_name = outputs['AutoScalingGroupName']
         if asg_name && instances.empty?
-          $logger.info "Found ASG: #{asg_name}, discovering instances..." if $logger
+          $logger.debug "Found ASG: #{asg_name}, discovering instances..." if $logger
           instances = get_asg_instances(asg_name, region)
         end
 
@@ -335,7 +335,7 @@ module Zapt
         routing_info = {}
         if routing_stack
           routing_info = get_routing_info(routing_stack, region)
-          $logger.info "Found routing stack: #{routing_stack}" if $logger
+          $logger.debug "Found routing stack: #{routing_stack}" if $logger
         end
 
         # Get first instance for default values
@@ -395,7 +395,7 @@ module Zapt
         # Generate frontend_host if not set
         cluster_def[:frontend_host] ||= "https://#{stack_name}.wootmath.com"
 
-        $logger.info "Loaded cluster '#{cluster_def[:name]}' with #{cluster_def[:nodes].length} node(s) from CloudFormation" if $logger
+        $logger.debug "Loaded cluster '#{cluster_def[:name]}' with #{cluster_def[:nodes].length} node(s) from CloudFormation" if $logger
 
         cluster_def
       end
@@ -410,7 +410,7 @@ module Zapt
         region = get_current_region
         raise Zapt::Error.new("Could not determine region from instance metadata") unless region
 
-        $logger.info "Auto-detecting cluster for instance #{instance_id} in #{region}" if $logger
+        $logger.debug "Auto-detecting cluster for instance #{instance_id} in #{region}" if $logger
 
         # Get instance tags to find the stack name
         tags = get_instance_tags(instance_id, region)
@@ -420,7 +420,7 @@ module Zapt
           raise Zapt::Error.new("Instance #{instance_id} is not part of a CloudFormation stack (missing aws:cloudformation:stack-name tag)")
         end
 
-        $logger.info "Found stack name from instance tags: #{stack_name}" if $logger
+        $logger.debug "Found stack name from instance tags: #{stack_name}" if $logger
 
         # Load the cluster definition from the stack
         cluster_def = load_from_stack(stack_name, region)
@@ -436,7 +436,7 @@ module Zapt
         end
 
         cluster_def[:this_node] = my_node
-        $logger.info "Set this_node to instance with IP #{internal_ip}" if $logger
+        $logger.debug "Set this_node to instance with IP #{internal_ip}" if $logger
 
         cluster_def
       end
