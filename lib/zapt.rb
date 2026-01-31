@@ -60,6 +60,18 @@ module Zapt
       node[ip_addr_key]
     end
 
+    # Returns SSH target - either IP address or instance ID for SSM
+    # When use_instance_id is true, returns the AWS instance ID (e.g., i-03466d3d43f703167)
+    # which enables SSH through AWS Session Manager (no VPN required)
+    def ssh_target_from_node(node, use_instance_id: false)
+      if use_instance_id
+        abort("Node missing :id for SSM connection") unless node.is_a?(Hash) && node.has_key?(:id)
+        node[:id]
+      else
+        ip_from_node(node)
+      end
+    end
+
     def message msg
       unless $zapt_no_color
         puts msg.white_on_black

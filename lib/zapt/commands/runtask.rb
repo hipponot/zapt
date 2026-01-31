@@ -11,6 +11,7 @@ module Zapt
     method_option :cluster, :aliases => "-c", :type=>:string, :required=>false, :desc => "Specify cluster on which to run task"
     method_option :pem, :aliases => "-p", :type=>:string, :required=>false, :default=>"~/.ssh/dev-test-key.pem", :desc => "Remote command PEM"
     method_option :capture, :type=>:boolean, :required=>false, :desc => "bypass logging and capture output to stdout"
+    method_option :use_instance_id, :aliases => "-i", :type=>:boolean, :default=>false, :desc => "Use instance ID for SSH (enables SSM, no VPN required)"
     def runtask
 
       raise Error.new("arglist length > runlist length") if options[:arglist] and options[:arglist].length > options[:runlist].length
@@ -34,17 +35,18 @@ module Zapt
           pem = "#{ENV['HOME']}/credentials/#{cluster_config[:key]}.pem"
 
           nodes = cluster_config[:nodes]
+          use_instance_id = options[:use_instance_id]
           nodes.each_with_index do |node|
-            ip = Zapt.ip_from_node(node)
+            ssh_target = Zapt.ssh_target_from_node(node, use_instance_id: use_instance_id)
             user = node[:user]
-            "Running task: #{task.task_name} on #{ip}"
+            $logger.info "Running task: #{task.task_name} on #{ssh_target}#{use_instance_id ? ' (via SSM)' : ''}"
             remote_task = ShellTask.new({})
             remote_dir = File.dirname(File.join('zcripts', File.expand_path('tasks.rb').split('zcripts/')[1]))
             if options[:arglist]
               args = options[:arglist][i]
-              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ip, user:user, pem:pem)
+              remote_task.command(%Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask -r #{task.task_name} -a \\"#{args}\\"}, host:ssh_target, user:user, pem:pem)
             else
-              remote_task.command %Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask #{options[:capture] ? '--capture' : ''} -r #{task.task_name}}, host:ip, user:user, pem:pem
+              remote_task.command %Q{cd #{remote_dir}; rvmsudo_secure_path=1 rvmsudo zapt runtask #{options[:capture] ? '--capture' : ''} -r #{task.task_name}}, host:ssh_target, user:user, pem:pem
             end
           end
         else
